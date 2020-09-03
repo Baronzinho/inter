@@ -1,4 +1,4 @@
-package concessionaria;
+package Model;
 
 import java.sql.SQLException;
 

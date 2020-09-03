@@ -1,6 +1,6 @@
-package concessionaria;
+package Model;
 
-import conexao.BDFabricaConexao;
+import Conexao.BDFabricaConexao;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
