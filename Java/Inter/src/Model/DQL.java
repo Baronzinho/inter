@@ -1,4 +1,4 @@
-package concessionaria;
+package Model;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -46,7 +46,7 @@ public class DQL extends SQL {
         ResultSet rset = getRset();
         return rset;
     }
-
+    /*
     public ObservableList<Customers> selectTable() throws SQLException {
         sql = "select customerNumber, customerName, contactFirstName, \n"
                 + "phone, addressLine1, city, country from customers;";
@@ -68,7 +68,8 @@ public class DQL extends SQL {
         }
         return obList;
     }
-
+    */
+    /*
     public ObservableList<Products> selectTable2() throws SQLException {
         sql = "select productCode, productName, productLine, productScale, "
                 + "productVendor, productDescription, quantityInStock, "
@@ -92,7 +93,8 @@ public class DQL extends SQL {
         }
         return obList;
     }
-
+    */
+    /*
     public ObservableList<Products> selectReports() throws SQLException {
         sql = "select productCode, productName, productLine, productScale, "
                 + "productVendor, productDescription, quantityInStock, "
@@ -109,7 +111,7 @@ public class DQL extends SQL {
         }
         return obList;
     }
-
+    */
     public ResultSet callProcedure(String procedureSignature) throws SQLException {
         sql = "call " + procedureSignature + ";";
         conect(sql);
