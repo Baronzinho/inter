@@ -29,37 +29,59 @@ public class Tela_Login_Controller implements Initializable {
     protected String sql;
     
     @FXML
-    public void c_Logar(ActionEvent event) throws IOException, SQLException {
+    public void logar(ActionEvent event) throws IOException, SQLException {
         //Esse evento está associado ao clique no botão logar. Aqui ele faz o processamento e loga.
         System.out.println("TESTE!");
         
-        /*
+        
         String usuarioBanco = null;
         String senhaBanco = null;
+        String cargoBanco = null;
         ResultSet rset;
 
-        concessionaria.DQL dql = new concessionaria.DQL("employees");
+        Model.DQL dql = new Model.DQL("inter_caio_gabriel");
         rset = dql.selectLogin();
 
         while (rset.next()) {
-            usuarioBanco = rset.getString("employeeNumber");
-            senhaBanco = rset.getString("extension");
+            usuarioBanco = rset.getString("cpf");
+            senhaBanco = rset.getString("senha");
+            cargoBanco = rset.getString("cargo");
         }
+        
+        if (cargoBanco.equals("Aluno") ){
+            
+            if (usuarioBanco.equals(txtUsuario.getText()) && senhaBanco.equals(txtSenha.getText())) {
+                Parent root = FXMLLoader.load(getClass().getResource("/View/Tela_Principal_Aluno.fxml"));
+                Stage stage = new Stage();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
 
-        if (usuarioBanco.equals(txtUsuario.getText()) && senhaBanco.equals(txtSenha.getText())) {
-            Parent root = FXMLLoader.load(getClass().getResource("/view/Tela_Principal.fxml"));
-            Stage stage = new Stage();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
+                Stage stageAtual = (Stage) btnLogar.getScene().getWindow(); //Obtendo a janela atual
+                stageAtual.close();
+            }else {
+                JOptionPane.showMessageDialog(null, "Verifique se todos os campos estão preenchidos \n"
+                + "e que seu Usuário e Senha estão corretos!\n");
+            }
+            
+        }else if (cargoBanco.equals("Professor")){
+            
+            if (usuarioBanco.equals(txtUsuario.getText()) && senhaBanco.equals(txtSenha.getText())) {
+                Parent root = FXMLLoader.load(getClass().getResource("/View/Tela_Pricipal_Professor.fxml"));
+                Stage stage = new Stage();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
 
-            Stage stageAtual = (Stage) btnLogar.getScene().getWindow(); //Obtendo a janela atual
-            stageAtual.close();
-        } else {
-            JOptionPane.showMessageDialog(null, "Verifique se todos os campos estão preenchidos \n"
-                    + "e que seu Usuário e Senha estão corretos!\n");
-        }
-        */
+                Stage stageAtual = (Stage) btnLogar.getScene().getWindow(); //Obtendo a janela atual
+                stageAtual.close();
+            }else {
+                JOptionPane.showMessageDialog(null, "Verifique se todos os campos estão preenchidos \n"
+                + "e que seu Usuário e Senha estão corretos!\n");
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Tipo de usuario não reconhecido!\n");
+        } 
     }
     
     @Override
