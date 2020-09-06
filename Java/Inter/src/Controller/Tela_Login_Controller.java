@@ -29,26 +29,45 @@ public class Tela_Login_Controller implements Initializable {
     protected String sql;
     
     @FXML
-    public void logar(ActionEvent event) throws IOException, SQLException {
-        //Esse evento está associado ao clique no botão logar. Aqui ele faz o processamento e loga.
-        System.out.println("TESTE!");
-        
+    public void logar(ActionEvent event) throws IOException, SQLException {        
         
         String usuarioBanco = null;
         String senhaBanco = null;
         String cargoBanco = null;
         ResultSet rset;
 
-        Model.DQL dql = new Model.DQL("inter_caio_gabriel");
-        rset = dql.selectLogin();
+        Model.DQL dql = new Model.DQL("Login");
+        rset = dql.selectLogin(txtUsuario.getText(), txtSenha.getText());
+        
+        Model.loginUser login = new Model.loginUser();
+        
+        if(!rset.isBeforeFirst()){
+            JOptionPane.showMessageDialog(null, "Usuario ou Senha incorretos!");
+        }
+        else{
+            while(rset.next()){
+                if(!rset.getString("cargo").equals("")){
+                    cargoBanco = rset.getString("cargo");
 
-        while (rset.next()) {
-            usuarioBanco = rset.getString("cpf");
-            senhaBanco = rset.getString("senha");
-            cargoBanco = rset.getString("cargo");
+                    if(cargoBanco.equals("Aluno")){
+                        JOptionPane.showMessageDialog(null, "Logou como Aluno!");
+                    }
+                    else if(cargoBanco.equals("Professor")){
+                        JOptionPane.showMessageDialog(null, "Logou como Professor!");
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null, "Cargo não esperado!");
+                    }
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Erro Inesperado!");
+                }
+            }
         }
         
-        if (cargoBanco.equals("Aluno") ){
+        
+        /*
+        if (cargoBanco.equals("Aluno")){
             
             if (usuarioBanco.equals(txtUsuario.getText()) && senhaBanco.equals(txtSenha.getText())) {
                 Parent root = FXMLLoader.load(getClass().getResource("/View/Tela_Principal_Aluno.fxml"));
@@ -82,8 +101,9 @@ public class Tela_Login_Controller implements Initializable {
         }else{
             JOptionPane.showMessageDialog(null, "Tipo de usuario não reconhecido!\n");
         } 
+        */
     }
-    
+        
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO

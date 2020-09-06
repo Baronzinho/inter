@@ -14,9 +14,9 @@
             <Image url="@../Imagens/Login.png" />
          </image>
       </ImageView>
-      <TextField id="txtUsuario" layoutX="352.0" layoutY="122.0" prefHeight="25.0" prefWidth="197.0" style="-fx-border-radius: 15; -fx-background-radius: 15; -fx-background-color: #FFFFF0;" />
-      <TextField id="txtSenha" layoutX="352.0" layoutY="159.0" prefHeight="25.0" prefWidth="197.0" style="-fx-border-radius: 15; -fx-background-radius: 15; -fx-background-color: #FFFFF0;" />
-      <Button id="btnLogar" fx:id="btnLogar" layoutX="385.0" layoutY="202.0" mnemonicParsing="false" onAction="#c_Logar" prefHeight="37.0" prefWidth="120.0" style="-fx-background-color: #FFFFF0; -fx-text-fill: #265073; -fx-border-radius: 15; -fx-background-radius: 15;" text="LOGAR">
+      <TextField id="txtUsuario" fx:id="txtUsuario" layoutX="352.0" layoutY="122.0" prefHeight="25.0" prefWidth="197.0" style="-fx-border-radius: 15; -fx-background-radius: 15; -fx-background-color: #FFFFF0;" />
+      <TextField id="txtSenha" fx:id="txtSenha" layoutX="352.0" layoutY="159.0" prefHeight="25.0" prefWidth="197.0" style="-fx-border-radius: 15; -fx-background-radius: 15; -fx-background-color: #FFFFF0;" />
+      <Button id="btnLogar" fx:id="btnLogar" layoutX="385.0" layoutY="202.0" mnemonicParsing="false" onAction="#logar" prefHeight="37.0" prefWidth="120.0" style="-fx-background-color: #FFFFF0; -fx-text-fill: #265073; -fx-border-radius: 15; -fx-background-radius: 15;" text="LOGAR">
          <font>
             <Font name="Broadway" size="15.0" />
          </font>

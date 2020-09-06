@@ -40,8 +40,9 @@ public class DQL extends SQL {
         return rset;
     }
 
-    public ResultSet selectLogin() throws SQLException {
-        sql = "select extension, employeeNumber from " + super.tabela + " where jobTitle = 'Sale Manager (EMEA)';";
+    public ResultSet selectLogin(String usuarioLocal, String senhaLocal) throws SQLException {
+        sql = "select cargo from Login where cpf"
+                + " = '" + usuarioLocal + "' and senha = '" + senhaLocal + "' ;";
         conect(sql);
         ResultSet rset = getRset();
         return rset;
