@@ -4,7 +4,7 @@ import javax.swing.JOptionPane;
 
 
 
-public class loginUser {
+public class LoginUser {
     private int id_Login;
     private int cpf;
     private String senha;
