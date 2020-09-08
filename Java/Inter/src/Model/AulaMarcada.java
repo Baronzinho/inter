@@ -2,7 +2,7 @@ package Model;
 
 import java.util.Date;
 
-public class aula_Marcada {
+public class AulaMarcada {
     private int id_Aula_Marcada;
     private int id_Professor;
     private int id_Aluno;

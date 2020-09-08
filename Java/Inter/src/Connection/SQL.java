@@ -1,6 +1,6 @@
-package Model;
+package Connection;
 
-import Conexao.BDFabricaConexao;
+import Connection.BDFabricaConexao;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;

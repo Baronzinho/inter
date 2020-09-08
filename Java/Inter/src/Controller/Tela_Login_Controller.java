@@ -36,10 +36,10 @@ public class Tela_Login_Controller implements Initializable {
         String cargoBanco = null;
         ResultSet rset;
 
-        Model.DQL dql = new Model.DQL("Login");
+        Connection.DQL dql = new Connection.DQL("Login");
         rset = dql.selectLogin(txtUsuario.getText(), txtSenha.getText());
         
-        Model.loginUser login = new Model.loginUser();
+        Model.LoginUser login = new Model.LoginUser();
         
         if(!rset.isBeforeFirst()){
             JOptionPane.showMessageDialog(null, "Usuario ou Senha incorretos!");

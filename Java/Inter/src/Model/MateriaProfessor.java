@@ -1,6 +1,6 @@
 package Model;
 
-public class materia_Professor {
+public class MateriaProfessor {
     private int id_materia;
     private int id_Professor;
     private String materia_Professor;

@@ -2,7 +2,7 @@ package Model;
 
 import java.sql.Blob;
 
-public class aluno {
+public class Aluno {
     private int id_aluno;
     private int idade_Aluno;
     private int endereco_Aluno;
