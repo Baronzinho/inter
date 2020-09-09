@@ -1,13 +1,33 @@
-package Model;
 
+package Model;
 import java.sql.Blob;
 
-public class Aluno {
+
+public class UserAluno {
+  
     private int id_aluno;
     private int idade_Aluno;
     private int endereco_Aluno;
     private int login;
+    private String nome_Aluno;
+    private String contato_Aluno;
     private Blob img_Aluno;
+
+    public String getNome_Aluno() {
+        return nome_Aluno;
+    }
+
+    public void setNome_Aluno(String nome_Aluno) {
+        this.nome_Aluno = nome_Aluno;
+    }
+
+    public String getContato_Aluno() {
+        return contato_Aluno;
+    }
+
+    public void setContato_Aluno(String contato_Aluno) {
+        this.contato_Aluno = contato_Aluno;
+    }
 
     public Blob getImg_Aluno() {
         return img_Aluno;
@@ -51,3 +71,5 @@ public class Aluno {
     
     
 }
+
+

@@ -2,7 +2,7 @@ package Model;
 
 import java.sql.Blob;
 
-public class Professor {
+public class UserProfessor {
     private int id_Professor;  
     private int idade_Professor;
     private int endereco_professor;
@@ -10,7 +10,16 @@ public class Professor {
     private double preco_aula;
     private String nome_Professor;
     private String descricao_Professor;
+    private String contato_Peofessor;
     private Blob img_Aluno;
+
+    public String getContato_Peofessor() {
+        return contato_Peofessor;
+    }
+
+    public void setContato_Peofessor(String contato_Peofessor) {
+        this.contato_Peofessor = contato_Peofessor;
+    }
 
     public Blob getImg_Aluno() {
         return img_Aluno;

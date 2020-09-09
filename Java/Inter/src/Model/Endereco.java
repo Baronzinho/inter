@@ -6,7 +6,7 @@ public class Endereco {
     private String bairro;
     private String cidade;
     private String complemento;
-    private char numero;
+    private String numero;
 
     public int getId_Endereco() {
         return id_Endereco;
@@ -48,11 +48,11 @@ public class Endereco {
         this.complemento = complemento;
     }
 
-    public char getNumero() {
+    public String getNumero() {
         return numero;
     }
 
-    public void setNumero(char numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
     }
     

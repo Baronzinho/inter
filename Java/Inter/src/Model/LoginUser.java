@@ -6,7 +6,7 @@ import javax.swing.JOptionPane;
 
 public class LoginUser {
     private int id_Login;
-    private int cpf;
+    private String cpf;
     private String senha;
     private String tipoUsuario;
         
@@ -18,11 +18,11 @@ public class LoginUser {
         this.id_Login = id_login;
     }
 
-    public int getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(int cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
