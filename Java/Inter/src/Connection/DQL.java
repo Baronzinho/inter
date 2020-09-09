@@ -11,13 +11,34 @@ public class DQL extends SQL {
         super(tabela);
     }
 
+    
+    
+    
+    public ResultSet selectAluno(String loginAluno) throws SQLException {
+        sql = "select * from Aluno where login"
+                + " = '" + loginAluno + "' ;";
+        conect(sql);
+        ResultSet rset = getRset();
+        return rset;
+    }
+
+    public ResultSet selectLogin(String usuarioLocal, String senhaLocal) throws SQLException {
+        sql = "select cargo from Login where cpf"
+                + " = '" + usuarioLocal + "' and senha = '" + senhaLocal + "' ;";
+        conect(sql);
+        ResultSet rset = getRset();
+        return rset;
+    }
+    /*
     public ResultSet select() throws SQLException {
         sql = "select * from " + super.tabela + ";";
         conect(sql);
         ResultSet rset = getRset();
         return rset;
     }
-
+    
+    
+    
     public void selectCustomer(int customerNumber) throws SQLException {
         sql = "select * from " + super.tabela + " where customerNumber"
                 + " = " + Integer.toString(customerNumber) + ";";
@@ -39,15 +60,7 @@ public class DQL extends SQL {
         ResultSet rset = getRset();
         return rset;
     }
-
-    public ResultSet selectLogin(String usuarioLocal, String senhaLocal) throws SQLException {
-        sql = "select cargo from Login where cpf"
-                + " = '" + usuarioLocal + "' and senha = '" + senhaLocal + "' ;";
-        conect(sql);
-        ResultSet rset = getRset();
-        return rset;
-    }
-    /*
+    
     public ObservableList<Customers> selectTable() throws SQLException {
         sql = "select customerNumber, customerName, contactFirstName, \n"
                 + "phone, addressLine1, city, country from customers;";
