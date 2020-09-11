@@ -15,6 +15,7 @@ create table if not exists Endereco(
     bairro varchar(100) not null,
     cidade varchar(100) not null,
     numero varchar(5) not null,
+    cep varchar(9) not null,
     complemento varchar(100),
     primary key(id_endereco)
 );
@@ -67,8 +68,8 @@ create table if not exists Aula_Marcada(
 INSERT INTO Login (cpf,senha,cargo) VAlUES ("47062955809","161000","Aluno");
 INSERT INTO Login (cpf,senha,cargo) VAlUES ("17204486807","010896","Professor");
 
-INSERT INTO Endereco (rua,bairro,cidade,numero,complemento) VAlUES ("Sales de Oliveira","Vila Industrial","Campinas","2033","Casa");
-INSERT INTO Endereco (rua,bairro,cidade,numero,complemento) VAlUES ("Jose Serafim","Vila Castelo Branco","Campinas","177","Casa");
+INSERT INTO Endereco (rua,bairro,cidade,numero,cep,complemento) VAlUES ("Sales de Oliveira","Vila Industrial","Campinas","2033","13021850","Casa");
+INSERT INTO Endereco (rua,bairro,cidade,numero,cep,complemento) VAlUES ("Jose Serafim","Vila Castelo Branco","Campinas","177","13041960","Casa");
 
 INSERT INTO Aluno (nome_Aluno,idade_Aluno,endereco_Aluno,contato_Aluno,login) VALUES ("Caio Mota", 19, 2,"19982323017",1);
 INSERT INTO Professor (nome_Professor,idade_Professor,descricao_Professor,preco_Aula,endereco_Professor,contato_Professor,login) VALUES ("Alex Sandro", 45, "Professor formado em Matematica, Atento na minha casa,cobro a hora",50.00,1,"19997225798",2);
