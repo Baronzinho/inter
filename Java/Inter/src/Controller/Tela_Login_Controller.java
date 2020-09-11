@@ -1,23 +1,29 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Controller;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.fxml.Initializable;
 import java.io.IOException;
+import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 
+/**
+ * FXML Controller class
+ *
+ * @author Gabriel
+ */
 public class Tela_Login_Controller implements Initializable {
-
+    
     @FXML
     private TextField txtUsuario;
     @FXML
@@ -34,9 +40,10 @@ public class Tela_Login_Controller implements Initializable {
         String usuarioBanco = null;
         String senhaBanco = null;
         String cargoBanco = null;
-        ResultSet rset;
+        ResultSet rset = null;
 
         Connection.DQL dql = new Connection.DQL("Login");
+        
         rset = dql.selectLogin(txtUsuario.getText(), txtSenha.getText());
         
         Model.LoginUser login = new Model.LoginUser();
@@ -103,7 +110,12 @@ public class Tela_Login_Controller implements Initializable {
         } 
         */
     }
-        
+    
+    @FXML
+    private void sair(ActionEvent event){
+        System.exit(0);
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
