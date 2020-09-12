@@ -8,90 +8,93 @@ public class DML extends SQL {
         super(tabela);
     }
 
-    public void insertCustomer(int customerNumber, String customerName, String contactFirstName, String contactLastName,
-            String phone, String addressLine, String city, String country) throws SQLException {
-        sql = "insert into " + tabela
-                + " (customerNumber, "
-                + "customerName, "
-                + "contactFirstName, "
-                + "contactLastName, "
-                + "phone, "
-                + "addressLine1, "
-                + "city, "
-                + "country) "
-                + "values("
-                + customerNumber + ", '"
-                + customerName + "', '"
-                + contactFirstName + "', '"
-                + contactLastName + "', '"
-                + phone + "', '"
-                + addressLine + "', '"
-                + city + "', '"
-                + country + "');";
+    public void insertLogin(String cpf, String senha, String cargo) throws SQLException {
+        sql = "INSERT INTO Login (cpf, senha, cargo) VALUES (" + cpf + ", '" + senha + "', '" + cargo + "');";
         update(sql);
     }
 
-    public void updateCustomer(int customerNumber, String customerName, String contactFirstName, String contactLastName, String phone, String addressLine1, String city, String country) throws SQLException {
-        sql = "update " + super.tabela
-                + " set customerName = '" + customerName
-                + "', contactLastName = '" + contactLastName
-                + "', contactFirstName = '" + contactFirstName
-                + "', phone = '" + phone
-                + "', addressLine1 = '" + addressLine1
-                + "', city = '" + city
-                + "', country = '" + country
-                + "'where customerNumber = " + customerNumber + ";";
+    public void updateLogin(String cpf, String senha, String cargo) throws SQLException {
+        sql = "UPDATE Login  SET cpf = '" + cpf + "', senha = '" + senha + "', cargo = '" + cargo + " WHERE cpf = '" + cpf + ";";
         update(sql);
     }
 
-    public void deleteCustomer(int customerNumber) throws SQLException {
-        sql = "delete from " + tabela
-                + " where customerNumber = " + customerNumber + ";";
+    public void deleteLogin(int id_Login) throws SQLException {
+        sql = "DELETE FROM Login WHERE id_Login = " + id_Login + ";";
         update(sql);
     }
 
-    public void insertProduct(String productCode, String productName, String productLine, String productScale, String productVendor, String productDescription, int quantityInStock, double buyPrice, double MSRP) throws SQLException {
-        sql = "insert into " + super.tabela
-                + " (productCode, "
-                + "productName, "
-                + "productLine, "
-                + "productScale, "
-                + "productVendor, "
-                + "productDescription, "
-                + "quantityInStock, "
-                + "buyPrice, "
-                + "MSRP) "
-                + "values('"
-                + productCode + "', '"
-                + productName + "', '"
-                + productLine + "', '"
-                + productScale + "', '"
-                + productVendor + "', '"
-                + productDescription + "', "
-                + quantityInStock + ", "
-                + buyPrice + ", "
-                + MSRP + ");";
+    public void insertAluno(String nome_Aluno, int idade_Aluno, int endereco_Aluno, String contato_Aluno, int login) throws SQLException {
+        sql = "INSERT INTO Aluno (nome_Aluno,idade_Aluno,endereco_Aluno,contato_Aluno,login) VALUES ( "
+              + nome_Aluno + "', '" + idade_Aluno + "', '" + endereco_Aluno + "', '" + contato_Aluno + "', '" + login + "', ');";
         update(sql);
     }
 
-    public void updateProduct(String productCode, String productName, String productLine, String productScale, String productVendor, String productDescription, int quantityInStock, double buyPrice, double MSRP) throws SQLException {
-        sql = "update " + super.tabela
-                + " set productCode = '" + productCode
-                + "', productName = '" + productName
-                + "', productLine = '" + productLine
-                + "', productScale = '" + productScale
-                + "', productVendor = '" + productVendor
-                + "', productDescription = '" + productDescription
-                + "', quantityInStock = " + quantityInStock
-                + ", buyPrice = " + buyPrice
-                + ", MSRP = " + MSRP
-                + " where productCode = '" + productCode + "';";
+    public void updateAluno(String nome_Aluno, int idade_Aluno, int endereco_Aluno, String contato_Aluno, int login) throws SQLException {
+        sql = "UPDATE Aluno"
+                + " SET nome_Aluno = '" + nome_Aluno
+                + "', idade_Aluno = '" + idade_Aluno
+                + "', endereco_Aluno = '" + endereco_Aluno
+                + "', contato_Aluno = '" + contato_Aluno
+                + "', login = '" + login
+                + " WHERE login = '" + login + "';";
         update(sql);
     }
 
-    public void deleteProduct(String productCode) throws SQLException {
-        sql = "delete from " + super.tabela
-                + " where productCode = '" + productCode + "';";
+    public void deleteAluno(int id_aluno) throws SQLException {
+        sql = "DELETE FROM Aluno WHERE id_aluno = '" + id_aluno + "';";
+        update(sql);
+    }
+    
+    public void insertEndereco(String rua, String bairro, String cidade, String numero, String cep, String complemento) throws SQLException {
+        sql = "INSERT INTO Endereco (rua,bairro,cidade,numero,cep,complemento) VAlUES (" + rua + ", '" + bairro + "', '" + cidade + "', '" + numero + "', '" + cep + "', '" + complemento +"');";
+        update(sql);
+    }
+
+    public void updateEndereco(int id_Endereco,String rua, String bairro, String cidade, String numero, String cep, String complemento) throws SQLException {
+        sql = "UPDATE Endereco SET rua = '" + rua + "', bairro = '" + bairro + "', cidade = '" + cidade + "', cep = '" + cep +"', complemento = '" + complemento +" WHERE id_Endereco = '" + id_Endereco + ";";
+        update(sql);
+    }
+
+    public void deleteEndereco(int id_Endereco) throws SQLException {
+        sql = "DELETE FROM Endereco WHERE id_Endereco = " + id_Endereco + ";";
+        update(sql);
+    }
+    
+    public void insertProfessor(String nome_Professor, int idade_Professor, String descricao_Professor, float preco_Aula, int endereco_Professor, String contato_Professor, int login) throws SQLException {
+        sql = "INSERT INTO Professor (nome_Professor,idade_Professor,cidade,numero,cep,complemento) VAlUES (" 
+             + nome_Professor + ", '" + idade_Professor + "', '" + descricao_Professor + "', '" + preco_Aula + "', '" + endereco_Professor + "', '" + contato_Professor + "', '" + login +"');";
+        update(sql);
+    }
+
+    public void updateProfessor(String nome_Professor, int idade_Professor, String descricao_Professor, float preco_Aula, int endereco_Professor, String contato_Professor, int login) throws SQLException {
+        sql = "UPDATE Professor SET nome_Professor = '" + nome_Professor + "', idade_Professor = '" + idade_Professor + "', descricao_Professor = '" + descricao_Professor + "', preco_Aula = '" + preco_Aula +"', endereco_Professor = '" + endereco_Professor + "', contato_Professor = '" + contato_Professor +" WHERE login = '" + login + ";";
+        update(sql);
+    }
+
+    public void deleteProfessor(int id_Professor) throws SQLException {
+        sql = "DELETE FROM Professor WHERE id_Professor = " + id_Professor + ";";
+        update(sql);
+    }
+    
+    public void insertMateria(int id_Professor, String materia_Professor) throws SQLException {
+        sql = "INSERT INTO Materia_Professor (id_Professor,materia_Professor) VAlUES (" 
+             + id_Professor + ", '" + materia_Professor +"');";
+        update(sql);
+    }
+
+    public void deleteMateria(int id_Professor) throws SQLException {
+        sql = "DELETE FROM Materia_Professor WHERE id_Professor = " + id_Professor + ";";
+        update(sql);
+    }
+    
+     public void insertAula_Marcada(int id_Professor, int id_Aluno, String data_Marcada) throws SQLException {
+        sql = "INSERT INTO Aula_Marcada (id_Professor,id_Aluno,data_Marcada) VAlUES (" 
+             + id_Professor + ", '" + id_Aluno + ", '" + data_Marcada +"');";
+        update(sql);
+    }
+
+    public void deleteAula_Marcada(int id_Aula_Marcada) throws SQLException {
+        sql = "DELETE FROM Aula_Marcada WHERE id_Aula_Marcada = " + id_Aula_Marcada + ";";
         update(sql);
     }
 }
