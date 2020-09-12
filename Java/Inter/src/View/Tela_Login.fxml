@@ -44,7 +44,7 @@
                </font>
             </FontAwesomeIcon>
             <Button fx:id="btnLogar" layoutX="131.0" layoutY="271.0" mnemonicParsing="false" onAction="#logar" prefHeight="34.0" prefWidth="88.0" style="-fx-background-color: #0598ff;" text="Logar" textFill="WHITE" />
-            <Hyperlink fx:id="btnCadastrar" layoutX="74.0" layoutY="363.0" text="Não é cadastrado? Cadastre-se aqui!" />
+            <Hyperlink fx:id="linkCadastrar" layoutX="74.0" layoutY="363.0" onAction="#cadastrar" text="Não é cadastrado? Cadastre-se aqui!" />
             <FontAwesomeIcon fill="#0598ff" glyphName="USERS" layoutX="156.0" layoutY="90.0" size="35" />
             <Text fill="#0589ff" layoutX="149.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login">
                <font>
