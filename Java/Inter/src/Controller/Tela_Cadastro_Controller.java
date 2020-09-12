@@ -7,6 +7,8 @@ package Controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 /**
@@ -16,9 +18,11 @@ import javafx.fxml.Initializable;
  */
 public class Tela_Cadastro_Controller implements Initializable {
 
-    /**
-     * Initializes the controller class.
-     */
+    @FXML
+    private void sair(ActionEvent event){
+        System.exit(0);
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
