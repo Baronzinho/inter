@@ -5,6 +5,8 @@
  */
 package Model;
 
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -26,6 +28,7 @@ public class Main extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
+        
         Parent root = FXMLLoader.load(getClass().getResource("/View/Tela_Login.fxml"));
         Scene scene = new Scene(root);
         
