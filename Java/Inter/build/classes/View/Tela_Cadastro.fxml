@@ -11,9 +11,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Tela_Cadastro_Controller">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Tela_Cadastro_Controller">
    <left>
-      <AnchorPane prefHeight="450.0" prefWidth="200.0" style="-fx-background-color: #0598ff;" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="450.0" prefWidth="182.0" style="-fx-background-color: #0598ff;" BorderPane.alignment="CENTER">
          <children>
             <FontAwesomeIcon fill="WHITE" glyphName="BOOK" layoutX="63.0" layoutY="213.0" size="80" />
             <Text fill="WHITE" layoutX="27.0" layoutY="262.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cadastro">
@@ -32,12 +32,12 @@
    <right>
       <AnchorPane prefHeight="450.0" prefWidth="500.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField layoutX="14.0" layoutY="52.0" prefHeight="27.0" prefWidth="270.0" promptText="Nome" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
-            <TextField layoutX="296.0" layoutY="52.0" prefHeight="27.0" prefWidth="190.0" promptText="CPF" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
+            <TextField fx:id="txtNomeUser" layoutX="14.0" layoutY="52.0" prefHeight="27.0" prefWidth="270.0" promptText="Nome" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
+            <TextField fx:id="txtCpfUser" layoutX="296.0" layoutY="52.0" prefHeight="27.0" prefWidth="190.0" promptText="CPF" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
             <TextField layoutX="14.0" layoutY="92.0" prefHeight="27.0" prefWidth="360.0" promptText="E-mail" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
-            <TextField layoutX="386.0" layoutY="92.0" prefHeight="27.0" prefWidth="100.0" promptText="Idade" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
-            <TextField layoutX="14.0" layoutY="132.0" prefHeight="25.0" prefWidth="120.0" promptText="Telefone" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
-            <RadioButton layoutX="316.0" layoutY="137.0" mnemonicParsing="false" text="Aluno" textFill="#797979">
+            <TextField fx:id="txtIdadeUser" layoutX="386.0" layoutY="92.0" prefHeight="27.0" prefWidth="100.0" promptText="Idade" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
+            <TextField fx:id="txtTelefoneUser" layoutX="14.0" layoutY="132.0" prefHeight="25.0" prefWidth="120.0" promptText="Telefone" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
+            <RadioButton fx:id="rbAluno" layoutX="316.0" layoutY="137.0" mnemonicParsing="false" text="Aluno" textFill="#797979">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
@@ -45,12 +45,12 @@
                   <ToggleGroup fx:id="Cargo" />
                </toggleGroup>
             </RadioButton>
-            <RadioButton layoutX="399.0" layoutY="137.0" mnemonicParsing="false" text="Professor" textFill="#797979" toggleGroup="$Cargo">
+            <RadioButton fx:id="rbProfessor" layoutX="399.0" layoutY="137.0" mnemonicParsing="false" text="Professor" textFill="#797979" toggleGroup="$Cargo">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </RadioButton>
-            <TextField layoutX="146.0" layoutY="132.0" promptText="Preço Aula" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
+            <TextField fx:id="txtPrecoAula" layoutX="146.0" layoutY="132.0" promptText="Preço Aula" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
             <Text fill="#0598ff" layoutX="14.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dados Pessoais">
                <font>
                   <Font name="System Bold" size="20.0" />
@@ -63,26 +63,26 @@
                </font>
             </Text>
             <Line endX="370.0" layoutX="116.0" layoutY="212.0" opacity="0.5" startX="-100.0" stroke="#0598ff" />
-            <TextField layoutX="15.0" layoutY="223.0" prefHeight="27.0" prefWidth="60.0" promptText="Número" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
-            <TextField layoutX="85.0" layoutY="223.0" prefHeight="27.0" prefWidth="240.0" promptText="Logradouro" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
-            <TextField layoutX="337.0" layoutY="223.0" promptText="Bairro" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
-            <TextField layoutX="16.0" layoutY="264.0" prefHeight="27.0" prefWidth="160.0" promptText="Cidade" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
-            <TextField layoutX="185.0" layoutY="264.0" prefHeight="27.0" prefWidth="140.0" promptText="CEP" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
-            <TextField layoutX="337.0" layoutY="265.0" promptText="Complemento" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
+            <TextField fx:id="txtNumeroEndereco" layoutX="15.0" layoutY="223.0" prefHeight="27.0" prefWidth="60.0" promptText="Número" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
+            <TextField fx:id="txtRuaEndereco" layoutX="85.0" layoutY="223.0" prefHeight="27.0" prefWidth="240.0" promptText="Logradouro" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
+            <TextField fx:id="txtBairroEndereco" layoutX="337.0" layoutY="223.0" promptText="Bairro" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
+            <TextField fx:id="txtCidadeEndereco" layoutX="16.0" layoutY="264.0" prefHeight="27.0" prefWidth="160.0" promptText="Cidade" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
+            <TextField fx:id="txtCepEndereco" layoutX="185.0" layoutY="264.0" prefHeight="27.0" prefWidth="140.0" promptText="CEP" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
+            <TextField fx:id="txtComplementoEndereco" layoutX="337.0" layoutY="265.0" promptText="Complemento" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
             <Text fill="#0598ff" layoutX="16.0" layoutY="333.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dados Acesso">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Text>
-            <TextField layoutX="16.0" layoutY="358.0" prefHeight="27.0" prefWidth="230.0" promptText="Senha" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
+            <TextField fx:id="txtSenhaUser" layoutX="16.0" layoutY="358.0" prefHeight="27.0" prefWidth="230.0" promptText="Senha" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
             <Line endX="370.0" layoutX="117.0" layoutY="346.0" opacity="0.5" startX="-100.0" stroke="#0598ff" />
-            <TextField layoutX="258.0" layoutY="358.0" prefHeight="25.0" prefWidth="230.0" promptText="Confirmar Senha" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
-            <Button layoutX="39.0" layoutY="406.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="210.0" style="-fx-background-color: #0598ff;" text="Cancelar" textFill="WHITE">
+            <TextField fx:id="txtConfirmSenhaUser" layoutX="258.0" layoutY="358.0" prefHeight="25.0" prefWidth="230.0" promptText="Confirmar Senha" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
+            <Button fx:id="btnCancelar" layoutX="39.0" layoutY="406.0" mnemonicParsing="false" onAction="#CancelarCadastro" prefHeight="30.0" prefWidth="210.0" style="-fx-background-color: #0598ff;" text="Cancelar" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button layoutX="255.0" layoutY="406.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="210.0" style="-fx-background-color: #0598ff;" text="Cadastrar" textFill="WHITE">
+            <Button fx:id="btnCadastrar" layoutX="255.0" layoutY="406.0" mnemonicParsing="false" onAction="#CadastrarUser" prefHeight="30.0" prefWidth="210.0" style="-fx-background-color: #0598ff;" text="Cadastrar" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
