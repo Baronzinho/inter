@@ -11,9 +11,6 @@ public class DQL extends SQL {
         super(tabela);
     }
 
-    
-    
-    
     public ResultSet selectAluno(String loginAluno) throws SQLException {
         sql = "select * from Aluno where login"
                 + " = '" + loginAluno + "' ;";
@@ -29,6 +26,22 @@ public class DQL extends SQL {
         ResultSet rset = getRset();
         return rset;
     }
+    
+    public ResultSet selectDadosAlunos(int id_Login) throws SQLException {
+        sql = "SELECT * FROM DadosAluno WHERE login = '" + id_Login  + "' ;";
+        conect(sql);
+        ResultSet rset = getRset();
+        return rset;
+    }
+    
+    public ResultSet selectDadosProfessor(int id_Login) throws SQLException {
+        sql = "SELECT * FROM DadosProfessor WHERE login = '" + id_Login  + "' ;";
+        conect(sql);
+        ResultSet rset = getRset();
+        return rset;
+    }
+    
+    
     /*
     public ResultSet select() throws SQLException {
         sql = "select * from " + super.tabela + ";";

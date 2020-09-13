@@ -91,3 +91,23 @@ INNER JOIN Endereco ON endereco.id_endereco = Professor.endereco_Professor
 INNER JOIN Materia_Professor ON Materia_Professor.Professor = Professor.id_Professor;
 
 select * FROM DadosProfessor WHERE login=2;
+
+
+CREATE VIEW AulasAluno AS SELECT Aluno.id_aluno,nome_Professor AS "Nome Professor", materia_Professor AS "Materia", descricao_Professor AS "Descrição", data_Marcada  AS "Data" FROM Professor
+INNER JOIN Materia_Professor ON Materia_Professor.Professor = Professor.id_Professor
+INNER JOIN Aula_Marcada ON Aula_Marcada.id_Professor = Professor.id_Professor
+INNER JOIN Aluno ON Aluno.id_Aluno = Aula_Marcada.id_Aluno;
+
+SELECT * FROM AulasAluno WHERE id_Aluno = 1 ;
+
+CREATE VIEW AulasProfessor AS SELECT Professor.id_Professor, nome_Aluno AS "Nome Aluno", data_Marcada  AS "Data",contato_Aluno AS "Contato Aluno" FROM Aluno
+INNER JOIN Aula_Marcada ON Aula_Marcada.id_Aluno = Aluno.id_Aluno
+INNER JOIN Professor ON Professor.id_Professor = Aula_Marcada.id_Professor;
+
+SELECT * FROM AulasProfessor WHERE id_Professor = 1 ;
+
+CREATE VIEW ProcuraProfessor AS SELECT Professor.id_Professor,nome_Professor AS "Nome Professor", materia_Professor AS "Materia", descricao_Professor AS "Descrição",preco_Aula AS "Preço da Aula", concat(concat(bairro,", ",rua),", ",numero) AS "Endereço Professor" FROM Professor
+INNER JOIN Materia_Professor ON Materia_Professor.Professor = Professor.id_Professor
+INNER JOIN Endereco ON endereco.id_endereco = Professor.endereco_Professor;
+
+SELECT * FROM ProcuraProfessor;
