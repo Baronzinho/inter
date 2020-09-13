@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Tela_Login_Controller">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Tela_Login_Controller">
    <left>
       <AnchorPane prefHeight="200.0" prefWidth="350.0" style="-fx-background-color: #0598ff;" BorderPane.alignment="CENTER">
          <children>
@@ -21,7 +21,7 @@
                   <Font name="System Bold" size="30.0" />
                </font>
             </Text>
-            <ImageView fitHeight="204.0" fitWidth="218.0" layoutX="66.0" layoutY="57.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="204.0" fitWidth="218.0" layoutX="66.0" layoutY="57.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="128.84000244140623" AnchorPane.leftAnchor="66.0">
                <image>
                   <Image url="@../Images/Logo_Computador.png" />
                </image>
@@ -29,7 +29,7 @@
          </children></AnchorPane>
    </left>
    <center>
-      <AnchorPane prefHeight="400.0" prefWidth="350.0" BorderPane.alignment="CENTER">
+      <AnchorPane BorderPane.alignment="CENTER">
          <children>
             <TextField fx:id="txtUsuario" layoutX="105.0" layoutY="158.0" prefHeight="27.0" prefWidth="180.0" promptText="CPF" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
             <PasswordField fx:id="txtSenha" layoutX="105.0" layoutY="200.0" prefHeight="27.0" prefWidth="180.0" promptText="Senha" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
