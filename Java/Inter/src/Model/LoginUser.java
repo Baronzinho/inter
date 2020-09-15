@@ -9,7 +9,26 @@ public class LoginUser {
     private String cpf;
     private String senha;
     private String tipoUsuario;
-        
+    /* --- */
+    private int id;
+    private byte[] imagem;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public byte[] getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(byte[] imagem) {
+        this.imagem = imagem;
+    }
+    /* --- */
     public int getId_login() {
         return id_Login;
     }

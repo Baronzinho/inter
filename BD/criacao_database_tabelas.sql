@@ -6,7 +6,8 @@ create table if not exists Login(
 	id_Login INT AUTO_INCREMENT primary key,
 	cpf varchar(11) not null,
     senha varchar(100) not null,
-    cargo varchar(30) not null
+    cargo varchar(30) not null,
+    img longblob
 );
 
 create table if not exists Endereco(
@@ -65,7 +66,9 @@ create table if not exists Aula_Marcada(
 );
 
 /* INSERT */
+
 INSERT INTO Login (cpf,senha,cargo) VAlUES ("47062955809","161000","Aluno");
+INSERT INTO Login (cpf,senha,cargo) VAlUES ("123","teste","Aluno");
 INSERT INTO Login (cpf,senha,cargo) VAlUES ("17204486807","010896","Professor");
 
 INSERT INTO Endereco (rua,bairro,cidade,numero,cep,complemento) VAlUES ("Sales de Oliveira","Vila Industrial","Campinas","2033","13021850","Casa");

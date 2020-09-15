@@ -38,6 +38,8 @@ public class Tela_Login_Controller implements Initializable {
     private TextField txtSenha;
     @FXML
     private Hyperlink linkCadastrar;
+    @FXML
+    private Button btnLogar;
     
     private double xOFFset = 0;
     private double yOFFset = 0;
@@ -68,7 +70,37 @@ public class Tela_Login_Controller implements Initializable {
                     cargoBanco = rset.getString("cargo");
 
                     if(cargoBanco.equals("Aluno")){
-                        JOptionPane.showMessageDialog(null, "Logou como Aluno!");
+                        FXMLLoader loader = new FXMLLoader();
+                        //JOptionPane.showMessageDialog(null, "Logou como Aluno!");
+                        Parent root = loader.load(getClass().getResource("/View/Tela_Principal_Aluno.fxml"));
+                        Stage stage = new Stage();
+                        Scene scene = new Scene(root);
+                        stage.initStyle(StageStyle.DECORATED.UNDECORATED);
+
+                        root.setOnMousePressed(new EventHandler<MouseEvent>(){
+                            @Override
+                            public void handle(MouseEvent event){
+                                xOFFset = event.getSceneX();
+                                yOFFset = event.getSceneY();
+                            }
+                        });
+
+                        root.setOnMouseDragged(new EventHandler<MouseEvent>(){
+                            @Override
+                            public void handle(MouseEvent event){
+                                stage.setX(event.getScreenX() - xOFFset);
+                                stage.setY(event.getScreenY() - yOFFset);
+                            }
+                        });
+                        
+                        Tela_Principal_Aluno_Controller pa = (Tela_Principal_Aluno_Controller) loader.getController();
+                        pa.SetLogin(txtUsuario.getText(), txtSenha.getText());
+                        
+                        stage.setScene(scene);
+                        stage.show();
+                                                
+                        Stage stageAtual = (Stage) btnLogar.getScene().getWindow(); //Obtendo a janela atual
+                        stageAtual.close();
                     }
                     else if(cargoBanco.equals("Professor")){
                         JOptionPane.showMessageDialog(null, "Logou como Professor!");
@@ -82,7 +114,6 @@ public class Tela_Login_Controller implements Initializable {
                 }
             }
         }
-        
         
         /*
         if (cargoBanco.equals("Aluno")){
@@ -147,7 +178,6 @@ public class Tela_Login_Controller implements Initializable {
         
         stage.setScene(scene);
         stage.show();
-        
         Stage stageAtual = (Stage) linkCadastrar.getScene().getWindow(); //Obtendo a janela atual
         stageAtual.close();
     }
