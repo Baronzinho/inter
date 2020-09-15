@@ -1,15 +1,18 @@
 package Connection;
 
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import Model.LoginUser;
 
 public class DML extends SQL {
 
     public DML(String tabela) {
         super(tabela);
     }
-
-    public void insertLogin(String cpf, String senha, String cargo) throws SQLException {
-        sql = "INSERT INTO Login (cpf, senha, cargo) VALUES (" + cpf + ", '" + senha + "', '" + cargo + "');";
+    
+    public void inserir(LoginUser novoLogin) throws SQLException{
+        sql = "INSERT INTO Login (cpf,senha,cargo,img) VALUES ('" + novoLogin.getCpf() + "', '" + novoLogin.getSenha() + "','"
+                + novoLogin.getCargo() + "', '" + novoLogin.getImagem() + "');";
         update(sql);
     }
 
