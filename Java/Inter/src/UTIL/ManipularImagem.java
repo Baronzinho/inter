@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package UTIL;
 
 
@@ -11,30 +6,22 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.scene.image.Image;
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
-/**
- *
- * @author marcelosiedler
- */
+
 public class ManipularImagem {
 
-    /*
-     * Faz redimensionamento da imagem conforme os parâmetros imgLargura e imgAltura mantendo a proporcionalidade. 
-     * Caso a imagem seja menor do que os parâmetros de redimensionamento, a imagem não será redimensionada. 
-     *  
-     * @param caminhoImg caminho e nome da imagem a ser redimensionada. 
-     * @param imgLargura nova largura da imagem após ter sido redimensionada. 
-     * @param imgAltura  nova altura da imagem após ter sido redimensionada. 
-     *  
-     * @return Não há retorno 
-     * @throws Exception Erro ao redimensionar imagem 
-     ************************************************************************************************************/
+
     public static BufferedImage setImagemDimensao(String caminhoImg, Integer imgLargura, Integer imgAltura) {
         Double novaImgLargura = null;
         Double novaImgAltura = null;
@@ -95,36 +82,43 @@ public class ManipularImagem {
         try {
             ImageIO.write(image, "JPEG", baos);
         } catch (IOException ex) {
-            //handle it here.... not implemented yet...
+            JOptionPane.showMessageDialog(null, "Imagem nao selecionada!");
+            
         }
         
         InputStream is = new ByteArrayInputStream(baos.toByteArray());
         
         return baos.toByteArray();
     }
-    //Novo método para exibir imagem na tela
-    //Recebe o label que queremos exibir E a imagem como array de bytes do banco
-    public static void exibiImagemLabel(byte[] minhaimagem, javax.swing.JLabel label)
-{
-        //primeiro verifica se tem a imagem
-        //se tem convert para inputstream que é o formato reconhecido pelo ImageIO
-       
-        if(minhaimagem!=null)
-        {
-            InputStream input = new ByteArrayInputStream(minhaimagem);
+
+    
+    public static Image exibiImagem(int id) throws SQLException
+{   
+     Image image = null;
+     DAO.UsuarioDAO userD = new DAO.UsuarioDAO();
+     ResultSet rs;
+     rs = userD.Foto(id);
+     rs.next();
+        InputStream input = rs.getBinaryStream("img");
+        
             try {
-                BufferedImage imagem = ImageIO.read(input);
-                label.setIcon(new ImageIcon(imagem));
+                OutputStream os = new FileOutputStream(new File("photo.jpg"));
+                byte[] content = new byte[1024];
+                int size = 0;
+                
+                while ((size = input.read(content)) != -1) {
+			os.write(content, 0, size);
+		}
+                os.close();
+		input.close();
+                image = new Image("file:photo.jpg", true);
+                
+               
+                
             } catch (IOException ex) {
             }
             
-        
-        }
-        else
-        {
-            label.setIcon(null);
-            
-        }
+        return image;
 
 }
 }

@@ -1,10 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Controller;
 
+import Model.Usuario;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
@@ -25,11 +22,6 @@ import javafx.stage.StageStyle;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 
-/**
- * FXML Controller class
- *
- * @author Gabriel
- */
 public class Tela_Login_Controller implements Initializable {
     
     @FXML
@@ -52,106 +44,42 @@ public class Tela_Login_Controller implements Initializable {
         
         String usuarioBanco = null;
         String senhaBanco = null;
-        String cargoBanco = null;
-        ResultSet rset = null;
-
-        Connection.DQL dql = new Connection.DQL("Login");
+        Usuario user = new Usuario();
         
-        rset = dql.selectLogin(txtUsuario.getText(), txtSenha.getText());
-        
-        Model.LoginUser login = new Model.LoginUser();
-        
-        if(!rset.isBeforeFirst()){
+        user = user.retornaUser(txtUsuario.getText(), txtSenha.getText());
+             
+        if(user.getId_User() == 0){
             JOptionPane.showMessageDialog(null, "Usuario ou Senha incorretos!");
         }
         else{
-            while(rset.next()){
-                if(!rset.getString("cargo").equals("")){
-                    cargoBanco = rset.getString("cargo");
-
-                    if(cargoBanco.equals("Aluno")){
-                        FXMLLoader loader = new FXMLLoader();
-                        //JOptionPane.showMessageDialog(null, "Logou como Aluno!");
-                        Parent root = loader.load(getClass().getResource("/View/Tela_Principal_Aluno.fxml"));
-                        Stage stage = new Stage();
-                        Scene scene = new Scene(root);
-                        stage.initStyle(StageStyle.DECORATED.UNDECORATED);
-
-                        root.setOnMousePressed(new EventHandler<MouseEvent>(){
-                            @Override
-                            public void handle(MouseEvent event){
-                                xOFFset = event.getSceneX();
-                                yOFFset = event.getSceneY();
-                            }
-                        });
-
-                        root.setOnMouseDragged(new EventHandler<MouseEvent>(){
-                            @Override
-                            public void handle(MouseEvent event){
-                                stage.setX(event.getScreenX() - xOFFset);
-                                stage.setY(event.getScreenY() - yOFFset);
-                            }
-                        });
-                        
-                        Tela_Principal_Aluno_Controller pa = (Tela_Principal_Aluno_Controller) loader.getController();
-                        pa.SetLogin(txtUsuario.getText(), txtSenha.getText());
-                        
-                        stage.setScene(scene);
-                        stage.show();
-                                                
-                        Stage stageAtual = (Stage) btnLogar.getScene().getWindow(); //Obtendo a janela atual
-                        stageAtual.close();
+            Stage stage = new Stage();
+            Stage stageAtual = (Stage) txtUsuario.getScene().getWindow();
+            Parent root=null;
+            FXMLLoader loader = new FXMLLoader();
+            
+            if(user.getCargo().equals("Aluno")){
+                    
+                     root = loader.load(getClass().getResource("/View/Tela_Principal_Aluno.fxml").openStream());
+                     Tela_Principal_Aluno_Controller aController = (Tela_Principal_Aluno_Controller) loader.getController();
+                     aController.setLogin(user);
                     }
-                    else if(cargoBanco.equals("Professor")){
+                    else if(user.getCargo().equals("Professor")){
                         JOptionPane.showMessageDialog(null, "Logou como Professor!");
+                       
                     }
                     else{
                         JOptionPane.showMessageDialog(null, "Cargo não esperado!");
                     }
-                }
-                else{
-                    JOptionPane.showMessageDialog(null, "Erro Inesperado!");
+                stage.setScene(new Scene(root));
+                stage.setTitle("Principal");
+                stage.show();
+
+                stageAtual.close();
                 }
             }
-        }
         
-        /*
-        if (cargoBanco.equals("Aluno")){
-            
-            if (usuarioBanco.equals(txtUsuario.getText()) && senhaBanco.equals(txtSenha.getText())) {
-                Parent root = FXMLLoader.load(getClass().getResource("/View/Tela_Principal_Aluno.fxml"));
-                Stage stage = new Stage();
-                Scene scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
-
-                Stage stageAtual = (Stage) btnLogar.getScene().getWindow(); //Obtendo a janela atual
-                stageAtual.close();
-            }else {
-                JOptionPane.showMessageDialog(null, "Verifique se todos os campos estão preenchidos \n"
-                + "e que seu Usuário e Senha estão corretos!\n");
-            }
-            
-        }else if (cargoBanco.equals("Professor")){
-            
-            if (usuarioBanco.equals(txtUsuario.getText()) && senhaBanco.equals(txtSenha.getText())) {
-                Parent root = FXMLLoader.load(getClass().getResource("/View/Tela_Pricipal_Professor.fxml"));
-                Stage stage = new Stage();
-                Scene scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
-
-                Stage stageAtual = (Stage) btnLogar.getScene().getWindow(); //Obtendo a janela atual
-                stageAtual.close();
-            }else {
-                JOptionPane.showMessageDialog(null, "Verifique se todos os campos estão preenchidos \n"
-                + "e que seu Usuário e Senha estão corretos!\n");
-            }
-        }else{
-            JOptionPane.showMessageDialog(null, "Tipo de usuario não reconhecido!\n");
-        } 
-        */
-    }
+       
+    
     
     @FXML
     public void cadastrar() throws IOException {
@@ -178,7 +106,7 @@ public class Tela_Login_Controller implements Initializable {
         
         stage.setScene(scene);
         stage.show();
-        Stage stageAtual = (Stage) linkCadastrar.getScene().getWindow(); //Obtendo a janela atual
+        Stage stageAtual = (Stage) linkCadastrar.getScene().getWindow(); 
         stageAtual.close();
     }
     
@@ -189,7 +117,7 @@ public class Tela_Login_Controller implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
     }    
     
 }
