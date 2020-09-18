@@ -2,13 +2,6 @@ drop database if exists inter_caio_gabriel;
 create database if not exists inter_caio_gabriel;
 use inter_caio_gabriel;
 
-create table if not exists Login(
-	id_Login INT AUTO_INCREMENT primary key,
-	cpf varchar(11) not null,
-    senha varchar(100) not null,
-    cargo varchar(30) not null,
-    img longblob
-);
 
 create table if not exists Endereco(
 	id_Endereco INT AUTO_INCREMENT,
@@ -21,96 +14,89 @@ create table if not exists Endereco(
     primary key(id_endereco)
 );
 
-create table if not exists Aluno(
-	id_Aluno INT NOT NULL AUTO_INCREMENT,
-    nome_Aluno varchar(100) NOT NULL ,
-    idade_Aluno int NOT NULL ,
-    endereco_Aluno INT ,
-    contato_Aluno varchar(100),
-    login INT,
-    primary key(id_Aluno),
-    foreign key(endereco_Aluno) references Endereco(id_Endereco),
-    foreign key(login) references Login(id_Login)
+CREATE TABLE IF NOT EXISTS Usuario(
+	id_User INT AUTO_INCREMENT primary key,
+    cpf VARCHAR(14) UNIQUE NOT NULL,
+	senha VARCHAR(100) NOT NULL,
+    cargo VARCHAR(30) NOT NULL,
+	img VARCHAR(100)NOT NULL,
+    nome VARCHAR(100) NOT NULL ,
+    idade INT NOT NULL ,
+    endereco INT ,
+    contato VARCHAR(100),
+    foreign key(endereco) references Endereco(id_Endereco)
 );
 
 create table if not exists Professor(
 	id_Professor INT NOT NULL AUTO_INCREMENT,
-    nome_Professor varchar(100) not null,
-    idade_Professor int not null,
-    descricao_Professor varchar(100) not null,
-    preco_Aula varchar(100) not null,
-    endereco_Professor int not null,
-    contato_Professor varchar(100),
-    login int not null,
+    id_User INT NOT NULL,
+    descricao_Professor VARCHAR(100) NOT NULL,
+    preco_Aula VARCHAR(100) NOT NULL,
+    materia_Professor VARCHAR(100) NOT NULL,
     primary key(id_Professor),
-    foreign key(endereco_Professor) references Endereco(id_endereco),
-    foreign key(login) references Login(id_login)
-);
-
-create table if not exists Materia_Professor(
-	id_Materia int auto_increment,
-    Professor int not null,
-    materia_Professor varchar(100) not null,
-    primary key(id_Materia),
-    foreign key(Professor) references Professor(id_professor)
+    foreign key(id_User) references Usuario(id_User)
 );
 
 create table if not exists Aula_Marcada(
-	id_Aula_Marcada int auto_increment,
-    id_Professor int not null,
-    id_Aluno int not null,
-    data_Marcada datetime not null,
+	id_Aula_Marcada INT NOT NULL AUTO_INCREMENT,
+    id_Professor INT NOT NULL ,
+    id_Aluno INT NOT NULL,
+    data_Marcada DATETIME NOT NULL,
     primary key(id_Aula_Marcada),
     foreign key(id_Professor) references Professor(id_Professor),
-    foreign key(id_Aluno) references Aluno(id_Aluno)
+    foreign key(id_Aluno) references Usuario(id_User)
 );
 
 /* INSERT */
-
-INSERT INTO Login (cpf,senha,cargo) VAlUES ("47062955809","161000","Aluno");
-INSERT INTO Login (cpf,senha,cargo) VAlUES ("123","teste","Aluno");
-INSERT INTO Login (cpf,senha,cargo) VAlUES ("17204486807","010896","Professor");
-
 INSERT INTO Endereco (rua,bairro,cidade,numero,cep,complemento) VAlUES ("Sales de Oliveira","Vila Industrial","Campinas","2033","13021850","Casa");
 INSERT INTO Endereco (rua,bairro,cidade,numero,cep,complemento) VAlUES ("Jose Serafim","Vila Castelo Branco","Campinas","177","13041960","Casa");
 
-INSERT INTO Aluno (nome_Aluno,idade_Aluno,endereco_Aluno,contato_Aluno,login) VALUES ("Caio Mota", 19, 2,"19982323017",1);
-INSERT INTO Professor (nome_Professor,idade_Professor,descricao_Professor,preco_Aula,endereco_Professor,contato_Professor,login) VALUES ("Alex Sandro", 45, "Professor formado em Matematica, Atento na minha casa,cobro a hora",50.00,1,"19997225798",2);
+INSERT INTO Usuario (cpf,senha,cargo,img, nome, idade, endereco,contato) VALUES ("1234","123","Aluno","/ImgsUsers/Aluno_Gabriel.jpg","Caio",20,1,"123456789");
+INSERT INTO Usuario (cpf,senha,cargo,img, nome, idade, endereco,contato) VALUES ("7896","555","Professor",null,"Alex",37,2,"25632478");
 
-INSERT INTO Materia_Professor (Professor,materia_Professor) VALUES (1,"Matematica");
-
+INSERT INTO Professor (id_User,descricao_Professor,preco_Aula,materia_Professor) VALUES (2,"Professor de Matemtica, atendo em casa","40.00","Matematica");
+ 
 INSERT INTO Aula_Marcada (id_Professor,id_Aluno,data_Marcada) VALUES (1,1,"2020-05-20");
- 
- 
  /* VIEWS */
  
-CREATE VIEW DadosAluno AS SELECT id_ALuno,nome_aluno AS "Nome Aluno", idade_Aluno AS "Idade", contato_Aluno AS "Contato Aluno", concat(concat(bairro,", ",rua),", ",numero) AS "Endereço Aluno",login FROM Aluno 
-INNER JOIN Endereco ON endereco.id_endereco = Aluno.endereco_Aluno;
+CREATE VIEW DadosAluno AS SELECT cpf,img,nome AS "Nome Aluno",idade AS "Idade",concat(concat(bairro,", ",rua),", ",numero) AS "Endereço Aluno", contato AS "Contato Aluno" FROM Usuario
+INNER JOIN Endereco ON Endereco.id_Endereco = Usuario.endereco;
 
-select * FROM DadosAluno WHERE login=1;
+select * FROM DadosAluno WHERE cpf="1234";
 
-CREATE VIEW  DadosProfessor AS Select id_Professor, nome_Professor AS "Nome Professor", idade_Professor AS "Idade", descricao_Professor AS "Descrição", materia_Professor AS "Materia do Professor" ,preco_Aula AS "Preço da Aula", contato_Professor AS "Contato Professor" ,concat(concat(bairro,", ",rua),", ",numero) AS "Endereço Professor",login FROM Professor
-INNER JOIN Endereco ON endereco.id_endereco = Professor.endereco_Professor
-INNER JOIN Materia_Professor ON Materia_Professor.Professor = Professor.id_Professor;
+CREATE VIEW DadosProfessor AS SELECT cpf,img,nome AS "Nome Professor",idade AS "Idade",concat(concat(bairro,", ",rua),", ",numero) AS "Endereço Professor", contato AS "Contato Professor",descricao_Professor AS "Descrição do Professor",
+preco_Aula AS "Preço da Aula",materia_Professor AS "Materia Professor" FROM Usuario
+INNER JOIN Endereco ON Endereco.id_Endereco = Usuario.endereco
+INNER JOIN Professor ON Professor.id_User = Usuario.id_User;
 
-select * FROM DadosProfessor WHERE login=2;
+SELECT * FROM DadosProfessor WHERE cpf= "7896";
+
+CREATE VIEW AulasMarcadasAluno AS SELECT id_Aluno,nome AS "Nome Professor", materia_Professor AS "Materia Professor" , concat(concat(bairro,", ",rua),", ",numero) AS "Endereço Professor", contato AS "Contato Professor",descricao_Professor AS "Descrição do Professor",
+preco_Aula AS "Preço da Aula", data_Marcada AS "Data da Aula" FROM Aula_Marcada
+INNER JOIN Professor ON Professor.id_Professor = Aula_Marcada.id_Professor
+INNER JOIN Usuario ON Usuario.id_User = Professor.id_User 
+INNER JOIN Endereco ON Endereco.id_Endereco = Usuario.endereco;
+
+SELECT * FROM AulasMarcadasAluno WHERE id_Aluno = 1;
+
+CREATE VIEW AulasMarcadasProfessor AS SELECT id_Professor,nome AS "Nome Aluno", concat(concat(bairro,", ",rua),", ",numero) AS "Endereço Aluno", contato AS "Contato Aluno" FROM Aula_Marcada
+INNER JOIN Usuario ON Usuario.id_User = Aula_Marcada.id_Aluno
+INNER JOIN Endereco ON Endereco.id_Endereco = Usuario.endereco;
+
+SELECT * FROM AulasMarcadasProfessor WHERE id_Professor = 1;
+
+CREATE VIEW ProcurarProfessor AS SELECT nome AS "Nome Professor", materia_Professor AS "Materia Professor" , concat(concat(bairro,", ",rua),", ",numero) AS "Endereço Professor", contato AS "Contato Professor",descricao_Professor AS "Descrição do Professor",
+preco_Aula AS "Preço da Aula" FROM Usuario
+INNER JOIN Professor ON Professor.id_User = Usuario.id_User
+INNER JOIN Endereco ON Endereco.id_Endereco = Usuario.endereco;
+
+SELECT * FROM Usuario WHERE cpf ="4444" AND senha="458";
 
 
-CREATE VIEW AulasAluno AS SELECT Aluno.id_aluno,nome_Professor AS "Nome Professor", materia_Professor AS "Materia", descricao_Professor AS "Descrição", data_Marcada  AS "Data" FROM Professor
-INNER JOIN Materia_Professor ON Materia_Professor.Professor = Professor.id_Professor
-INNER JOIN Aula_Marcada ON Aula_Marcada.id_Professor = Professor.id_Professor
-INNER JOIN Aluno ON Aluno.id_Aluno = Aula_Marcada.id_Aluno;
-
-SELECT * FROM AulasAluno WHERE id_Aluno = 1 ;
-
-CREATE VIEW AulasProfessor AS SELECT Professor.id_Professor, nome_Aluno AS "Nome Aluno", data_Marcada  AS "Data",contato_Aluno AS "Contato Aluno" FROM Aluno
-INNER JOIN Aula_Marcada ON Aula_Marcada.id_Aluno = Aluno.id_Aluno
-INNER JOIN Professor ON Professor.id_Professor = Aula_Marcada.id_Professor;
-
-SELECT * FROM AulasProfessor WHERE id_Professor = 1 ;
-
-CREATE VIEW ProcuraProfessor AS SELECT Professor.id_Professor,nome_Professor AS "Nome Professor", materia_Professor AS "Materia", descricao_Professor AS "Descrição",preco_Aula AS "Preço da Aula", concat(concat(bairro,", ",rua),", ",numero) AS "Endereço Professor" FROM Professor
-INNER JOIN Materia_Professor ON Materia_Professor.Professor = Professor.id_Professor
-INNER JOIN Endereco ON endereco.id_endereco = Professor.endereco_Professor;
+SELECT * FROM ProcurarProfessor;
 
 SELECT * FROM ProcuraProfessor;
+SELECT * FROM Aula_Marcada;
+SELECT * FROM Usuario;
+SELECT * FROM endereco;
+SELECT img FROM Usuario Where id_User = 3;
