@@ -79,15 +79,6 @@ public class Tela_Principal_Aluno_Controller implements Initializable {
     Usuario usuario = new Usuario();
     Endereco endereco = new Endereco();
     
-    public void setLogin(Usuario user) throws SQLException{
-        lblUsername.setText(user.getNome());
-        lblUsername.setAlignment(Pos.CENTER);
-        Image imgUser =  new Image(user.getImgUser());
-        imgAluno.setImage(imgUser);
-        usuario = user;
-        endereco.setId_Endereco(usuario.getId_endereco());
-    }
-    
     public void initTable() throws SQLException{
      
     }
@@ -96,6 +87,31 @@ public class Tela_Principal_Aluno_Controller implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
     }    
+    
+    @FXML
+    public void NomePressed() {
+        btnAtualizar.setDisable(false);
+    }
+    @FXML
+    public void IdadePressed() {
+        btnAtualizar.setDisable(false);
+    }
+    @FXML
+    public void TelefonePressed() {
+        btnAtualizar.setDisable(false);
+    }
+    
+    @FXML
+    public void AulasClicked() {
+        tabPane.setFocusTraversable(false);
+        tabPane.getSelectionModel().select(2);
+    }
+    
+    @FXML
+    public void ProfessoresClicked() {
+        tabPane.setFocusTraversable(false);
+        tabPane.getSelectionModel().select(3);
+    }
     
     @FXML
     public void InicioEntered() {
@@ -153,51 +169,33 @@ public class Tela_Principal_Aluno_Controller implements Initializable {
         tabPane.getSelectionModel().select(0);
     }
     
+    public void setLogin(Usuario user) throws SQLException{
+        lblUsername.setText(user.getNome());
+        lblUsername.setAlignment(Pos.CENTER);
+        Image imgUser =  new Image(user.getImgUser());
+        imgAluno.setImage(imgUser);
+        usuario = user;
+        endereco = endereco.retornaEnderecoUser(user.getId_endereco());
+        
+    }
+    
     @FXML
     public void PerfilClicked() {
         tabPane.setFocusTraversable(false);
         tabPane.getSelectionModel().select(1);
-        
         btnAtualizar.setDisable(true);
-        
         txtNomeUser.setText(usuario.getNome());
         txtIdadeUser.setText(Integer.toString(usuario.getIdade()));
         txtTelefoneUser.setText(usuario.getContato());
-        
-        /*
         txtNumeroEndereco.setText(endereco.getNumero());
         txtRuaEndereco.setText(endereco.getRua());
         txtBairroEndereco.setText(endereco.getBairro());
         txtCidadeEndereco.setText(endereco.getCidade());
         txtCepEndereco.setText(endereco.getCep());
         txtComplementoEndereco.setText(endereco.getComplemento());
-        */
+        
     }
     
-    @FXML
-    public void NomePressed() {
-        btnAtualizar.setDisable(false);
-    }
-    @FXML
-    public void IdadePressed() {
-        btnAtualizar.setDisable(false);
-    }
-    @FXML
-    public void TelefonePressed() {
-        btnAtualizar.setDisable(false);
-    }
-    
-    @FXML
-    public void AulasClicked() {
-        tabPane.setFocusTraversable(false);
-        tabPane.getSelectionModel().select(2);
-    }
-    
-    @FXML
-    public void ProfessoresClicked() {
-        tabPane.setFocusTraversable(false);
-        tabPane.getSelectionModel().select(3);
-    }
     
     @FXML
     public void SairClicked() throws IOException {

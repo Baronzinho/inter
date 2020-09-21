@@ -17,14 +17,6 @@ public class UsuarioDAO extends SQL{
         return rset;
      }
      
-     
-     
-     public ResultSet Foto(int id) throws SQLException{
-         sql = "SELECT img FROM Usuario Where id_User = " + id +";";
-         rset = select(sql);
-        return rset;
-     }
-     
      public void inserirUsuario(Usuario newUser)throws SQLException{
          EnderecoDAO endeDAO = new EnderecoDAO();
          ResultSet endereco = endeDAO.ultimoEndereco();
@@ -36,5 +28,10 @@ public class UsuarioDAO extends SQL{
         update(sql);
      }
      
+     
+     public void updateUser(int id_User,String nome, int idade, String telefone) throws SQLException {
+        sql = "UPDATE Usuario SET nome = '" + nome + "', idade = " + idade + ", contato = '" + telefone + "' WHERE id_User = '" + id_User + ";";
+        update(sql);
+    }
      
 }

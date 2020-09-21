@@ -42,6 +42,7 @@ create table if not exists Aula_Marcada(
     id_Professor INT NOT NULL ,
     id_Aluno INT NOT NULL,
     data_Marcada DATETIME NOT NULL,
+    statusDaAula VARCHAR(20),
     primary key(id_Aula_Marcada),
     foreign key(id_Professor) references Professor(id_Professor),
     foreign key(id_Aluno) references Usuario(id_User)
@@ -52,11 +53,11 @@ INSERT INTO Endereco (rua,bairro,cidade,numero,cep,complemento) VAlUES ("Sales d
 INSERT INTO Endereco (rua,bairro,cidade,numero,cep,complemento) VAlUES ("Jose Serafim","Vila Castelo Branco","Campinas","177","13041960","Casa");
 
 INSERT INTO Usuario (cpf,senha,cargo,img, nome, idade, endereco,contato) VALUES ("1234","123","Aluno","/ImgsUsers/Aluno_Gabriel.jpg","Caio",20,1,"123456789");
--- INSERT INTO Usuario (cpf,senha,cargo,img, nome, idade, endereco,contato) VALUES ("7896","555","Professor",null,"Alex",37,2,"25632478");
+INSERT INTO Usuario (cpf,senha,cargo,img, nome, idade, endereco,contato) VALUES ("7896","555","Professor","/ImgsUsers/prof.jpg","Alex",37,2,"25632478");
 
--- INSERT INTO Professor (id_User,descricao_Professor,preco_Aula,materia_Professor) VALUES (2,"Professor de Matemtica, atendo em casa","40.00","Matematica");
+INSERT INTO Professor (id_User,descricao_Professor,preco_Aula,materia_Professor) VALUES (2,"Professor de Matemtica, atendo em casa","40.00","Matematica");
  
--- INSERT INTO Aula_Marcada (id_Professor,id_Aluno,data_Marcada) VALUES (1,1,"2020-05-20");
+INSERT INTO Aula_Marcada (id_Professor,id_Aluno,data_Marcada,statusDaAula) VALUES (1,1,"2020-05-20","Confirmado");
  /* VIEWS */
  
 CREATE VIEW DadosAluno AS SELECT cpf,img,nome AS "Nome Aluno",idade AS "Idade",concat(concat(bairro,", ",rua),", ",numero) AS "Endereço Aluno", contato AS "Contato Aluno" FROM Usuario
@@ -71,19 +72,19 @@ INNER JOIN Professor ON Professor.id_User = Usuario.id_User;
 
 SELECT * FROM DadosProfessor WHERE cpf= "7896";
 
-CREATE VIEW AulasMarcadasAluno AS SELECT id_Aluno,nome AS "Nome Professor", materia_Professor AS "Materia Professor" , concat(concat(bairro,", ",rua),", ",numero) AS "Endereço Professor", contato AS "Contato Professor",descricao_Professor AS "Descrição do Professor",
-preco_Aula AS "Preço da Aula", data_Marcada AS "Data da Aula" FROM Aula_Marcada
+CREATE VIEW AulasMarcadasAluno AS SELECT id_Aluno,nome AS "Nome Professor", materia_Professor AS "Materia Professor" , concat(concat(bairro,", ",rua),", ",numero) AS "Endereço Professor", contato AS "Contato Professor",
+preco_Aula AS "Preço da Aula", data_Marcada AS "Data da Aula",statusDaAula FROM Aula_Marcada
 INNER JOIN Professor ON Professor.id_Professor = Aula_Marcada.id_Professor
 INNER JOIN Usuario ON Usuario.id_User = Professor.id_User 
 INNER JOIN Endereco ON Endereco.id_Endereco = Usuario.endereco;
 
-SELECT * FROM AulasMarcadasAluno WHERE id_Aluno = 1;
+SELECT * FROM AulasMarcadasAluno WHERE id_Aluno = 1 AND statusDaAula = "Confirmado";
 
-CREATE VIEW AulasMarcadasProfessor AS SELECT id_Professor,nome AS "Nome Aluno", concat(concat(bairro,", ",rua),", ",numero) AS "Endereço Aluno", contato AS "Contato Aluno" FROM Aula_Marcada
+CREATE VIEW AulasMarcadasProfessor AS SELECT id_Professor,nome AS "Nome Aluno", concat(concat(bairro,", ",rua),", ",numero) AS "Endereço Aluno", contato AS "Contato Aluno",statusDaAula FROM Aula_Marcada
 INNER JOIN Usuario ON Usuario.id_User = Aula_Marcada.id_Aluno
 INNER JOIN Endereco ON Endereco.id_Endereco = Usuario.endereco;
 
-SELECT * FROM AulasMarcadasProfessor WHERE id_Professor = 1;
+SELECT * FROM AulasMarcadasProfessor WHERE id_Professor = 1 AND statusDaAula = "Confirmado";
 
 CREATE VIEW ProcurarProfessor AS SELECT nome AS "Nome Professor", materia_Professor AS "Materia Professor" , concat(concat(bairro,", ",rua),", ",numero) AS "Endereço Professor", contato AS "Contato Professor",descricao_Professor AS "Descrição do Professor",
 preco_Aula AS "Preço da Aula" FROM Usuario
@@ -94,7 +95,7 @@ SELECT * FROM Usuario WHERE cpf ="4444" AND senha="458";
 
 
 SELECT * FROM ProcurarProfessor;
-
+SELECT * FROM endereco where id_Endereco = 1;
 SELECT * FROM ProcuraProfessor;
 SELECT * FROM Aula_Marcada;
 SELECT * FROM Usuario;
