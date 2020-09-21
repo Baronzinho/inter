@@ -50,10 +50,7 @@ public class DML extends SQL {
         update(sql);
     }
 
-    public void updateEndereco(int id_Endereco,String rua, String bairro, String cidade, String numero, String cep, String complemento) throws SQLException {
-        sql = "UPDATE Endereco SET rua = '" + rua + "', bairro = '" + bairro + "', cidade = '" + cidade + "', cep = '" + cep +"', complemento = '" + complemento +" WHERE id_Endereco = '" + id_Endereco + ";";
-        update(sql);
-    }
+    
 
     public void deleteEndereco(int id_Endereco) throws SQLException {
         sql = "DELETE FROM Endereco WHERE id_Endereco = " + id_Endereco + ";";
