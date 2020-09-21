@@ -23,7 +23,6 @@ import javafx.stage.StageStyle;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import UTIL.ManipularImagem;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.control.Label;

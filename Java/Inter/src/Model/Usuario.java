@@ -102,7 +102,7 @@ public class Usuario {
          user.setId_endereco(rs.getInt(8));
          user.setContato(rs.getString(9));
          
-          JOptionPane.showMessageDialog(null, user.getImgUser());
+         //JOptionPane.showMessageDialog(null, user.getImgUser());
      }else{
          user.setId_User(0);
      }

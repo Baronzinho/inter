@@ -2,6 +2,7 @@
 package Controller;
 
 import Model.Usuario;
+import Model.Mensagens;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
@@ -40,16 +41,16 @@ public class Tela_Login_Controller implements Initializable {
     protected String sql;
     
     @FXML
-    public void logar(ActionEvent event) throws IOException, SQLException {        
-        
+    public void logar(ActionEvent event) throws IOException, SQLException{
         String usuarioBanco = null;
         String senhaBanco = null;
         Usuario user = new Usuario();
+        Mensagens msg = new Mensagens();
         
         user = user.retornaUser(txtUsuario.getText(), txtSenha.getText());
              
         if(user.getId_User() == 0){
-            JOptionPane.showMessageDialog(null, "Usuario ou Senha incorretos!");
+            msg.mensagemAviso("Usuario ou Senha incorretos!");
         }
         else{
             Stage stage = new Stage();
@@ -58,28 +59,42 @@ public class Tela_Login_Controller implements Initializable {
             FXMLLoader loader = new FXMLLoader();
             
             if(user.getCargo().equals("Aluno")){
-                    
-                     root = loader.load(getClass().getResource("/View/Tela_Principal_Aluno.fxml").openStream());
-                     Tela_Principal_Aluno_Controller aController = (Tela_Principal_Aluno_Controller) loader.getController();
-                     aController.setLogin(user);
+                //Realiza Login como Aluno seguindo validações
+                root = loader.load(getClass().getResource("/View/Tela_Principal_Aluno.fxml").openStream());
+                Tela_Principal_Aluno_Controller aController = (Tela_Principal_Aluno_Controller) loader.getController();
+                stage.initStyle(StageStyle.DECORATED.UNDECORATED);
+                
+                root.setOnMousePressed(new EventHandler<MouseEvent>(){
+                    @Override
+                    public void handle(MouseEvent event){
+                        xOFFset = event.getSceneX();
+                        yOFFset = event.getSceneY();
                     }
-                    else if(user.getCargo().equals("Professor")){
-                        JOptionPane.showMessageDialog(null, "Logou como Professor!");
-                       
-                    }
-                    else{
-                        JOptionPane.showMessageDialog(null, "Cargo não esperado!");
-                    }
-                stage.setScene(new Scene(root));
-                stage.setTitle("Principal");
-                stage.show();
-
-                stageAtual.close();
-                }
-            }
+                });
         
-       
-    
+                root.setOnMouseDragged(new EventHandler<MouseEvent>(){
+                    @Override
+                    public void handle(MouseEvent event){
+                        stage.setX(event.getScreenX() - xOFFset);
+                        stage.setY(event.getScreenY() - yOFFset);
+                    }
+                });
+                
+                aController.setLogin(user);
+            }
+            else if(user.getCargo().equals("Professor")){
+                msg.mensagemInfo("Professor Logado com Sucesso!");
+            }
+            else{
+                msg.mensagemErro("Cargo não esperado!");
+            }
+            stage.setScene(new Scene(root));
+            stage.setTitle("Principal");
+            stage.show();
+
+            stageAtual.close();
+        }
+    }
     
     @FXML
     public void cadastrar() throws IOException {

@@ -52,11 +52,11 @@ INSERT INTO Endereco (rua,bairro,cidade,numero,cep,complemento) VAlUES ("Sales d
 INSERT INTO Endereco (rua,bairro,cidade,numero,cep,complemento) VAlUES ("Jose Serafim","Vila Castelo Branco","Campinas","177","13041960","Casa");
 
 INSERT INTO Usuario (cpf,senha,cargo,img, nome, idade, endereco,contato) VALUES ("1234","123","Aluno","/ImgsUsers/Aluno_Gabriel.jpg","Caio",20,1,"123456789");
-INSERT INTO Usuario (cpf,senha,cargo,img, nome, idade, endereco,contato) VALUES ("7896","555","Professor",null,"Alex",37,2,"25632478");
+-- INSERT INTO Usuario (cpf,senha,cargo,img, nome, idade, endereco,contato) VALUES ("7896","555","Professor",null,"Alex",37,2,"25632478");
 
-INSERT INTO Professor (id_User,descricao_Professor,preco_Aula,materia_Professor) VALUES (2,"Professor de Matemtica, atendo em casa","40.00","Matematica");
+-- INSERT INTO Professor (id_User,descricao_Professor,preco_Aula,materia_Professor) VALUES (2,"Professor de Matemtica, atendo em casa","40.00","Matematica");
  
-INSERT INTO Aula_Marcada (id_Professor,id_Aluno,data_Marcada) VALUES (1,1,"2020-05-20");
+-- INSERT INTO Aula_Marcada (id_Professor,id_Aluno,data_Marcada) VALUES (1,1,"2020-05-20");
  /* VIEWS */
  
 CREATE VIEW DadosAluno AS SELECT cpf,img,nome AS "Nome Aluno",idade AS "Idade",concat(concat(bairro,", ",rua),", ",numero) AS "Endereço Aluno", contato AS "Contato Aluno" FROM Usuario
@@ -64,7 +64,7 @@ INNER JOIN Endereco ON Endereco.id_Endereco = Usuario.endereco;
 
 select * FROM DadosAluno WHERE cpf="1234";
 
-CREATE VIEW DadosProfessor AS SELECT cpf,img,nome AS "Nome Professor",idade AS "Idade",concat(concat(bairro,", ",rua),", ",numero) AS "Endereço Professor", contato AS "Contato Professor",descricao_Professor AS "Descrição do Professor",
+CREATE VIEW DadosProfessor AS SELECT cpf,img,nome AS "Nome Professor",idade AS "Idade",concat(concat(bairro,", ",rua),"- ",numero) AS "Endereço Professor", contato AS "Contato Professor",descricao_Professor AS "Descrição do Professor",
 preco_Aula AS "Preço da Aula",materia_Professor AS "Materia Professor" FROM Usuario
 INNER JOIN Endereco ON Endereco.id_Endereco = Usuario.endereco
 INNER JOIN Professor ON Professor.id_User = Usuario.id_User;
@@ -100,3 +100,5 @@ SELECT * FROM Aula_Marcada;
 SELECT * FROM Usuario;
 SELECT * FROM endereco;
 SELECT img FROM Usuario Where id_User = 3;
+SELECT * FROM Usuario;
+update Usuario set cpf = '123', nome = 'Gabriel' where id_User = 1;
