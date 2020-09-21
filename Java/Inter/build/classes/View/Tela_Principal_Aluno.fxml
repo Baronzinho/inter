@@ -3,52 +3,234 @@
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Tela_Principal_Aluno_Controller">
-   <left>
-      <AnchorPane prefHeight="500.0" prefWidth="220.0" style="-fx-background-color: #0598ff;" BorderPane.alignment="CENTER">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="460.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Tela_Principal_Aluno_Controller">
+   <children>
+      <AnchorPane prefHeight="460.0" prefWidth="200.0" style="-fx-background-color: #0598ff;">
          <children>
-            <ImageView fx:id="imgAluno" fitHeight="88.0" fitWidth="90.0" layoutX="66.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);" />
-            <Button fx:id="btnInicio" layoutY="174.0" mnemonicParsing="false" onMouseEntered="#InicioEntered" onMouseExited="#InicioExited" prefHeight="34.0" prefWidth="220.0" style="-fx-background-color: #0598ff;" text="Inicio" textFill="WHITE">
+            <ImageView fx:id="imgAluno" fitHeight="88.0" fitWidth="90.0" layoutX="66.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);" />
+            <Button fx:id="btnInicio" layoutY="189.0" mnemonicParsing="false" onMouseClicked="#InicioClicked" onMouseEntered="#InicioEntered" onMouseExited="#InicioExited" prefHeight="34.0" prefWidth="220.0" style="-fx-background-color: #0598ff;" text="Inicio" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <Button fx:id="btnPerfil" layoutY="208.0" mnemonicParsing="false" onMouseEntered="#PerfilEntered" onMouseExited="#PerfilExited" prefHeight="34.0" prefWidth="220.0" style="-fx-background-color: #0598ff;" text="Perfil" textFill="WHITE">
+            <Button fx:id="btnPerfil" layoutY="223.0" mnemonicParsing="false" onMouseClicked="#PerfilClicked" onMouseEntered="#PerfilEntered" onMouseExited="#PerfilExited" prefHeight="34.0" prefWidth="220.0" style="-fx-background-color: #0598ff;" text="Perfil" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <Button fx:id="btnAulas" layoutY="242.0" mnemonicParsing="false" onMouseEntered="#AulasEntered" onMouseExited="#AulasExited" prefHeight="34.0" prefWidth="220.0" style="-fx-background-color: #0598ff;" text="Aulas" textFill="WHITE">
+            <Button fx:id="btnAulas" layoutY="257.0" mnemonicParsing="false" onMouseClicked="#AulasClicked" onMouseEntered="#AulasEntered" onMouseExited="#AulasExited" prefHeight="34.0" prefWidth="220.0" style="-fx-background-color: #0598ff;" text="Aulas" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <Button fx:id="btnProfessores" layoutY="276.0" mnemonicParsing="false" onMouseEntered="#ProfessoresEntered" onMouseExited="#ProfessoresExited" prefHeight="34.0" prefWidth="220.0" style="-fx-background-color: #0598ff;" text="          Professores" textFill="WHITE">
+            <Button fx:id="btnProfessores" layoutY="291.0" mnemonicParsing="false" onMouseClicked="#ProfessoresClicked" onMouseEntered="#ProfessoresEntered" onMouseExited="#ProfessoresExited" prefHeight="34.0" prefWidth="220.0" style="-fx-background-color: #0598ff;" text="          Professores" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <FontAwesomeIcon fill="WHITE" glyphName="HOME" layoutX="46.0" layoutY="198.0" size="20" />
-            <FontAwesomeIcon fill="WHITE" glyphName="USER" layoutX="47.0" layoutY="232.0" size="20" />
-            <FontAwesomeIcon fill="WHITE" glyphName="CALENDAR" layoutX="45.0" layoutY="266.0" size="20" />
-            <FontAwesomeIcon fill="WHITE" glyphName="BRIEFCASE" layoutX="44.0" layoutY="300.0" size="20" />
-            <Button fx:id="btnSair" layoutY="310.0" mnemonicParsing="false" onMouseEntered="#SairEntered" onMouseExited="#SairExited" prefHeight="34.0" prefWidth="220.0" style="-fx-background-color: #0598ff;" text="Sair   " textFill="WHITE">
+            <FontAwesomeIcon fill="WHITE" glyphName="HOME" layoutX="46.0" layoutY="213.0" size="20" />
+            <FontAwesomeIcon fill="WHITE" glyphName="USER" layoutX="47.0" layoutY="247.0" size="20" />
+            <FontAwesomeIcon fill="WHITE" glyphName="CALENDAR" layoutX="45.0" layoutY="281.0" size="20" />
+            <FontAwesomeIcon fill="WHITE" glyphName="BRIEFCASE" layoutX="44.0" layoutY="315.0" size="20" />
+            <Button fx:id="btnSair" layoutY="325.0" mnemonicParsing="false" onMouseClicked="#SairClicked" onMouseEntered="#SairEntered" onMouseExited="#SairExited" prefHeight="34.0" prefWidth="220.0" style="-fx-background-color: #0598ff;" text="Sair   " textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <FontAwesomeIcon fill="WHITE" glyphName="PLUG" layoutX="44.0" layoutY="334.0" size="20" />
-            <Label fx:id="lblUsername" layoutX="65.0" layoutY="129.0" text="Gabriel Baron" textFill="WHITE">
+            <FontAwesomeIcon fill="WHITE" glyphName="PLUG" layoutX="44.0" layoutY="349.0" size="20" />
+            <Label fx:id="lblUsername" contentDisplay="CENTER" layoutX="65.0" layoutY="139.0" prefHeight="20.0" prefWidth="90.0" text="Gabriel" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
+            <FontAwesomeIcon fill="WHITE" glyphName="CLOSE" layoutX="6.0" layoutY="21.0" size="20" />
+            <Button layoutY="2.0" mnemonicParsing="false" onAction="#sair" prefHeight="25.0" prefWidth="27.0" style="-fx-background-color: transparent;" />
          </children>
       </AnchorPane>
-   </left>
-</BorderPane>
+      <TabPane fx:id="tabPane" layoutX="220.0" layoutY="-34.0" prefHeight="494.0" prefWidth="561.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Inicio">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="427.0" prefWidth="561.0" style="-fx-background-color: #FFFFFF;">
+                     <children>
+                        <Text fill="#0598ff" layoutX="14.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Painel de Controle">
+                           <font>
+                              <Font name="System Bold" size="25.0" />
+                           </font>
+                        </Text>
+                        <Line endX="430.0" layoutX="115.0" layoutY="52.0" startX="-100.0" stroke="#0598ff" />
+                        <AnchorPane layoutX="26.0" layoutY="103.0" prefHeight="130.0" prefWidth="250.0" style="-fx-background-color: #054068;">
+                           <children>
+                              <Label fx:id="lblValorAulas" layoutX="62.0" layoutY="36.0" text="600,00" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="40.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="26.0" layoutY="73.0" prefHeight="30.0" prefWidth="250.0" style="-fx-background-color: #0598ff;">
+                           <children>
+                              <Text fill="WHITE" layoutX="53.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Valor das Aulas">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="285.0" layoutY="103.0" prefHeight="130.0" prefWidth="250.0" style="-fx-background-color: #27408B;">
+                           <children>
+                              <Label fx:id="lblProxAula" layoutX="15.0" layoutY="36.0" text="14/10/2020" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="40.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="285.0" layoutY="73.0" prefHeight="30.0" prefWidth="250.0" style="-fx-background-color: #4876FF;">
+                           <children>
+                              <Text fill="WHITE" layoutX="62.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Próxima Aula">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="26.0" layoutY="280.0" prefHeight="130.0" prefWidth="250.0" style="-fx-background-color: #36648B;">
+                           <children>
+                              <Label fx:id="lblQtdMaterias" layoutX="113.0" layoutY="36.0" text="5" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="40.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="26.0" layoutY="250.0" prefHeight="30.0" prefWidth="250.0" style="-fx-background-color: #63B8FF;">
+                           <children>
+                              <Text fill="WHITE" layoutX="61.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Qtd. Matérias">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="285.0" layoutY="280.0" prefHeight="130.0" prefWidth="250.0" style="-fx-background-color: #000080;">
+                           <children>
+                              <Label fx:id="lblValorMedioAula" layoutX="62.0" layoutY="36.0" text="120,00" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="40.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="285.0" layoutY="250.0" prefHeight="30.0" prefWidth="250.0" style="-fx-background-color: #6495ED;">
+                           <children>
+                              <Text fill="WHITE" layoutX="24.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Valor Médio por Aula">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </AnchorPane>
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Perfil">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;">
+                     <children>
+                        <Text fill="#0598ff" layoutX="14.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Perfil">
+                           <font>
+                              <Font name="System Bold" size="30.0" />
+                           </font>
+                        </Text>
+                        <Line endX="430.0" layoutX="115.0" layoutY="64.0" startX="-100.0" stroke="#0598ff" />
+                        <TextField fx:id="txtNomeUser" layoutX="15.0" layoutY="80.0" onKeyPressed="#NomePressed" prefHeight="27.0" prefWidth="270.0" promptText="Nome" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
+                        <TextField fx:id="txtIdadeUser" layoutX="295.0" layoutY="80.0" onKeyPressed="#IdadePressed" prefHeight="27.0" prefWidth="120.0" promptText="Idade" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
+                        <TextField fx:id="txtTelefoneUser" layoutX="425.0" layoutY="80.0" onKeyPressed="#TelefonePressed" prefHeight="25.0" prefWidth="120.0" promptText="Telefone" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
+                        <TextField fx:id="txtNumeroEndereco" layoutX="14.0" layoutY="207.0" prefHeight="27.0" prefWidth="60.0" promptText="Número" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
+                        <TextField fx:id="txtRuaEndereco" layoutX="84.0" layoutY="207.0" prefHeight="27.0" prefWidth="240.0" promptText="Logradouro" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
+                        <TextField fx:id="txtBairroEndereco" layoutX="336.0" layoutY="207.0" prefHeight="27.0" prefWidth="210.0" promptText="Bairro" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
+                        <TextField fx:id="txtCidadeEndereco" layoutX="15.0" layoutY="248.0" prefHeight="27.0" prefWidth="160.0" promptText="Cidade" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
+                        <TextField fx:id="txtCepEndereco" layoutX="184.0" layoutY="248.0" prefHeight="27.0" prefWidth="140.0" promptText="CEP" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
+                        <TextField fx:id="txtComplementoEndereco" layoutX="336.0" layoutY="249.0" prefHeight="27.0" prefWidth="210.0" promptText="Complemento" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
+                        <Line endX="430.0" layoutX="116.0" layoutY="188.0" startX="-100.0" stroke="#0598ff" />
+                        <Line endX="430.0" layoutX="115.0" layoutY="315.0" startX="-100.0" stroke="#0598ff" />
+                        <Button fx:id="btnCancelar" layoutX="66.0" layoutY="390.0" mnemonicParsing="false" onMouseClicked="#CancelarClicked" prefHeight="40.0" prefWidth="210.0" style="-fx-background-color: #0598ff;" text="Cancelar" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnAtualizar" layoutX="282.0" layoutY="390.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="210.0" style="-fx-background-color: #0598ff;" text="Atualizar" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <Text fill="#0598ff" layoutX="16.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Endereço">
+                           <font>
+                              <Font name="System Bold" size="25.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Aulas">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;">
+                     <children>
+                        <Text fill="#0598ff" layoutX="14.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Aulas">
+                           <font>
+                              <Font name="System Bold" size="30.0" />
+                           </font>
+                        </Text>
+                        <Line endX="430.0" layoutX="115.0" layoutY="54.0" startX="-100.0" stroke="#0598ff" />
+                        <TextField fx:id="txtPesquisar1" layoutX="132.0" layoutY="90.0" prefHeight="25.0" prefWidth="200.0" />
+                        <Button fx:id="btnPesquisar1" layoutX="341.0" layoutY="90.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #0598ff;" text="Pesquisar" textFill="WHITE" />
+                        <TableView fx:id="tblProfessores1" layoutX="30.0" layoutY="130.0" prefHeight="270.0" prefWidth="500.0">
+                           <columns>
+                              <TableColumn prefWidth="184.0" text="Aula" />
+                           </columns>
+                        </TableView>
+                        <Button fx:id="btnVisualizarAula" layoutX="158.0" layoutY="416.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="245.0" style="-fx-background-color: #0598ff;" text="Visualizar" textFill="WHITE" />
+                     </children></AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Professores">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;">
+                     <children>
+                        <TextField fx:id="txtPesquisar" layoutX="126.0" layoutY="92.0" prefHeight="25.0" prefWidth="200.0" />
+                        <Button fx:id="btnPesquisar" layoutX="335.0" layoutY="92.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #0598ff;" text="Pesquisar" textFill="WHITE" />
+                        <TableView fx:id="tblProfessores" layoutX="31.0" layoutY="133.0" prefHeight="250.0" prefWidth="500.0">
+                          <columns>
+                            <TableColumn prefWidth="184.0" text="Professor" />
+                            <TableColumn prefWidth="157.0" text="Materia" />
+                              <TableColumn prefWidth="125.0" text="Preço da Aula" />
+                          </columns>
+                        </TableView>
+                        <Button fx:id="btnVisualizarProfessor" layoutX="31.0" layoutY="410.0" mnemonicParsing="false" onMouseClicked="#VisualizarProfessorClicked" prefHeight="35.0" prefWidth="245.0" style="-fx-background-color: #0598ff;" text="Visualizar" textFill="WHITE" />
+                        <Button fx:id="btnMarcarAula" layoutX="286.0" layoutY="410.0" mnemonicParsing="false" onMouseClicked="#MarcarAulaClicked" prefHeight="35.0" prefWidth="245.0" style="-fx-background-color: #0598ff;" text="Marcar Aula" textFill="WHITE" />
+                        <Text fill="#0598ff" layoutX="14.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Professores">
+                           <font>
+                              <Font name="System Bold" size="30.0" />
+                           </font>
+                        </Text>
+                        <Line endX="430.0" layoutX="115.0" layoutY="55.0" startX="-100.0" stroke="#0598ff" />
+                     </children></AnchorPane>
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>
