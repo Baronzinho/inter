@@ -73,7 +73,7 @@
          </font>
       </Text>
       <TextField fx:id="txtHorarioAula" layoutX="226.0" layoutY="230.0" prefHeight="25.0" prefWidth="132.0" promptText="Horário da Aula" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
-      <Button fx:id="btnMarcarAula" layoutX="192.0" layoutY="284.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="170.0" style="-fx-background-color: #0598ff;" text="Marcar Aula" textFill="WHITE">
+      <Button fx:id="btnMarcarAula" layoutX="192.0" layoutY="284.0" mnemonicParsing="false" onMouseClicked="#MarcaAula" prefHeight="35.0" prefWidth="170.0" style="-fx-background-color: #0598ff;" text="Marcar Aula" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>

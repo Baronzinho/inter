@@ -1,14 +1,17 @@
 
 package Controller;
 
+import DAO.AlunoDAO;
 import Model.Usuario;
 import Model.Endereco;
+import Model.Mensagens;
+import Model.UserProfessor;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -19,18 +22,18 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javax.swing.JOptionPane;
 
 public class Tela_Principal_Aluno_Controller implements Initializable {
     
@@ -69,24 +72,54 @@ public class Tela_Principal_Aluno_Controller implements Initializable {
     @FXML
     private TextField txtComplementoEndereco;
     @FXML
+    private TextField txtPesquisar;
+    @FXML
     private Button btnAtualizar;
     @FXML
     private Button btnCancelar;
+     @FXML
+    private TableView<UserProfessor> tvProfessores;
+    @FXML
+    private TableColumn<UserProfessor, String> ColNomeProf;
+    @FXML
+    private TableColumn<UserProfessor, String> ColMateria;
+    @FXML
+    private TableColumn<UserProfessor, String> ColPreco;
     
     private double xOFFset = 0;
     private double yOFFset = 0;
     
     Usuario usuario = new Usuario();
     Endereco endereco = new Endereco();
-    
-    public void initTable() throws SQLException{
-     
-    }
+    Mensagens msg = new Mensagens();
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
     }    
+    
+    @FXML
+    public void InicioClicked() {
+        tabPane.setFocusTraversable(false);
+        tabPane.getSelectionModel().select(0);
+    }
+    
+    @FXML
+    public void PerfilClicked() {
+        tabPane.setFocusTraversable(false);
+        tabPane.getSelectionModel().select(1);
+        btnAtualizar.setDisable(true);
+        txtNomeUser.setText(usuario.getNome());
+        txtIdadeUser.setText(Integer.toString(usuario.getIdade()));
+        txtTelefoneUser.setText(usuario.getContato());
+        txtNumeroEndereco.setText(endereco.getNumero());
+        txtRuaEndereco.setText(endereco.getRua());
+        txtBairroEndereco.setText(endereco.getBairro());
+        txtCidadeEndereco.setText(endereco.getCidade());
+        txtCepEndereco.setText(endereco.getCep());
+        txtComplementoEndereco.setText(endereco.getComplemento());
+        
+    }
     
     @FXML
     public void NomePressed() {
@@ -111,6 +144,7 @@ public class Tela_Principal_Aluno_Controller implements Initializable {
     public void ProfessoresClicked() {
         tabPane.setFocusTraversable(false);
         tabPane.getSelectionModel().select(3);
+        initTableProfessor();
     }
     
     @FXML
@@ -163,39 +197,45 @@ public class Tela_Principal_Aluno_Controller implements Initializable {
         btnSair.setStyle("-fx-background-color: #0598ff; ");
     }
     
-    @FXML
-    public void InicioClicked() {
-        tabPane.setFocusTraversable(false);
-        tabPane.getSelectionModel().select(0);
-    }
-    
     public void setLogin(Usuario user) throws SQLException{
         lblUsername.setText(user.getNome());
         lblUsername.setAlignment(Pos.CENTER);
         Image imgUser =  new Image(user.getImgUser());
         imgAluno.setImage(imgUser);
         usuario = user;
-        endereco = endereco.retornaEnderecoUser(user.getId_endereco());
-        
+        endereco = endereco.retornaEnderecoUser(user.getId_endereco());  
+    }
+  
+    public void initTableProfessor() { 
+        ColNomeProf.setCellValueFactory(new PropertyValueFactory("nome"));
+        ColMateria.setCellValueFactory(new PropertyValueFactory("materia_Professor"));
+        ColPreco.setCellValueFactory(new PropertyValueFactory("preco_aula"));
+        tvProfessores.setItems(professores());
+    }
+    
+    public void initTablePesquisaProfessor(String pesquisa) { 
+        ColNomeProf.setCellValueFactory(new PropertyValueFactory("nome"));
+        ColMateria.setCellValueFactory(new PropertyValueFactory("materia_Professor"));
+        ColPreco.setCellValueFactory(new PropertyValueFactory("preco_aula"));
+        tvProfessores.setItems(pesquisaProfessores(pesquisa));
+    }
+    
+    public ObservableList<UserProfessor> professores() {
+        AlunoDAO alunoD = new AlunoDAO();
+        return FXCollections.observableArrayList(alunoD.getTodosProfessor());
+    }
+    
+    public ObservableList<UserProfessor> pesquisaProfessores(String pesquisa) {
+        AlunoDAO alunoD = new AlunoDAO();
+        return FXCollections.observableArrayList(alunoD.getPesquisaProfessor(pesquisa));
     }
     
     @FXML
-    public void PerfilClicked() {
-        tabPane.setFocusTraversable(false);
-        tabPane.getSelectionModel().select(1);
-        btnAtualizar.setDisable(true);
-        txtNomeUser.setText(usuario.getNome());
-        txtIdadeUser.setText(Integer.toString(usuario.getIdade()));
-        txtTelefoneUser.setText(usuario.getContato());
-        txtNumeroEndereco.setText(endereco.getNumero());
-        txtRuaEndereco.setText(endereco.getRua());
-        txtBairroEndereco.setText(endereco.getBairro());
-        txtCidadeEndereco.setText(endereco.getCidade());
-        txtCepEndereco.setText(endereco.getCep());
-        txtComplementoEndereco.setText(endereco.getComplemento());
-        
+    public void PesquisarProfessor(){
+        String pesquisa = txtPesquisar.getText();
+        tvProfessores.refresh();
+        initTablePesquisaProfessor(pesquisa);
     }
-    
     
     @FXML
     public void SairClicked() throws IOException {
@@ -236,11 +276,30 @@ public class Tela_Principal_Aluno_Controller implements Initializable {
         PerfilClicked();
     }
     
+    public UserProfessor selectRowProfessor() throws SQLException{
+        UserProfessor prof = new UserProfessor();
+        
+        //if(tvProfessores){
+            int id = tvProfessores.getSelectionModel().getSelectedItem().getId_Professor();
+            prof = prof.retornaUser(id);
+        //}else{
+           // msg.mensagemAviso("Seleciona um Professor para visualizar");
+            
+        //}
+        
+        return prof;
+    }
+    
     @FXML
-    public void VisualizarProfessorClicked() throws IOException{
-        Parent root = FXMLLoader.load(getClass().getResource("/View/Tela_Visualizar_Professor.fxml"));
+    public void VisualizarProfessorClicked() throws IOException, SQLException{
+        UserProfessor prof = new UserProfessor();
+        prof = selectRowProfessor();   
         Stage stage = new Stage();
-        Scene scene = new Scene(root);
+        Parent root=null;
+        FXMLLoader loader = new FXMLLoader();
+        
+        root = loader.load(getClass().getResource("/View/Tela_Visualizar_Professor.fxml").openStream());
+        Tela_Visualizar_Professor_Controller aController = (Tela_Visualizar_Professor_Controller) loader.getController();
         
         stage.initStyle(StageStyle.DECORATED.UNDECORATED);
         
@@ -260,16 +319,24 @@ public class Tela_Principal_Aluno_Controller implements Initializable {
             }
         });
         
-        stage.setScene(scene);
+        aController.setDadosProfessor(prof);
+        
+        stage.setScene(new Scene(root));
+        stage.setTitle("Visualizar Professor");
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
     }
     
     @FXML
-    public void MarcarAulaClicked() throws IOException{
-        Parent root = FXMLLoader.load(getClass().getResource("/View/Tela_Marcar_Aula.fxml"));
+    public void MarcarAulaClicked() throws IOException, SQLException{
+        UserProfessor prof = new UserProfessor();
+        prof = selectRowProfessor();
+         
         Stage stage = new Stage();
-        Scene scene = new Scene(root);
+        Parent root=null;
+        FXMLLoader loader = new FXMLLoader();
+        root = loader.load(getClass().getResource("/View/Tela_Marcar_Aula.fxml").openStream());
+        Tela_Marcar_Aula_Controller aController = (Tela_Marcar_Aula_Controller) loader.getController();
         
         stage.initStyle(StageStyle.DECORATED.UNDECORATED);
         
@@ -288,8 +355,10 @@ public class Tela_Principal_Aluno_Controller implements Initializable {
                 stage.setY(event.getScreenY() - yOFFset);
             }
         });
+        aController.setDadosParaMarcarAula(prof,usuario.getId_User());
         
-        stage.setScene(scene);
+        stage.setScene(new Scene(root));
+        stage.setTitle("Marcar Aula");
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
     }
