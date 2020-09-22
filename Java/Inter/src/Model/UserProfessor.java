@@ -1,8 +1,10 @@
 package Model;
 
 import java.sql.Blob;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
-public class UserProfessor {
+public class UserProfessor extends Usuario {
     private int id_Professor,id_User;
     private String descricao_Professor,preco_aula,materia_Professor;
 
@@ -45,8 +47,29 @@ public class UserProfessor {
     public void setMateria_Professor(String materia_Professor) {
         this.materia_Professor = materia_Professor;
     }
-
-
-    
+        
+    public UserProfessor retornaUser(int idProf) throws SQLException{
+     UserProfessor prof = new UserProfessor();
+     DAO.ProfessorDAO profD = new DAO.ProfessorDAO();
+     ResultSet rs;
+     rs = profD.DadosProfessor(idProf);
+     
+      
+     if(rs.next()){
+         prof.setId_Professor(rs.getInt(1));
+         prof.setImgUser(rs.getString(2));
+         prof.setNome(rs.getString(3));
+         prof.setId_endereco(rs.getInt(4));
+         prof.setContato(rs.getString(5));
+         prof.setDescricao_Professor(rs.getString(6));
+         prof.setPreco_aula(rs.getString(7));
+         prof.setMateria_Professor(rs.getString(8));
+     }else{
+         prof.setId_User(0);
+     }
+     
+     
+    return prof;
+    }
     
 }
