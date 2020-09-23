@@ -6,6 +6,7 @@ import Model.UserProfessor;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 public class AlunoDAO extends SQL{
     
@@ -30,9 +31,9 @@ public class AlunoDAO extends SQL{
         return listaProf;
     }
     
-    public List<UserProfessor> getPesquisaProfessor(String pesquisa) {
+    public List<UserProfessor> getTodosProfessor(String pesquisa) {
         List<UserProfessor> listaProf = new ArrayList();
-        sql = "SELECT * FROM ProcurarProfessor WHERE materia_Professor LIKE CONCAT('%',"+pesquisa+",'%');"; 
+        sql = "SELECT * FROM ProcurarProfessor WHERE materia_Professor LIKE  '%"+pesquisa+"%';"; 
         try {
             rset = select(sql);
             while (rset.next()) {

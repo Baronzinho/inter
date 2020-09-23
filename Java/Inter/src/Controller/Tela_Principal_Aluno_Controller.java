@@ -2,6 +2,8 @@
 package Controller;
 
 import DAO.AlunoDAO;
+import DAO.AulaMarcadaDAO;
+import Model.AulaMarcada;
 import Model.Usuario;
 import Model.Endereco;
 import Model.Mensagens;
@@ -74,10 +76,12 @@ public class Tela_Principal_Aluno_Controller implements Initializable {
     @FXML
     private TextField txtPesquisar;
     @FXML
+    private TextField txtPesquisarAula;
+    @FXML
     private Button btnAtualizar;
     @FXML
     private Button btnCancelar;
-     @FXML
+    @FXML
     private TableView<UserProfessor> tvProfessores;
     @FXML
     private TableColumn<UserProfessor, String> ColNomeProf;
@@ -85,6 +89,16 @@ public class Tela_Principal_Aluno_Controller implements Initializable {
     private TableColumn<UserProfessor, String> ColMateria;
     @FXML
     private TableColumn<UserProfessor, String> ColPreco;
+    @FXML
+    private TableView<AulaMarcada> tvAulasMarcadas;
+    @FXML
+    private TableColumn<AulaMarcada, String> ColNomeProfessor;
+    @FXML
+    private TableColumn<AulaMarcada, String> ColMateriaAula;
+    @FXML
+    private TableColumn<AulaMarcada, String> ColData;
+    @FXML
+    private TableColumn<AulaMarcada, String> ColHora;
     
     private double xOFFset = 0;
     private double yOFFset = 0;
@@ -138,6 +152,7 @@ public class Tela_Principal_Aluno_Controller implements Initializable {
     public void AulasClicked() {
         tabPane.setFocusTraversable(false);
         tabPane.getSelectionModel().select(2);
+        initTableAulasMarcadas();
     }
     
     @FXML
@@ -227,7 +242,33 @@ public class Tela_Principal_Aluno_Controller implements Initializable {
     
     public ObservableList<UserProfessor> pesquisaProfessores(String pesquisa) {
         AlunoDAO alunoD = new AlunoDAO();
-        return FXCollections.observableArrayList(alunoD.getPesquisaProfessor(pesquisa));
+        return FXCollections.observableArrayList(alunoD.getTodosProfessor(pesquisa));
+    }
+    
+    public void initTableAulasMarcadas() { 
+        ColNomeProfessor.setCellValueFactory(new PropertyValueFactory("nome"));
+        ColMateriaAula.setCellValueFactory(new PropertyValueFactory("materia_Professor"));
+        ColData.setCellValueFactory(new PropertyValueFactory("data_Aula"));
+        ColHora.setCellValueFactory(new PropertyValueFactory("hora_Aula"));
+        tvAulasMarcadas.setItems(aulasMarcadasAluno());
+    }
+    
+    public void initTableAulasMarcadasPesquisa(String pesquisa) { 
+        ColNomeProfessor.setCellValueFactory(new PropertyValueFactory("nome"));
+        ColMateriaAula.setCellValueFactory(new PropertyValueFactory("materia_Professor"));
+        ColData.setCellValueFactory(new PropertyValueFactory("data_Aula"));
+        ColHora.setCellValueFactory(new PropertyValueFactory("hora_Aula"));
+        tvAulasMarcadas.setItems(pesquisaAulasMarcadasAluno(pesquisa));
+    }
+    
+    public ObservableList<AulaMarcada> aulasMarcadasAluno() {
+        AulaMarcadaDAO aulaD = new AulaMarcadaDAO();
+        return FXCollections.observableArrayList(aulaD.exibeAulasMarcadasAluno(usuario.getId_User()));
+    }
+    
+    public ObservableList<AulaMarcada> pesquisaAulasMarcadasAluno(String pesquisa) {
+        AulaMarcadaDAO aulaD = new AulaMarcadaDAO();
+        return FXCollections.observableArrayList(aulaD.exibeAulasMarcadasAluno(usuario.getId_User(),pesquisa));
     }
     
     @FXML
@@ -235,6 +276,13 @@ public class Tela_Principal_Aluno_Controller implements Initializable {
         String pesquisa = txtPesquisar.getText();
         tvProfessores.refresh();
         initTablePesquisaProfessor(pesquisa);
+    }
+    
+    @FXML
+    public void PesquisarAula(){
+        String pesquisa = txtPesquisarAula.getText();
+        tvAulasMarcadas.refresh();
+        initTableAulasMarcadasPesquisa(pesquisa);
     }
     
     @FXML
