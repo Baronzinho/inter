@@ -59,7 +59,7 @@ public class Tela_Login_Controller implements Initializable {
             FXMLLoader loader = new FXMLLoader();
             
             if(user.getCargo().equals("Aluno")){
-                //Realiza Login como Aluno seguindo validações
+                
                 root = loader.load(getClass().getResource("/View/Tela_Principal_Aluno.fxml").openStream());
                 Tela_Principal_Aluno_Controller aController = (Tela_Principal_Aluno_Controller) loader.getController();
                 stage.initStyle(StageStyle.DECORATED.UNDECORATED);
@@ -83,7 +83,28 @@ public class Tela_Login_Controller implements Initializable {
                 aController.setLogin(user);
             }
             else if(user.getCargo().equals("Professor")){
-                msg.mensagemInfo("Professor Logado com Sucesso!");
+                
+                root = loader.load(getClass().getResource("/View/Tela_Principal_Professor.fxml").openStream());
+                //Tela_Principal_Professor_Controller aController = (Tela_Principal_Professor_Controller) loader.getController();
+                stage.initStyle(StageStyle.DECORATED.UNDECORATED);
+                
+                root.setOnMousePressed(new EventHandler<MouseEvent>(){
+                    @Override
+                    public void handle(MouseEvent event){
+                        xOFFset = event.getSceneX();
+                        yOFFset = event.getSceneY();
+                    }
+                });
+        
+                root.setOnMouseDragged(new EventHandler<MouseEvent>(){
+                    @Override
+                    public void handle(MouseEvent event){
+                        stage.setX(event.getScreenX() - xOFFset);
+                        stage.setY(event.getScreenY() - yOFFset);
+                    }
+                });
+                
+                //aController.setLogin(user);
             }
             else{
                 msg.mensagemErro("Cargo não esperado!");

@@ -1,5 +1,9 @@
 package Model;
 
+import DAO.AulaMarcadaDAO;
+import DAO.EnderecoDAO;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Date;
 
 public class AulaMarcada extends UserProfessor{
@@ -57,5 +61,17 @@ public class AulaMarcada extends UserProfessor{
         this.hora_Aula = hora_Aula;
     }
     
+    public AulaMarcada retornaAula(int idProfessor) throws SQLException{
+        AulaMarcada aula = new AulaMarcada();
+        ResultSet rs;
+        AulaMarcadaDAO aulaD = new AulaMarcadaDAO();
     
+        rs = aulaD.retornaAulaMarcada(idProfessor);
+     
+        if(rs.next()){
+            aula.setData_Aula(rs.getDate(1));
+            aula.setHora_Aula(rs.getString(2));
+        }
+        return aula;
+    }
 }

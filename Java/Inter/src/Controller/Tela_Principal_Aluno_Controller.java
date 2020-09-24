@@ -52,6 +52,14 @@ public class Tela_Principal_Aluno_Controller implements Initializable {
     @FXML
     private Label lblUsername;
     @FXML
+    private Label lblValorAulas;
+    @FXML
+    private Label lblProxAula;
+    @FXML
+    private Label lblQtdMaterias;
+    @FXML
+    private Label lblValorMedioAula;
+    @FXML
     private ImageView imgAluno;
     @FXML
     private TabPane tabPane;
@@ -109,7 +117,7 @@ public class Tela_Principal_Aluno_Controller implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        
     }    
     
     @FXML
@@ -123,6 +131,7 @@ public class Tela_Principal_Aluno_Controller implements Initializable {
         tabPane.setFocusTraversable(false);
         tabPane.getSelectionModel().select(1);
         btnAtualizar.setDisable(true);
+        btnCancelar.setDisable(true);
         txtNomeUser.setText(usuario.getNome());
         txtIdadeUser.setText(Integer.toString(usuario.getIdade()));
         txtTelefoneUser.setText(usuario.getContato());
@@ -138,14 +147,17 @@ public class Tela_Principal_Aluno_Controller implements Initializable {
     @FXML
     public void NomePressed() {
         btnAtualizar.setDisable(false);
+        btnCancelar.setDisable(false);
     }
     @FXML
     public void IdadePressed() {
         btnAtualizar.setDisable(false);
+        btnCancelar.setDisable(false);
     }
     @FXML
     public void TelefonePressed() {
         btnAtualizar.setDisable(false);
+        btnCancelar.setDisable(false);
     }
     
     @FXML
@@ -219,6 +231,10 @@ public class Tela_Principal_Aluno_Controller implements Initializable {
         imgAluno.setImage(imgUser);
         usuario = user;
         endereco = endereco.retornaEnderecoUser(user.getId_endereco());  
+    }
+    
+    public void setPainelControle(Usuario user) throws SQLException{
+        //AQUI VAI O CODIGO PARA SETAR OS CAMPOS DO PAINEL DE CONTROLE
     }
   
     public void initTableProfessor() { 
@@ -327,52 +343,67 @@ public class Tela_Principal_Aluno_Controller implements Initializable {
     public UserProfessor selectRowProfessor() throws SQLException{
         UserProfessor prof = new UserProfessor();
         
-        //if(tvProfessores){
-            int id = tvProfessores.getSelectionModel().getSelectedItem().getId_Professor();
-            prof = prof.retornaUser(id);
-        //}else{
-           // msg.mensagemAviso("Seleciona um Professor para visualizar");
-            
-        //}
+        int id = tvProfessores.getSelectionModel().getSelectedItem().getId_Professor();
         
+        prof = prof.retornaUser(id);
+        return prof;
+    }
+    
+    public UserProfessor selectRowAulas() throws SQLException{
+        UserProfessor prof = new UserProfessor();
+        
+        int id = tvAulasMarcadas.getSelectionModel().getSelectedItem().getId_Professor();
+        
+        prof = prof.retornaUser(id);
         return prof;
     }
     
     @FXML
     public void VisualizarProfessorClicked() throws IOException, SQLException{
         UserProfessor prof = new UserProfessor();
-        prof = selectRowProfessor();   
-        Stage stage = new Stage();
-        Parent root=null;
-        FXMLLoader loader = new FXMLLoader();
+        int controlaErro = 0;
         
-        root = loader.load(getClass().getResource("/View/Tela_Visualizar_Professor.fxml").openStream());
-        Tela_Visualizar_Professor_Controller aController = (Tela_Visualizar_Professor_Controller) loader.getController();
+        try{
+            prof = selectRowProfessor();
+        } 
+        catch(NullPointerException e){
+            msg.mensagemAviso("Selecione um professor para visualizar.");
+            controlaErro++;
+        }
         
-        stage.initStyle(StageStyle.DECORATED.UNDECORATED);
-        
-        root.setOnMousePressed(new EventHandler<MouseEvent>(){
-            @Override
-            public void handle(MouseEvent event){
-                xOFFset = event.getSceneX();
-                yOFFset = event.getSceneY();
-            }
-        });
-        
-        root.setOnMouseDragged(new EventHandler<MouseEvent>(){
-            @Override
-            public void handle(MouseEvent event){
-                stage.setX(event.getScreenX() - xOFFset);
-                stage.setY(event.getScreenY() - yOFFset);
-            }
-        });
-        
-        aController.setDadosProfessor(prof);
-        
-        stage.setScene(new Scene(root));
-        stage.setTitle("Visualizar Professor");
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.showAndWait();
+        if(controlaErro == 0){
+            Stage stage = new Stage();
+            Parent root=null;
+            FXMLLoader loader = new FXMLLoader();
+
+            root = loader.load(getClass().getResource("/View/Tela_Visualizar_Professor.fxml").openStream());
+            Tela_Visualizar_Professor_Controller aController = (Tela_Visualizar_Professor_Controller) loader.getController();
+
+            stage.initStyle(StageStyle.DECORATED.UNDECORATED);
+
+            root.setOnMousePressed(new EventHandler<MouseEvent>(){
+                @Override
+                public void handle(MouseEvent event){
+                    xOFFset = event.getSceneX();
+                    yOFFset = event.getSceneY();
+                }
+            });
+
+            root.setOnMouseDragged(new EventHandler<MouseEvent>(){
+                @Override
+                public void handle(MouseEvent event){
+                    stage.setX(event.getScreenX() - xOFFset);
+                    stage.setY(event.getScreenY() - yOFFset);
+                }
+            });
+
+            aController.setDadosProfessor(prof);
+
+            stage.setScene(new Scene(root));
+            stage.setTitle("Visualizar Professor");
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+        }
     }
     
     @FXML
@@ -407,6 +438,43 @@ public class Tela_Principal_Aluno_Controller implements Initializable {
         
         stage.setScene(new Scene(root));
         stage.setTitle("Marcar Aula");
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
+    }
+    
+    @FXML
+    public void VisualizarAulaClicked() throws IOException, SQLException{
+        UserProfessor prof = new UserProfessor();
+        prof = selectRowAulas();   
+        Stage stage = new Stage();
+        Parent root=null;
+        FXMLLoader loader = new FXMLLoader();
+        
+        root = loader.load(getClass().getResource("/View/Tela_Visualizar_Aula.fxml").openStream());
+        Tela_Visualizar_Aula_Controller aController = (Tela_Visualizar_Aula_Controller) loader.getController();
+        
+        stage.initStyle(StageStyle.DECORATED.UNDECORATED);
+        
+        root.setOnMousePressed(new EventHandler<MouseEvent>(){
+            @Override
+            public void handle(MouseEvent event){
+                xOFFset = event.getSceneX();
+                yOFFset = event.getSceneY();
+            }
+        });
+        
+        root.setOnMouseDragged(new EventHandler<MouseEvent>(){
+            @Override
+            public void handle(MouseEvent event){
+                stage.setX(event.getScreenX() - xOFFset);
+                stage.setY(event.getScreenY() - yOFFset);
+            }
+        });
+        
+        aController.setDadosAula(prof);
+        
+        stage.setScene(new Scene(root));
+        stage.setTitle("Visualizar Aula");
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
     }

@@ -16,7 +16,7 @@ public class BDConexaoMySQL extends BDConexao {
         this.servidor = "localhost";
         this.bd = "inter_caio_gabriel";
         this.usuario = "root";
-        this.senha = "";
+        this.senha = "root";
     }
 
     @Override

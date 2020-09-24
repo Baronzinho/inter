@@ -1,7 +1,9 @@
+
 package Controller;
 
 import Model.Endereco;
 import Model.UserProfessor;
+import Model.AulaMarcada;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -10,26 +12,26 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
-public class Tela_Visualizar_Professor_Controller implements Initializable {
-    
+public class Tela_Visualizar_Aula_Controller implements Initializable {
+
     @FXML
     private Button btnVoltar;
-    @FXML
-    private TextArea txtDescricaoProfessor;
     @FXML
     private Label lblNomeProfessor;
     @FXML
     private Label lblMateriaProfessor;
     @FXML
-    private Label lblPrecoAula;
+    private Label lblDataMarcada;
     @FXML
     private Label lblEnderecoProfessor;
     @FXML
-    private ImageView imgProfessor;
+    private Label lblPrecoAula;
+    @FXML
+    private Label lblHoraMarcada;
+    @FXML
+    private TextArea txtDescricaoProfessor;
     
     @FXML
     public void VoltarClicked(){
@@ -42,15 +44,17 @@ public class Tela_Visualizar_Professor_Controller implements Initializable {
         txtDescricaoProfessor.setEditable(false);
     }    
     
-    public void setDadosProfessor(UserProfessor user) throws SQLException{
+    public void setDadosAula(UserProfessor user) throws SQLException{
+        AulaMarcada aula = new AulaMarcada();
         Endereco endereco = new Endereco();
         endereco = endereco.retornaEnderecoUser(user.getId_endereco());
-        Image imgProf =  new Image(user.getImgUser());
+        aula = aula.retornaAula(user.getId_Professor());
+        lblDataMarcada.setText(aula.getData_Aula().toString());
+        lblHoraMarcada.setText(aula.getHora_Aula());
         lblNomeProfessor.setText(user.getNome());
         lblMateriaProfessor.setText(user.getMateria_Professor());
         lblPrecoAula.setText(user.getPreco_aula());
         lblEnderecoProfessor.setText(endereco.getBairro() + ", " + endereco.getRua()+" - " + endereco.getNumero());
         txtDescricaoProfessor.setText(user.getDescricao_Professor());
-        imgProfessor.setImage(imgProf);
     }
 }
