@@ -2,6 +2,7 @@ package DAO;
 
 import Connection.SQL;
 import Model.AulaMarcada;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -66,5 +67,9 @@ public class AulaMarcadaDAO extends SQL{
         return listaAulas;
     }
     
-    
+    public ResultSet retornaAulaMarcada(int id) throws SQLException{
+         sql = "SELECT data_Marcada, hora_Aula FROM Aula_Marcada where id_Professor = " + id + ";";
+         rset = select(sql);
+        return rset;
+     }
 }
