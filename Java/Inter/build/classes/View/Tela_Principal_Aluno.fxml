@@ -72,7 +72,7 @@
                         <Line endX="430.0" layoutX="115.0" layoutY="52.0" startX="-100.0" stroke="#0598ff" />
                         <AnchorPane layoutX="26.0" layoutY="103.0" prefHeight="130.0" prefWidth="250.0" style="-fx-background-color: #054068;">
                            <children>
-                              <Label fx:id="lblValorAulas" layoutX="62.0" layoutY="36.0" text="600,00" textFill="WHITE">
+                              <Label fx:id="lblValorAulas" layoutX="86.0" layoutY="36.0" text="Null" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="40.0" />
                                  </font>
@@ -90,7 +90,7 @@
                         </AnchorPane>
                         <AnchorPane layoutX="285.0" layoutY="103.0" prefHeight="130.0" prefWidth="250.0" style="-fx-background-color: #27408B;">
                            <children>
-                              <Label fx:id="lblProxAula" layoutX="15.0" layoutY="36.0" text="14/10/2020" textFill="WHITE">
+                              <Label fx:id="lblValorMedioAulas" layoutX="86.0" layoutY="36.0" text="Null" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="40.0" />
                                  </font>
@@ -99,7 +99,7 @@
                         </AnchorPane>
                         <AnchorPane layoutX="285.0" layoutY="73.0" prefHeight="30.0" prefWidth="250.0" style="-fx-background-color: #4876FF;">
                            <children>
-                              <Text fill="WHITE" layoutX="62.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Próxima Aula">
+                              <Text fill="WHITE" layoutX="20.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Valor Médio das Aulas">
                                  <font>
                                     <Font name="System Bold" size="20.0" />
                                  </font>
@@ -108,7 +108,7 @@
                         </AnchorPane>
                         <AnchorPane layoutX="26.0" layoutY="280.0" prefHeight="130.0" prefWidth="250.0" style="-fx-background-color: #36648B;">
                            <children>
-                              <Label fx:id="lblQtdMaterias" layoutX="113.0" layoutY="36.0" text="5" textFill="WHITE">
+                              <Label fx:id="lblQtdAulas" layoutX="113.0" layoutY="36.0" text="0" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="40.0" />
                                  </font>
@@ -117,7 +117,7 @@
                         </AnchorPane>
                         <AnchorPane layoutX="26.0" layoutY="250.0" prefHeight="30.0" prefWidth="250.0" style="-fx-background-color: #63B8FF;">
                            <children>
-                              <Text fill="WHITE" layoutX="61.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Qtd. Matérias">
+                              <Text fill="WHITE" layoutX="76.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Qtd. Aulas">
                                  <font>
                                     <Font name="System Bold" size="20.0" />
                                  </font>
@@ -126,7 +126,7 @@
                         </AnchorPane>
                         <AnchorPane layoutX="285.0" layoutY="280.0" prefHeight="130.0" prefWidth="250.0" style="-fx-background-color: #000080;">
                            <children>
-                              <Label fx:id="lblValorMedioAula" layoutX="62.0" layoutY="36.0" text="120,00" textFill="WHITE">
+                              <Label fx:id="lblProximaAula" layoutX="17.0" layoutY="36.0" text="0000-00-00" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="40.0" />
                                  </font>
@@ -135,7 +135,7 @@
                         </AnchorPane>
                         <AnchorPane layoutX="285.0" layoutY="250.0" prefHeight="30.0" prefWidth="250.0" style="-fx-background-color: #6495ED;">
                            <children>
-                              <Text fill="WHITE" layoutX="24.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Valor Médio por Aula">
+                              <Text fill="WHITE" layoutX="62.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Próxima Aula">
                                  <font>
                                     <Font name="System Bold" size="20.0" />
                                  </font>
@@ -158,12 +158,12 @@
                         <TextField fx:id="txtNomeUser" layoutX="15.0" layoutY="80.0" onKeyPressed="#NomePressed" prefHeight="27.0" prefWidth="270.0" promptText="Nome" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
                         <TextField fx:id="txtIdadeUser" layoutX="295.0" layoutY="80.0" onKeyPressed="#IdadePressed" prefHeight="27.0" prefWidth="120.0" promptText="Idade" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
                         <TextField fx:id="txtTelefoneUser" layoutX="425.0" layoutY="80.0" onKeyPressed="#TelefonePressed" prefHeight="25.0" prefWidth="120.0" promptText="Telefone" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
-                        <TextField fx:id="txtNumeroEndereco" layoutX="14.0" layoutY="207.0" prefHeight="27.0" prefWidth="60.0" promptText="Número" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
-                        <TextField fx:id="txtRuaEndereco" layoutX="84.0" layoutY="207.0" prefHeight="27.0" prefWidth="240.0" promptText="Logradouro" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
-                        <TextField fx:id="txtBairroEndereco" layoutX="336.0" layoutY="207.0" prefHeight="27.0" prefWidth="210.0" promptText="Bairro" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
-                        <TextField fx:id="txtCidadeEndereco" layoutX="15.0" layoutY="248.0" prefHeight="27.0" prefWidth="160.0" promptText="Cidade" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
-                        <TextField fx:id="txtCepEndereco" layoutX="184.0" layoutY="248.0" prefHeight="27.0" prefWidth="140.0" promptText="CEP" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
-                        <TextField fx:id="txtComplementoEndereco" layoutX="336.0" layoutY="249.0" prefHeight="27.0" prefWidth="210.0" promptText="Complemento" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
+                        <TextField fx:id="txtNumeroEndereco" layoutX="14.0" layoutY="207.0" onKeyPressed="#NumeroPressed" prefHeight="27.0" prefWidth="60.0" promptText="Número" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
+                        <TextField fx:id="txtRuaEndereco" layoutX="84.0" layoutY="207.0" onKeyPressed="#RuaPressed" prefHeight="27.0" prefWidth="240.0" promptText="Logradouro" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
+                        <TextField fx:id="txtBairroEndereco" layoutX="336.0" layoutY="207.0" onKeyPressed="#BairroPressed" prefHeight="27.0" prefWidth="210.0" promptText="Bairro" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
+                        <TextField fx:id="txtCidadeEndereco" layoutX="15.0" layoutY="248.0" onKeyPressed="#CidadePressed" prefHeight="27.0" prefWidth="160.0" promptText="Cidade" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
+                        <TextField fx:id="txtCepEndereco" layoutX="184.0" layoutY="248.0" onKeyPressed="#CepPressed" prefHeight="27.0" prefWidth="140.0" promptText="CEP" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
+                        <TextField fx:id="txtComplementoEndereco" layoutX="336.0" layoutY="249.0" onKeyPressed="#ComplementoPressed" prefHeight="27.0" prefWidth="210.0" promptText="Complemento" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
                         <Line endX="430.0" layoutX="116.0" layoutY="188.0" startX="-100.0" stroke="#0598ff" />
                         <Line endX="430.0" layoutX="115.0" layoutY="315.0" startX="-100.0" stroke="#0598ff" />
                         <Button fx:id="btnCancelar" layoutX="66.0" layoutY="390.0" mnemonicParsing="false" onMouseClicked="#CancelarClicked" prefHeight="40.0" prefWidth="210.0" style="-fx-background-color: #0598ff;" text="Cancelar" textFill="WHITE">
@@ -171,7 +171,7 @@
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Button fx:id="btnAtualizar" layoutX="282.0" layoutY="390.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="210.0" style="-fx-background-color: #0598ff;" text="Atualizar" textFill="WHITE">
+                        <Button fx:id="btnAtualizar" layoutX="282.0" layoutY="390.0" mnemonicParsing="false" onMouseClicked="#AtualizarClicked" prefHeight="40.0" prefWidth="210.0" style="-fx-background-color: #0598ff;" text="Atualizar" textFill="WHITE">
                            <font>
                               <Font size="14.0" />
                            </font>

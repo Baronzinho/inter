@@ -15,9 +15,11 @@ import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TabPane;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -31,9 +33,11 @@ public class Tela_Principal_Professor_Controller implements Initializable {
     @FXML
     private Button btnAulas;
     @FXML
-    private Button btnProfessores;
+    private Button btnPendencias;
     @FXML
     private Button btnSair;
+    @FXML
+    private Label lblUsername;
     @FXML
     private TabPane tabPane;
     
@@ -42,7 +46,8 @@ public class Tela_Principal_Professor_Controller implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        //lblUsername.setText(user.getNome());
+        lblUsername.setAlignment(Pos.CENTER);
     }    
     
     public void setLogin(Usuario user) throws SQLException{
@@ -68,7 +73,7 @@ public class Tela_Principal_Professor_Controller implements Initializable {
     }
     
     @FXML
-    public void ProfessoresClicked() {
+    public void PendenciasClicked() {
         tabPane.setFocusTraversable(false);
         tabPane.getSelectionModel().select(3);
     }
@@ -104,13 +109,13 @@ public class Tela_Principal_Professor_Controller implements Initializable {
     }
     
     @FXML
-    public void ProfessoresEntered() {
-        btnProfessores.setStyle("-fx-background-color: #0562a3; ");
+    public void PendenciasEntered() {
+        btnPendencias.setStyle("-fx-background-color: #0562a3; ");
     }
     
     @FXML
-    public void ProfessoresExited() {
-        btnProfessores.setStyle("-fx-background-color: #0598ff; ");
+    public void PendenciasExited() {
+        btnPendencias.setStyle("-fx-background-color: #0598ff; ");
     }
     
     @FXML
@@ -155,5 +160,37 @@ public class Tela_Principal_Professor_Controller implements Initializable {
     @FXML
     private void sair(ActionEvent event){
         System.exit(0);
+    }
+    
+    @FXML
+    public void VisualizarAulaClicked() throws IOException{
+            Stage stage = new Stage();
+            Parent root=null;
+            FXMLLoader loader = new FXMLLoader();
+
+            root = loader.load(getClass().getResource("/View/Tela_Visualizar_Aula_Professor.fxml").openStream());
+            
+            stage.initStyle(StageStyle.DECORATED.UNDECORATED);
+
+            root.setOnMousePressed(new EventHandler<MouseEvent>(){
+                @Override
+                public void handle(MouseEvent event){
+                    xOFFset = event.getSceneX();
+                    yOFFset = event.getSceneY();
+                }
+            });
+
+            root.setOnMouseDragged(new EventHandler<MouseEvent>(){
+                @Override
+                public void handle(MouseEvent event){
+                    stage.setX(event.getScreenX() - xOFFset);
+                    stage.setY(event.getScreenY() - yOFFset);
+                }
+            });
+
+            stage.setScene(new Scene(root));
+            stage.setTitle("Visualizar Aulas Marcadas");
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
     }
 }

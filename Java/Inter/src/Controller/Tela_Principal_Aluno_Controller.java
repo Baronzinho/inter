@@ -1,17 +1,25 @@
 
 package Controller;
 
+import Model.Mensagens;
 import DAO.AlunoDAO;
 import DAO.AulaMarcadaDAO;
+import DAO.EnderecoDAO;
 import Model.AulaMarcada;
 import Model.Usuario;
 import Model.Endereco;
 import Model.Mensagens;
 import Model.UserProfessor;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -35,6 +43,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 
 public class Tela_Principal_Aluno_Controller implements Initializable {
@@ -54,11 +63,11 @@ public class Tela_Principal_Aluno_Controller implements Initializable {
     @FXML
     private Label lblValorAulas;
     @FXML
-    private Label lblProxAula;
+    private Label lblValorMedioAulas;
     @FXML
-    private Label lblQtdMaterias;
+    private Label lblQtdAulas;
     @FXML
-    private Label lblValorMedioAula;
+    private Label lblProximaAula;
     @FXML
     private ImageView imgAluno;
     @FXML
@@ -120,6 +129,23 @@ public class Tela_Principal_Aluno_Controller implements Initializable {
         
     }    
     
+    public void setPainelControle() throws SQLException{
+        AlunoDAO alunoDAO = new AlunoDAO();
+        ResultSet rset;
+        
+        rset = alunoDAO.retornaTotalGasto(usuario);
+        while (rset.next()){
+            lblValorAulas.setText(rset.getString(1));
+            lblValorMedioAulas.setText(rset.getString(2));
+            lblQtdAulas.setText(Integer.toString(rset.getInt(3)));
+        }
+        
+        rset = alunoDAO.retornaProximaAula(usuario);
+        while (rset.next()){
+            lblProximaAula.setText(rset.getString(1));
+        }
+    }
+    
     @FXML
     public void InicioClicked() {
         tabPane.setFocusTraversable(false);
@@ -156,6 +182,36 @@ public class Tela_Principal_Aluno_Controller implements Initializable {
     }
     @FXML
     public void TelefonePressed() {
+        btnAtualizar.setDisable(false);
+        btnCancelar.setDisable(false);
+    }
+    @FXML
+    public void NumeroPressed() {
+        btnAtualizar.setDisable(false);
+        btnCancelar.setDisable(false);
+    }
+    @FXML
+    public void RuaPressed() {
+        btnAtualizar.setDisable(false);
+        btnCancelar.setDisable(false);
+    }
+    @FXML
+    public void BairroPressed() {
+        btnAtualizar.setDisable(false);
+        btnCancelar.setDisable(false);
+    }
+    @FXML
+    public void CidadePressed() {
+        btnAtualizar.setDisable(false);
+        btnCancelar.setDisable(false);
+    }
+    @FXML
+    public void CepPressed() {
+        btnAtualizar.setDisable(false);
+        btnCancelar.setDisable(false);
+    }
+    @FXML
+    public void ComplementoPressed() {
         btnAtualizar.setDisable(false);
         btnCancelar.setDisable(false);
     }
@@ -231,10 +287,7 @@ public class Tela_Principal_Aluno_Controller implements Initializable {
         imgAluno.setImage(imgUser);
         usuario = user;
         endereco = endereco.retornaEnderecoUser(user.getId_endereco());  
-    }
-    
-    public void setPainelControle(Usuario user) throws SQLException{
-        //AQUI VAI O CODIGO PARA SETAR OS CAMPOS DO PAINEL DE CONTROLE
+        setPainelControle();
     }
   
     public void initTableProfessor() { 
@@ -477,5 +530,37 @@ public class Tela_Principal_Aluno_Controller implements Initializable {
         stage.setTitle("Visualizar Aula");
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
+    }
+    
+    @FXML
+    public void AtualizarClicked() throws IOException, SQLException{
+        DAO.UsuarioDAO userDAO = new DAO.UsuarioDAO();
+        EnderecoDAO endeDAO = new EnderecoDAO();
+        
+        if(txtTelefoneUser.getText().isEmpty() || txtIdadeUser.getText().isEmpty() 
+                || txtNomeUser.getText().isEmpty() || txtBairroEndereco.getText().isEmpty() 
+                || txtCidadeEndereco.getText().isEmpty()|| txtComplementoEndereco.getText().isEmpty()
+                || txtRuaEndereco.getText().isEmpty()|| txtNumeroEndereco.getText().isEmpty() 
+                || txtCepEndereco.getText().isEmpty()){ 
+            
+                JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
+        }
+        else{
+            usuario.setContato(txtTelefoneUser.getText());
+            usuario.setIdade(Integer.parseInt(txtIdadeUser.getText()));
+            usuario.setNome(txtNomeUser.getText());
+            endereco.setBairro(txtBairroEndereco.getText());
+            endereco.setCidade(txtCidadeEndereco.getText());
+            endereco.setComplemento(txtComplementoEndereco.getText());
+            endereco.setRua(txtRuaEndereco.getText());
+            endereco.setNumero(txtNumeroEndereco.getText());
+            endereco.setCep(txtCepEndereco.getText());
+            
+            userDAO.atualizarUsuario(usuario);
+            endeDAO.updateEndereco(endereco);
+            
+            PerfilClicked();
+            msg.mensagemInfo("Perfil atualizado com sucesso.");
+        }
     }
 }
