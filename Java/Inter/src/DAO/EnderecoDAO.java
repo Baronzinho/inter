@@ -25,10 +25,16 @@ public class EnderecoDAO extends SQL{
     public void inserirEndereco(Endereco newEndereco) throws SQLException{
         sql = "INSERT INTO Endereco (rua,bairro,cidade,numero,cep,complemento) VAlUES ('" + newEndereco.getRua() + "', '" + newEndereco.getBairro() + "', '" + newEndereco.getCidade() + "', '" + newEndereco.getNumero() + "', '" + newEndereco.getCep() + "', '" + newEndereco.getComplemento() + ", " + "');";
         update(sql);
-     }
+    }
     
-    public void updateEndereco(int id_Endereco,String rua, String bairro, String cidade, String numero, String cep, String complemento) throws SQLException {
-        sql = "UPDATE Endereco SET rua = '" + rua + "', bairro = '" + bairro + "', cidade = '" + cidade + "', cep = '" + cep +"', complemento = '" + complemento +" WHERE id_Endereco = '" + id_Endereco + ";";
+    public void updateEndereco(Endereco newEndereco) throws SQLException {
+        sql = "UPDATE endereco SET rua = '" + newEndereco.getRua() + "', "
+                + "bairro = '" + newEndereco.getBairro() + "', "
+                + "cidade = '" + newEndereco.getCidade() + "', "
+                + "numero = '" + newEndereco.getNumero() + "', "
+                + "cep = '" + newEndereco.getCep() + "', "
+                + "complemento = '" + newEndereco.getComplemento() + "' "
+                + "WHERE id_Endereco = '" + newEndereco.getId_Endereco() + "';";
         update(sql);
     }
 }

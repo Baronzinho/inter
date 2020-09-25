@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="263.0" prefWidth="673.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Tela_Visualizar_Aula_Professor_Controller">
+   <children>
+      <AnchorPane prefHeight="60.0" prefWidth="673.0" style="-fx-background-color: #0598ff;">
+         <children>
+            <Text fill="WHITE" layoutX="14.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Aulas">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <Text fill="#0598ff" layoutX="148.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome:">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Text>
+      <Label fx:id="lblNomeAluno" layoutX="202.0" layoutY="76.0" text="Gabriel Henrique Baron">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Text fill="#0598ff" layoutX="148.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Matéria:">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Text>
+      <Label fx:id="lblMateriaProfessor" layoutX="214.0" layoutY="155.0" text="História e Ciência da Tecnologia">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Text fill="#0598ff" layoutX="475.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Preço da Aula:">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Text>
+      <Label fx:id="lblPrecoAula" layoutX="583.0" layoutY="128.0" text="150,00">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Text fill="#0598ff" layoutX="148.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Endereço:">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Text>
+      <Label fx:id="lblEnderecoAluno" layoutX="224.0" layoutY="102.0" text="Vila Suzano, Rua Beira Mar - 2098">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnVoltar" layoutX="237.0" layoutY="205.0" mnemonicParsing="false" onMouseClicked="#VoltarClicked" prefHeight="31.0" prefWidth="200.0" style="-fx-background-color: #0598ff;" text="Voltar" textFill="WHITE">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <ImageView fx:id="imgAluno" fitHeight="111.0" fitWidth="125.0" layoutX="14.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true" />
+      <Text fill="#0598ff" layoutX="148.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Telefone:">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Text>
+      <Label fx:id="lblTelefoneAluno" layoutX="224.0" layoutY="128.0" text="(19) 9999-9999">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Text fill="#0598ff" layoutX="475.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data Aula:">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Text>
+      <Label fx:id="lblDataAula" layoutX="557.0" layoutY="77.0" text="15/12/2020">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Text fill="#0598ff" layoutX="475.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Horário Aula:">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Text>
+      <Label fx:id="lblHorarioAula" layoutX="578.0" layoutY="102.0" text="15:00">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
