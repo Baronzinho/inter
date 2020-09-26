@@ -207,10 +207,10 @@
                         <Button fx:id="btnPesquisar" layoutX="341.0" layoutY="90.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #0598ff;" text="Pesquisar" textFill="WHITE" />
                         <TableView fx:id="tvAulasMarcadas" layoutX="30.0" layoutY="130.0" prefHeight="270.0" prefWidth="500.0">
                            <columns>
-                              <TableColumn fx:id="ColNomeProfessor" prefWidth="120.0" text="Professor" />
+                              <TableColumn fx:id="ColNomeAlunoC" prefWidth="120.0" text="Aluno" />
                               <TableColumn fx:id="ColMateriaAula" prefWidth="137.0" text="Materia" />
                               <TableColumn fx:id="ColData" prefWidth="125.0" text="Data" />
-                              <TableColumn fx:id="ColHora" prefWidth="117.0" text="Hora" />
+                              <TableColumn fx:id="ColHoraC" prefWidth="117.0" text="Hora" />
                            </columns>
                         </TableView>
                         <Button fx:id="btnVisualizarAula" layoutX="158.0" layoutY="416.0" mnemonicParsing="false" onMouseClicked="#VisualizarAulaClicked" prefHeight="35.0" prefWidth="245.0" style="-fx-background-color: #0598ff;" text="Visualizar" textFill="WHITE" />
@@ -233,10 +233,10 @@
                         <Line endX="430.0" layoutX="115.0" layoutY="55.0" startX="-100.0" stroke="#0598ff" />
                         <TableView fx:id="tvAulasPendentes" layoutX="31.0" layoutY="121.0" prefHeight="270.0" prefWidth="500.0">
                            <columns>
-                              <TableColumn fx:id="ColNomeProfessor1" prefWidth="120.0" text="Professor" />
-                              <TableColumn fx:id="ColMateriaAula1" prefWidth="137.0" text="Materia" />
-                              <TableColumn fx:id="ColData1" prefWidth="125.0" text="Data" />
-                              <TableColumn fx:id="ColHora1" prefWidth="117.0" text="Hora" />
+                              <TableColumn fx:id="ColNomeAluno" prefWidth="120.0" text="Aluno" />
+                              <TableColumn fx:id="ColEnderecoAluno" prefWidth="137.0" text="Endereço" />
+                              <TableColumn fx:id="ColDataAulaPendente" prefWidth="125.0" text="Data" />
+                              <TableColumn fx:id="ColHora" prefWidth="117.0" text="Hora" />
                            </columns>
                         </TableView>
                      </children></AnchorPane>

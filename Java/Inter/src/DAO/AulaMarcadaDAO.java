@@ -67,6 +67,54 @@ public class AulaMarcadaDAO extends SQL{
         return listaAulas;
     }
     
+    public List <AulaMarcada> exibeAulasMarcadasProfessor(int id_Prof) {
+        String status = "Confirmado";
+        List<AulaMarcada> listaAulas = new ArrayList();
+        sql = "SELECT * FROM AulasMarcadasProfessor WHERE id_Aluno = " + id_Prof + " AND statusDaAula = '" + status +"';";
+        try {
+            rset = select(sql);
+            while (rset.next()) {
+                AulaMarcada aula = new AulaMarcada();
+                aula.setId_Aluno(rset.getInt(1));
+                aula.setId_Professor(rset.getInt(2));
+                aula.setId_Aula_Marcada(rset.getInt(3));
+                aula.setNome(rset.getString(4));
+                aula.setMateria_Professor(rset.getString(5));
+                aula.setData_Aula(rset.getDate(6));
+                aula.setHora_Aula(rset.getString(7));
+                listaAulas.add(aula);
+            }
+        }catch (SQLException ex) {
+            System.out.println("ERRO: Lista Não foi Retornada ");
+            return null;
+        }    
+        return listaAulas;
+    }
+    
+    public List <AulaMarcada> exibeAulasPendentesProfessor(int id_Prof) {
+        String status = "Pendente";
+        List<AulaMarcada> listaAulas = new ArrayList();
+        sql = "SELECT * FROM AulasPendentesProfessor WHERE id_Professor = " + id_Prof + " AND statusDaAula = '" + status +"';";
+        try {
+            rset = select(sql);
+            while (rset.next()) {
+                AulaMarcada aula = new AulaMarcada();
+                aula.setId_Aluno(rset.getInt(1));
+                aula.setId_Professor(rset.getInt(2));
+                aula.setId_Aula_Marcada(rset.getInt(3));
+                aula.setNome(rset.getString(4));
+                aula.setData_Aula(rset.getDate(5));
+                aula.setHora_Aula(rset.getString(6));
+                listaAulas.add(aula);
+            }
+        }catch (SQLException ex) {
+            System.out.println("ERRO: Lista Não foi Retornada ");
+            return null;
+        }    
+        return listaAulas;
+    }
+    
+    
     public ResultSet retornaAulaMarcada(int id) throws SQLException{
          sql = "SELECT data_Marcada, hora_Aula FROM Aula_Marcada where id_Professor = " + id + ";";
          rset = select(sql);

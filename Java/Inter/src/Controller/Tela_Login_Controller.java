@@ -85,7 +85,7 @@ public class Tela_Login_Controller implements Initializable {
             else if(user.getCargo().equals("Professor")){
                 
                 root = loader.load(getClass().getResource("/View/Tela_Principal_Professor.fxml").openStream());
-                //Tela_Principal_Professor_Controller aController = (Tela_Principal_Professor_Controller) loader.getController();
+                Tela_Principal_Professor_Controller aController = (Tela_Principal_Professor_Controller) loader.getController();
                 stage.initStyle(StageStyle.DECORATED.UNDECORATED);
                 
                 root.setOnMousePressed(new EventHandler<MouseEvent>(){
@@ -104,7 +104,7 @@ public class Tela_Login_Controller implements Initializable {
                     }
                 });
                 
-                //aController.setLogin(user);
+                aController.setLoginProf(user);
             }
             else{
                 msg.mensagemErro("Cargo não esperado!");

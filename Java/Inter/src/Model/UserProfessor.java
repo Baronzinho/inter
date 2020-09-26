@@ -53,23 +53,37 @@ public class UserProfessor extends Usuario {
      DAO.ProfessorDAO profD = new DAO.ProfessorDAO();
      ResultSet rs;
      rs = profD.DadosProfessor(idProf);
-     
       
      if(rs.next()){
          prof.setId_Professor(rs.getInt(1));
-         prof.setImgUser(rs.getString(2));
-         prof.setNome(rs.getString(3));
-         prof.setId_endereco(rs.getInt(4));
-         prof.setContato(rs.getString(5));
-         prof.setDescricao_Professor(rs.getString(6));
-         prof.setPreco_aula(rs.getString(7));
-         prof.setMateria_Professor(rs.getString(8));
+         prof.setImgUser(rs.getString(3));
+         prof.setNome(rs.getString(4));
+         prof.setId_endereco(rs.getInt(5));
+         prof.setContato(rs.getString(6));
+         prof.setDescricao_Professor(rs.getString(7));
+         prof.setPreco_aula(rs.getString(8));
+         prof.setMateria_Professor(rs.getString(9));
      }else{
          prof.setId_User(0);
      }
-     
-     
     return prof;
     }
     
+    
+    public UserProfessor retornaProfPeloIdUser(int idUser) throws SQLException{
+     UserProfessor prof = new UserProfessor();
+     DAO.ProfessorDAO profD = new DAO.ProfessorDAO();
+     ResultSet rs;
+     rs = profD.DadosProfessorPeloIdUser(idUser);
+      
+     if(rs.next()){
+         prof.setId_Professor(rs.getInt(1));
+         prof.setDescricao_Professor(rs.getString(7));
+         prof.setPreco_aula(rs.getString(8));
+         prof.setMateria_Professor(rs.getString(9));
+     }else{
+         prof.setId_User(0);
+     }     
+    return prof;
+    }
 }

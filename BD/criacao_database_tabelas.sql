@@ -59,15 +59,25 @@ INSERT INTO Usuario (cpf,senha,cargo,img, nome, idade, endereco,contato) VALUES 
 INSERT INTO Professor (id_User,descricao_Professor,preco_Aula,materia_Professor) VALUES (2,"Professor de Matemtica, atendo em casa","40.00","Matematica");
  
 INSERT INTO Aula_Marcada (id_Professor,id_Aluno,data_Marcada,hora_Aula,statusDaAula) VALUES (1,1,"2020-05-20","12:00","Confirmado");
+INSERT INTO Aula_Marcada (id_Professor,id_Aluno,data_Marcada,hora_Aula,statusDaAula) VALUES (1,1,"2020-05-20","12:00","Pendente");
  
  /* VIEWS */
 
-CREATE VIEW DadosProfessor AS SELECT id_Professor,img,nome,endereco, contato ,descricao_Professor,preco_Aula ,materia_Professor FROM Usuario
+CREATE VIEW DadosProfessor AS SELECT id_Professor,Professor.id_User,img,nome,endereco, contato ,descricao_Professor,preco_Aula ,materia_Professor FROM Usuario
 INNER JOIN Professor ON Professor.id_User = Usuario.id_User;
 
 CREATE VIEW AulasMarcadasAluno AS SELECT id_Aluno,Professor.id_Professor,id_Aula_Marcada,nome , materia_Professor,data_Marcada ,hora_Aula,statusDaAula FROM Aula_Marcada
 INNER JOIN Professor ON Professor.id_Professor = Aula_Marcada.id_Professor
 INNER JOIN Usuario ON Usuario.id_User = Professor.id_User ;
+
+CREATE VIEW AulasMarcadasProfessor AS SELECT id_Aluno,Professor.id_Professor,id_Aula_Marcada,nome , materia_Professor,data_Marcada ,hora_Aula,statusDaAula FROM Aula_Marcada
+INNER JOIN Professor ON Professor.id_Professor = Aula_Marcada.id_Professor
+INNER JOIN Usuario ON Usuario.id_User = Aula_Marcada.id_Aluno ;
+
+SELECT * FROM AulasMarcadasProfessor WHERE id_Professor = 1 AND statusDaAula = "Confirmado";
+
+CREATE VIEW AulasPendentesProfessor AS SELECT id_Aluno,id_Professor,id_Aula_Marcada,nome ,data_Marcada ,hora_Aula,statusDaAula FROM Aula_Marcada
+INNER JOIN Usuario ON Usuario.id_User = Aula_Marcada.id_Aluno ;
 
 CREATE VIEW ProcurarProfessor AS SELECT id_Professor,nome , materia_Professor, preco_Aula  FROM Usuario
 INNER JOIN Professor ON Professor.id_User = Usuario.id_User;

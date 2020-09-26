@@ -11,4 +11,10 @@ public class ProfessorDAO extends SQL{
         rset = select(sql);
         return rset;
      }
+    
+     public ResultSet DadosProfessorPeloIdUser(int idUser) throws SQLException {
+        sql = "SELECT * FROM DadosProfessor WHERE id_User = " + idUser + ";";
+        rset = select(sql);
+        return rset;
+     }
 }
