@@ -3,6 +3,7 @@ package Controller;
 
 import Model.Usuario;
 import Model.Mensagens;
+import Model.Mascara;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
@@ -26,7 +27,7 @@ import javax.swing.JOptionPane;
 public class Tela_Login_Controller implements Initializable {
     
     @FXML
-    private TextField txtUsuario;
+    private Mascara txtUsuario;
     @FXML
     private TextField txtSenha;
     @FXML
@@ -39,6 +40,14 @@ public class Tela_Login_Controller implements Initializable {
     
     protected ResultSet rset;
     protected String sql;
+    
+    Mascara mascara = new Mascara();
+    
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        //txtUsuario.setMask("NNN.NNN.NNN-NN");
+        txtUsuario.setMask("***********");
+    }
     
     @FXML
     public void logar(ActionEvent event) throws IOException, SQLException{
@@ -149,11 +158,6 @@ public class Tela_Login_Controller implements Initializable {
     @FXML
     private void sair(ActionEvent event){
         System.exit(0);
-    }
-    
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        
     }    
     
 }

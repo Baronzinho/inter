@@ -233,10 +233,10 @@
                         <Line endX="430.0" layoutX="115.0" layoutY="55.0" startX="-100.0" stroke="#0598ff" />
                         <TableView fx:id="tvAulasPendentes" layoutX="31.0" layoutY="121.0" prefHeight="270.0" prefWidth="500.0">
                            <columns>
-                              <TableColumn fx:id="ColNomeAluno" prefWidth="120.0" text="Aluno" />
-                              <TableColumn fx:id="ColEnderecoAluno" prefWidth="137.0" text="Endereço" />
-                              <TableColumn fx:id="ColDataAulaPendente" prefWidth="125.0" text="Data" />
-                              <TableColumn fx:id="ColHora" prefWidth="117.0" text="Hora" />
+                              <TableColumn fx:id="ColNomeAluno" prefWidth="127.0" text="Aluno" />
+                              <TableColumn fx:id="ColEnderecoAluno" prefWidth="222.0" text="Endereço" />
+                              <TableColumn fx:id="ColDataAulaPendente" text="Data" />
+                              <TableColumn fx:id="ColHora" prefWidth="70.0" text="Hora" />
                            </columns>
                         </TableView>
                      </children></AnchorPane>

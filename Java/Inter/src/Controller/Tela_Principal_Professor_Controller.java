@@ -10,6 +10,8 @@ import Model.Usuario;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -88,6 +90,8 @@ public class Tela_Principal_Professor_Controller implements Initializable {
     @FXML
     private TableColumn<AulaMarcada, String> ColHora;
     @FXML
+    private TableColumn<AulaMarcada, String> ColEnderecoAluno;
+    @FXML
     private TableView<AulaMarcada> tvAulasMarcadas;
     @FXML
     private TableColumn<AulaMarcada, String> ColNomeAlunoC;
@@ -140,7 +144,6 @@ public class Tela_Principal_Professor_Controller implements Initializable {
     public void AulasClicked() {
         tabPane.setFocusTraversable(false);
         tabPane.getSelectionModel().select(2);
-        tvAulasMarcadas.refresh();
         initTableAulasMarcadas();
         
     }
@@ -210,6 +213,8 @@ public class Tela_Principal_Professor_Controller implements Initializable {
         usuario = user;
         endereco = endereco.retornaEnderecoUser(user.getId_endereco());  
         uProf = uProf.retornaProfPeloIdUser(user.getId_User());
+        
+        
         //setPainelControle();
     }
     
@@ -217,7 +222,8 @@ public class Tela_Principal_Professor_Controller implements Initializable {
         ColNomeAluno.setCellValueFactory(new PropertyValueFactory("nome"));
         ColDataAulaPendente.setCellValueFactory(new PropertyValueFactory("data_Aula"));
         ColHora.setCellValueFactory(new PropertyValueFactory("hora_Aula"));
-        tvAulasMarcadas.setItems(AulasPendentes());
+        ColEnderecoAluno.setCellValueFactory(new PropertyValueFactory("contato"));
+        tvAulasPendentes.setItems(AulasPendentes());
     }
     
     public ObservableList<AulaMarcada> AulasPendentes() {
@@ -230,7 +236,7 @@ public class Tela_Principal_Professor_Controller implements Initializable {
         ColData.setCellValueFactory(new PropertyValueFactory("data_Aula"));
         ColHoraC.setCellValueFactory(new PropertyValueFactory("hora_Aula"));
         ColMateriaAula.setCellValueFactory(new PropertyValueFactory("materia_Professor"));
-        tvAulasPendentes.setItems(AulasMarcadas());
+        tvAulasMarcadas.setItems(AulasMarcadas());
     }
     
     public ObservableList<AulaMarcada> AulasMarcadas() {

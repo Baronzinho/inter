@@ -137,7 +137,8 @@ public class Tela_Cadastro_Controller implements Initializable {
                  newUser.setImgUser( "/ImgsUsers/" + path);
                  File imgPath = new File(absolutPath);
                  BufferedImage bImage = ImageIO.read(imgPath);
-                 ImageIO.write(bImage, "jpg", new File("D:\\GITHUB\\inter\\Java\\Inter\\src\\ImgsUsers\\" + path));
+                 //ImageIO.write(bImage, "jpg", new File("D:\\GITHUB\\inter\\Java\\Inter\\src\\ImgsUsers\\" + path));
+                 ImageIO.write(bImage, "jpg", new File("C:\\Users\\Gabriel\\Desktop\\GITHUB\\inter\\Java\\Inter\\src\\ImgsUsers\\" + path));
              }
              else{
                  JOptionPane.showMessageDialog(null, "As senhas não coincidem!");
@@ -163,16 +164,19 @@ public class Tela_Cadastro_Controller implements Initializable {
 
              } catch (Exception ex) {
              Logger.getLogger(Tela_Cadastro_Controller.class.getName()).log(Level.SEVERE, null, ex);
-         }
-        
+         }            
+            
             Parent root = FXMLLoader.load(getClass().getResource("/View/Tela_Login.fxml"));
-             Stage stage = new Stage();
-             Scene scene = new Scene(root);
-             stage.initStyle(StageStyle.DECORATED.UNDECORATED);
-             stage.setScene(scene);
-             stage.show();
-             Stage stageAtual = (Stage) btnCancelar.getScene().getWindow();
-             stageAtual.close();
+            Stage stage = new Stage();
+            Stage stage2 = new Stage();
+            Scene scene = new Scene(root);
+            
+            stage.initStyle(StageStyle.DECORATED.UNDECORATED);
+            stage.setScene(scene);
+            stage.show();
+            
+            Stage stageAtual = (Stage) btnCancelar.getScene().getWindow();
+            stageAtual.close();
     }
     
     @FXML
@@ -181,8 +185,7 @@ public class Tela_Cadastro_Controller implements Initializable {
     }
     
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+    public void initialize(URL url, ResourceBundle rb){
+        
     }    
-    
 }
