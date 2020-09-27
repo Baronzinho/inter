@@ -137,8 +137,8 @@ public class Tela_Cadastro_Controller implements Initializable {
                  newUser.setImgUser( "/ImgsUsers/" + path);
                  File imgPath = new File(absolutPath);
                  BufferedImage bImage = ImageIO.read(imgPath);
+                 ImageIO.write(bImage, "jpg", new File("D:\\GITHUB\\inter\\Java\\Inter\\src\\ImgsUsers\\" + path));
                  //ImageIO.write(bImage, "jpg", new File("D:\\GITHUB\\inter\\Java\\Inter\\src\\ImgsUsers\\" + path));
-                 ImageIO.write(bImage, "jpg", new File("C:\\Users\\Gabriel\\Desktop\\GITHUB\\inter\\Java\\Inter\\src\\ImgsUsers\\" + path));
              }
              else{
                  JOptionPane.showMessageDialog(null, "As senhas não coincidem!");
@@ -168,7 +168,6 @@ public class Tela_Cadastro_Controller implements Initializable {
             
             Parent root = FXMLLoader.load(getClass().getResource("/View/Tela_Login.fxml"));
             Stage stage = new Stage();
-            Stage stage2 = new Stage();
             Scene scene = new Scene(root);
             
             stage.initStyle(StageStyle.DECORATED.UNDECORATED);

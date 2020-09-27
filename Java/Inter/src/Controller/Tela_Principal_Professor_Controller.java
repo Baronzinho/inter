@@ -2,6 +2,7 @@
 package Controller;
 
 import DAO.AulaMarcadaDAO;
+import DAO.ProfessorDAO;
 import Model.AulaMarcada;
 import Model.Endereco;
 import Model.Mensagens;
@@ -9,6 +10,7 @@ import Model.UserProfessor;
 import Model.Usuario;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -52,6 +54,10 @@ public class Tela_Principal_Professor_Controller implements Initializable {
     @FXML
     private Button btnSair;
     @FXML
+    private Button btnAceitarAula;
+    @FXML
+    private Button btnRecusarAula;
+    @FXML
     private Label lblUsername;
     @FXML
     private TabPane tabPane;
@@ -72,6 +78,8 @@ public class Tela_Principal_Professor_Controller implements Initializable {
     @FXML
     private TextField txtRuaEndereco;
     @FXML
+    private TextField txtPesquisarAula;
+    @FXML
     private TextField txtBairroEndereco;
     @FXML
     private TextField txtCidadeEndereco;
@@ -81,6 +89,14 @@ public class Tela_Principal_Professor_Controller implements Initializable {
     private TextField txtComplementoEndereco;
     @FXML
     private TextArea txtDescricaoProfessor;
+    @FXML
+    private Label lblValorAulas;
+    @FXML
+    private Label lblValorMedioAula;
+    @FXML
+    private Label lblProxAula;
+    @FXML
+    private Label lblQtdAulas;
     @FXML
     private TableView<AulaMarcada> tvAulasPendentes;
     @FXML
@@ -115,7 +131,22 @@ public class Tela_Principal_Professor_Controller implements Initializable {
         //lblUsername.setText(user.getNome());
         lblUsername.setAlignment(Pos.CENTER);
     }    
-    
+     public void setPainelControle() throws SQLException{
+        ProfessorDAO alunoDAO = new ProfessorDAO();
+        ResultSet rset;
+        
+        rset = alunoDAO.retornaTotalGanho(uProf.getId_Professor());
+        while (rset.next()){
+            lblValorAulas.setText(rset.getString(1));
+            lblValorMedioAula.setText(rset.getString(2));
+            lblQtdAulas.setText(Integer.toString(rset.getInt(3)));
+        }
+        
+        rset = alunoDAO.retornaProximaAula(uProf.getId_Professor());
+        while (rset.next()){
+            lblProxAula.setText(rset.getString(1));
+        }
+    }
     @FXML
     public void InicioClicked() {
         tabPane.setFocusTraversable(false);
@@ -213,9 +244,7 @@ public class Tela_Principal_Professor_Controller implements Initializable {
         usuario = user;
         endereco = endereco.retornaEnderecoUser(user.getId_endereco());  
         uProf = uProf.retornaProfPeloIdUser(user.getId_User());
-        
-        
-        //setPainelControle();
+        setPainelControle();
     }
     
     public void initTableAulasPendentes() { 
@@ -242,6 +271,104 @@ public class Tela_Principal_Professor_Controller implements Initializable {
     public ObservableList<AulaMarcada> AulasMarcadas() {
         AulaMarcadaDAO aulaMD = new AulaMarcadaDAO();
         return FXCollections.observableArrayList(aulaMD.exibeAulasMarcadasProfessor(uProf.getId_Professor()));
+    }
+    
+    public void initTableAulasMarcadasPesquisa(String pesquisa) { 
+        ColNomeAlunoC.setCellValueFactory(new PropertyValueFactory("nome"));
+        ColData.setCellValueFactory(new PropertyValueFactory("data_Aula"));
+        ColHoraC.setCellValueFactory(new PropertyValueFactory("hora_Aula"));
+        ColMateriaAula.setCellValueFactory(new PropertyValueFactory("materia_Professor"));
+        tvAulasMarcadas.setItems(AulasMarcadas(pesquisa));
+    }
+    
+    public ObservableList<AulaMarcada> AulasMarcadas(String pesquisa) {
+        AulaMarcadaDAO aulaMD = new AulaMarcadaDAO();
+        return FXCollections.observableArrayList(aulaMD.exibeAulasMarcadasProfessorPesquisa(uProf.getId_Professor(),pesquisa));
+    }
+    
+    @FXML
+    public void PesquisaAulaMarcada(){
+        String pesquisa = txtPesquisarAula.getText();
+        tvAulasMarcadas.refresh();
+        initTableAulasMarcadasPesquisa(pesquisa);
+    }
+    
+    @FXML
+    public void VisualizarAulaClicked() throws SQLException, IOException{
+        AulaMarcada aulaMarcada = new AulaMarcada();
+        int controlaErro = 0;
+        
+        try{
+            aulaMarcada = selectRowAulaMarcada();
+        } 
+        catch(NullPointerException e){
+            msg.mensagemAviso("Selecione um professor para visualizar.");
+            controlaErro++;
+        }
+        
+        if(controlaErro == 0){
+            Stage stage = new Stage();
+            Parent root=null;
+            FXMLLoader loader = new FXMLLoader();
+
+            root = loader.load(getClass().getResource("/View/Tela_Visualizar_Aula_Professor.fxml").openStream());
+            Tela_Visualizar_Aula_Professor_Controller aController = (Tela_Visualizar_Aula_Professor_Controller) loader.getController();
+
+            stage.initStyle(StageStyle.DECORATED.UNDECORATED);
+
+            root.setOnMousePressed(new EventHandler<MouseEvent>(){
+                @Override
+                public void handle(MouseEvent event){
+                    xOFFset = event.getSceneX();
+                    yOFFset = event.getSceneY();
+                }
+            });
+
+            root.setOnMouseDragged(new EventHandler<MouseEvent>(){
+                @Override
+                public void handle(MouseEvent event){
+                    stage.setX(event.getScreenX() - xOFFset);
+                    stage.setY(event.getScreenY() - yOFFset);
+                }
+            });
+
+            aController.setDadosAula(aulaMarcada);
+
+            stage.setScene(new Scene(root));
+            stage.setTitle("Visualizar Aula");
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+        }
+        
+    }
+    
+    public AulaMarcada selectRowAulaMarcada() throws SQLException{
+        AulaMarcada aulaMarcada = new AulaMarcada();
+        int id = tvAulasMarcadas.getSelectionModel().getSelectedItem().getId_Aula_Marcada();
+        aulaMarcada = aulaMarcada.vizualizaAulaMarcadaProfessor(id);
+        return aulaMarcada;
+    }
+    
+    public int selectRowAulaPendentes() throws SQLException{
+        AulaMarcada aulaMarcada = new AulaMarcada();
+        int id = tvAulasPendentes.getSelectionModel().getSelectedItem().getId_Aula_Marcada();
+        return id;
+    }
+    
+    @FXML
+    public void RecusarAula() throws SQLException{
+        AulaMarcadaDAO aulaD = new AulaMarcadaDAO();
+        aulaD.recusaAula(selectRowAulaPendentes());
+        tvAulasPendentes.refresh();
+        initTableAulasPendentes();
+    }
+    
+    @FXML
+    public void ConfirmaAula() throws SQLException{
+        AulaMarcadaDAO aulaD = new AulaMarcadaDAO();
+        aulaD.confirmaAula(selectRowAulaPendentes());
+        tvAulasPendentes.refresh();
+        initTableAulasPendentes();
     }
     
     @FXML
@@ -278,35 +405,4 @@ public class Tela_Principal_Professor_Controller implements Initializable {
         System.exit(0);
     }
     
-    @FXML
-    public void VisualizarAulaClicked() throws IOException{
-            Stage stage = new Stage();
-            Parent root=null;
-            FXMLLoader loader = new FXMLLoader();
-
-            root = loader.load(getClass().getResource("/View/Tela_Visualizar_Aula_Professor.fxml").openStream());
-            
-            stage.initStyle(StageStyle.DECORATED.UNDECORATED);
-
-            root.setOnMousePressed(new EventHandler<MouseEvent>(){
-                @Override
-                public void handle(MouseEvent event){
-                    xOFFset = event.getSceneX();
-                    yOFFset = event.getSceneY();
-                }
-            });
-
-            root.setOnMouseDragged(new EventHandler<MouseEvent>(){
-                @Override
-                public void handle(MouseEvent event){
-                    stage.setX(event.getScreenX() - xOFFset);
-                    stage.setY(event.getScreenY() - yOFFset);
-                }
-            });
-
-            stage.setScene(new Scene(root));
-            stage.setTitle("Visualizar Aulas Marcadas");
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.showAndWait();
-    }
 }

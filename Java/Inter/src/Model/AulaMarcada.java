@@ -74,4 +74,23 @@ public class AulaMarcada extends UserProfessor{
         }
         return aula;
     }
+    
+    public AulaMarcada vizualizaAulaMarcadaProfessor(int idAula) throws SQLException{
+        AulaMarcada aula = new AulaMarcada();
+        ResultSet rs;
+        AulaMarcadaDAO aulaD = new AulaMarcadaDAO();
+    
+        rs = aulaD.retornaAulaMarcadaProfessor(idAula);
+     
+        if(rs.next()){
+            aula.setNome(rs.getString(4));
+            aula.setMateria_Professor(rs.getString(5));
+            aula.setData_Aula(rs.getDate(6));
+            aula.setHora_Aula(rs.getString(7));
+            aula.setCargo(rs.getString(9));
+            aula.setContato(rs.getString(10));
+            aula.setImgUser(rs.getString(11));
+        }
+        return aula;
+    }
 }

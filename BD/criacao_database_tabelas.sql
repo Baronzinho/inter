@@ -58,7 +58,7 @@ INSERT INTO Usuario (cpf,senha,cargo,img, nome, idade, endereco,contato) VALUES 
 
 INSERT INTO Professor (id_User,descricao_Professor,preco_Aula,materia_Professor) VALUES (2,"Professor de Matemtica, atendo em casa","40.00","Matematica");
  
-INSERT INTO Aula_Marcada (id_Professor,id_Aluno,data_Marcada,hora_Aula,statusDaAula) VALUES (1,1,"2020-05-20","12:00","Confirmado");
+INSERT INTO Aula_Marcada (id_Professor,id_Aluno,data_Marcada,hora_Aula,statusDaAula) VALUES (1,1,"2020-010-20","12:00","Confirmado");
 INSERT INTO Aula_Marcada (id_Professor,id_Aluno,data_Marcada,hora_Aula,statusDaAula) VALUES (1,1,"2020-05-20","12:00","Pendente");
  
  /* VIEWS */
@@ -70,15 +70,16 @@ CREATE VIEW AulasMarcadasAluno AS SELECT id_Aluno,Professor.id_Professor,id_Aula
 INNER JOIN Professor ON Professor.id_Professor = Aula_Marcada.id_Professor
 INNER JOIN Usuario ON Usuario.id_User = Professor.id_User ;
 
-CREATE VIEW AulasMarcadasProfessor AS SELECT id_Aluno,Professor.id_Professor,id_Aula_Marcada,nome , materia_Professor,data_Marcada ,hora_Aula,statusDaAula FROM Aula_Marcada
+CREATE VIEW AulasMarcadasProfessor AS SELECT id_Aluno,Professor.id_Professor,id_Aula_Marcada,nome , materia_Professor,data_Marcada ,hora_Aula,statusDaAula,concat(Endereco.bairro, ', ', Endereco.rua, ' - ', Endereco.numero) AS Endereco,contato,img FROM Aula_Marcada
 INNER JOIN Professor ON Professor.id_Professor = Aula_Marcada.id_Professor
-INNER JOIN Usuario ON Usuario.id_User = Aula_Marcada.id_Aluno ;
+INNER JOIN Usuario ON Usuario.id_User = Aula_Marcada.id_Aluno 
+INNER JOIN Endereco ON Endereco.id_endereco = Usuario.endereco;
 
 SELECT * FROM AulasMarcadasProfessor WHERE id_Professor = 1 AND statusDaAula = "Confirmado";
 
 CREATE VIEW AulasPendentesProfessor AS SELECT id_Aluno, id_Professor, id_Aula_Marcada, 
 	nome, data_Marcada, hora_Aula, statusDaAula,
-    concat(Endereco.rua, ', ', Endereco.numero, ' - ', Endereco.bairro)
+    concat(Endereco.bairro, ', ', Endereco.rua, ' - ', Endereco.numero)
 FROM Aula_Marcada 
 INNER JOIN Usuario ON Usuario.id_User = Aula_Marcada.id_Aluno 
 INNER JOIN Endereco ON Endereco.id_endereco = Usuario.endereco;
@@ -88,6 +89,8 @@ INNER JOIN Professor ON Professor.id_User = Usuario.id_User;
 
 /* Teste */
 SELECT * FROM AulasMarcadasAluno WHERE id_Aluno =1 and statusDaAula = "Confirmado" AND materia_Professor LIKE "%alex%" OR nome LIKE "%alex%";
+SELECT * FROM AulasMarcadasProfessor WHERE id_Aula_Marcada = 1 ;
+SELECT * FROM AulasMarcadasAluno WHERE id_Aluno =1  AND statusDaAula = "Confirmado"  AND materia_Professor LIKE  "%a%" OR nome LIKE "%a%" ;
 SELECT * FROM ProcurarProfessor;
 SELECT * FROM endereco where id_Endereco = 1;
 SELECT * FROM ProcuraProfessor;
