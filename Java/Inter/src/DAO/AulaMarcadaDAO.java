@@ -94,7 +94,9 @@ public class AulaMarcadaDAO extends SQL{
     public List <AulaMarcada> exibeAulasPendentesProfessor(int id_Prof) {
         String status = "Pendente";
         List<AulaMarcada> listaAulas = new ArrayList();
-        sql = "SELECT * FROM AulasPendentesProfessor WHERE id_Professor = " + id_Prof + " AND statusDaAula = '" + status +"';";
+        sql = "SELECT * FROM AulasPendentesProfessor "
+                + "WHERE id_Professor = " + id_Prof + " AND statusDaAula = '" + status +"';";
+
         try {
             rset = select(sql);
             while (rset.next()) {
@@ -105,6 +107,7 @@ public class AulaMarcadaDAO extends SQL{
                 aula.setNome(rset.getString(4));
                 aula.setData_Aula(rset.getDate(5));
                 aula.setHora_Aula(rset.getString(6));
+                aula.setContato(rset.getString(8));
                 listaAulas.add(aula);
             }
         }catch (SQLException ex) {

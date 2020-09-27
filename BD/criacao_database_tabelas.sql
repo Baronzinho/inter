@@ -76,8 +76,12 @@ INNER JOIN Usuario ON Usuario.id_User = Aula_Marcada.id_Aluno ;
 
 SELECT * FROM AulasMarcadasProfessor WHERE id_Professor = 1 AND statusDaAula = "Confirmado";
 
-CREATE VIEW AulasPendentesProfessor AS SELECT id_Aluno,id_Professor,id_Aula_Marcada,nome ,data_Marcada ,hora_Aula,statusDaAula FROM Aula_Marcada
-INNER JOIN Usuario ON Usuario.id_User = Aula_Marcada.id_Aluno ;
+CREATE VIEW AulasPendentesProfessor AS SELECT id_Aluno, id_Professor, id_Aula_Marcada, 
+	nome, data_Marcada, hora_Aula, statusDaAula,
+    concat(Endereco.rua, ', ', Endereco.numero, ' - ', Endereco.bairro)
+FROM Aula_Marcada 
+INNER JOIN Usuario ON Usuario.id_User = Aula_Marcada.id_Aluno 
+INNER JOIN Endereco ON Endereco.id_endereco = Usuario.endereco;
 
 CREATE VIEW ProcurarProfessor AS SELECT id_Professor,nome , materia_Professor, preco_Aula  FROM Usuario
 INNER JOIN Professor ON Professor.id_User = Usuario.id_User;
@@ -93,3 +97,9 @@ SELECT * FROM endereco;
 SELECT img FROM Usuario;
 SELECT * FROM Usuario;
 update Usuario set cpf = '123', nome = 'Gabriel' where id_User = 1;
+
+SELECT min(data_Marcada) FROM Aula_Marcada 
+WHERE data_Marcada >= (SELECT CURRENT_TIMESTAMP)
+AND id_Aluno = 1;
+
+delete from Usuario where id_User = 3;
