@@ -1,17 +1,17 @@
 package Model;
 
 import DAO.AulaMarcadaDAO;
-import DAO.EnderecoDAO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 
-public class AulaMarcada extends UserProfessor{
+public class AulaMarcada extends UserProfessor {
+
     private int id_Aula_Marcada;
     private int id_Professor;
     private int id_Aluno;
     private Date data_Aula;
-    private String status,hora_Aula;
+    private String status, hora_Aula;
 
     public int getId_Aula_Marcada() {
         return id_Aula_Marcada;
@@ -60,29 +60,29 @@ public class AulaMarcada extends UserProfessor{
     public void setHora_Aula(String hora_Aula) {
         this.hora_Aula = hora_Aula;
     }
-    
-    public AulaMarcada retornaAula(int idProfessor) throws SQLException{
+
+    public AulaMarcada retornaAula(int idProfessor) throws SQLException {
         AulaMarcada aula = new AulaMarcada();
         ResultSet rs;
         AulaMarcadaDAO aulaD = new AulaMarcadaDAO();
-    
+
         rs = aulaD.retornaAulaMarcada(idProfessor);
-     
-        if(rs.next()){
+
+        if (rs.next()) {
             aula.setData_Aula(rs.getDate(1));
             aula.setHora_Aula(rs.getString(2));
         }
         return aula;
     }
-    
-    public AulaMarcada vizualizaAulaMarcadaProfessor(int idAula) throws SQLException{
+
+    public AulaMarcada vizualizaAulaMarcadaProfessor(int idAula) throws SQLException {
         AulaMarcada aula = new AulaMarcada();
         ResultSet rs;
         AulaMarcadaDAO aulaD = new AulaMarcadaDAO();
-    
+
         rs = aulaD.retornaAulaMarcadaProfessor(idAula);
-     
-        if(rs.next()){
+
+        if (rs.next()) {
             aula.setNome(rs.getString(4));
             aula.setMateria_Professor(rs.getString(5));
             aula.setData_Aula(rs.getDate(6));

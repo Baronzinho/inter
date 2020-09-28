@@ -1,15 +1,12 @@
-
 package Model;
 
-import java.sql.Blob;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.swing.JOptionPane;
 
 public class Usuario {
-    
-     private int id_User,idade,id_endereco;
-     private String cpf,senha,cargo,nome,contato,imgUser;
+
+    private int id_User, idade, id_endereco;
+    private String cpf, senha, cargo, nome, contato, imgUser;
 
     public int getId_User() {
         return id_User;
@@ -83,30 +80,29 @@ public class Usuario {
         this.imgUser = imgUser;
     }
 
-    
-    public Usuario retornaUser(String cpf,String senha) throws SQLException{
-     Usuario user = new Usuario();
-     DAO.UsuarioDAO userD = new DAO.UsuarioDAO();
-     ResultSet rs;
-     
-     rs = userD.Login(cpf,senha);
-     
-     if(rs.next()){
-         user.setId_User(rs.getInt(1));
-         user.setCpf(rs.getString(2));
-         user.setSenha(rs.getString(3));
-         user.setCargo(rs.getString(4));
-         user.setImgUser(rs.getString(5));
-         user.setNome(rs.getString(6));
-         user.setIdade(rs.getInt(7));
-         user.setId_endereco(rs.getInt(8));
-         user.setContato(rs.getString(9));
-         
-     }else{
-         user.setId_User(0);
-     }
-     
-     return user;
-     }
-    
+    public Usuario retornaUser(String cpf, String senha) throws SQLException {
+        Usuario user = new Usuario();
+        DAO.UsuarioDAO userD = new DAO.UsuarioDAO();
+        ResultSet rs;
+
+        rs = userD.Login(cpf, senha);
+
+        if (rs.next()) {
+            user.setId_User(rs.getInt(1));
+            user.setCpf(rs.getString(2));
+            user.setSenha(rs.getString(3));
+            user.setCargo(rs.getString(4));
+            user.setImgUser(rs.getString(5));
+            user.setNome(rs.getString(6));
+            user.setIdade(rs.getInt(7));
+            user.setId_endereco(rs.getInt(8));
+            user.setContato(rs.getString(9));
+
+        } else {
+            user.setId_User(0);
+        }
+
+        return user;
+    }
+
 }

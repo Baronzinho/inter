@@ -11,6 +11,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+<?import Model.Mascara?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Tela_Cadastro_Controller">
    <left>
@@ -34,9 +35,9 @@
       <AnchorPane prefHeight="450.0" prefWidth="500.0" BorderPane.alignment="CENTER">
          <children>
             <TextField fx:id="txtNomeUser" layoutX="14.0" layoutY="52.0" prefHeight="27.0" prefWidth="270.0" promptText="Nome" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
-            <TextField fx:id="txtCpfUser" layoutX="296.0" layoutY="52.0" prefHeight="27.0" prefWidth="190.0" promptText="CPF" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
+            <Mascara fx:id="txtCpfUser" layoutX="296.0" layoutY="52.0" prefHeight="27.0" prefWidth="190.0" promptText="CPF" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
             <TextField fx:id="txtIdadeUser" layoutX="144.0" layoutY="85.0" prefHeight="27.0" prefWidth="140.0" promptText="Idade" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
-            <TextField fx:id="txtTelefoneUser" layoutX="14.0" layoutY="85.0" prefHeight="25.0" prefWidth="120.0" promptText="Telefone" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
+            <Mascara fx:id="txtTelefoneUser" layoutX="14.0" layoutY="85.0" prefHeight="25.0" prefWidth="120.0" promptText="Telefone" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
             <RadioButton fx:id="rbAluno" layoutX="312.0" layoutY="90.0" mnemonicParsing="false" text="Aluno" textFill="#797979">
                <font>
                   <Font name="System Bold" size="12.0" />
@@ -66,7 +67,7 @@
             <TextField fx:id="txtRuaEndereco" layoutX="85.0" layoutY="223.0" prefHeight="27.0" prefWidth="240.0" promptText="Logradouro" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
             <TextField fx:id="txtBairroEndereco" layoutX="337.0" layoutY="223.0" promptText="Bairro" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
             <TextField fx:id="txtCidadeEndereco" layoutX="16.0" layoutY="264.0" prefHeight="27.0" prefWidth="160.0" promptText="Cidade" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
-            <TextField fx:id="txtCepEndereco" layoutX="185.0" layoutY="264.0" prefHeight="27.0" prefWidth="140.0" promptText="CEP" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
+            <Mascara fx:id="txtCepEndereco" layoutX="185.0" layoutY="264.0" prefHeight="27.0" prefWidth="140.0" promptText="CEP" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
             <TextField fx:id="txtComplementoEndereco" layoutX="337.0" layoutY="265.0" promptText="Complemento" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
             <Text fill="#0598ff" layoutX="16.0" layoutY="333.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dados Acesso">
                <font>

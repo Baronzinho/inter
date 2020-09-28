@@ -21,13 +21,12 @@ public class Mascara extends TextField {
     @Override
     public void replaceText(int start, int end, String text) {
 
-       
         String tempText = this.getText() + text;
 
-        if(mask == null || mask.length() == 0){
+        if (mask == null || mask.length() == 0) {
             super.replaceText(start, end, text);
-        }else if (tempText.matches(this.mask) || tempText.length() == 0) {  
-            
+        } else if (tempText.matches(this.mask) || tempText.length() == 0) {
+
             super.replaceText(start, end, text);
 
         } else {
