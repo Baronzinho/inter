@@ -86,23 +86,3 @@ INNER JOIN Endereco ON Endereco.id_endereco = Usuario.endereco;
 
 CREATE VIEW ProcurarProfessor AS SELECT id_Professor,nome , materia_Professor, preco_Aula  FROM Usuario
 INNER JOIN Professor ON Professor.id_User = Usuario.id_User;
-
-/* Teste */
-SELECT * FROM AulasMarcadasAluno WHERE id_Aluno =1 and statusDaAula = "Confirmado" AND materia_Professor LIKE "%alex%" OR nome LIKE "%alex%";
-SELECT * FROM AulasMarcadasProfessor WHERE id_Aula_Marcada = 1 ;
-SELECT * FROM AulasMarcadasAluno WHERE id_Aluno =1  AND statusDaAula = "Confirmado"  AND materia_Professor LIKE  "%a%" OR nome LIKE "%a%" ;
-SELECT * FROM ProcurarProfessor;
-SELECT * FROM endereco where id_Endereco = 1;
-SELECT * FROM ProcuraProfessor;
-SELECT * FROM Aula_Marcada;
-SELECT * FROM Usuario;
-SELECT * FROM endereco;
-SELECT img FROM Usuario;
-SELECT * FROM Usuario;
-update Usuario set cpf = '123', nome = 'Gabriel' where id_User = 1;
-
-SELECT min(data_Marcada) FROM Aula_Marcada 
-WHERE data_Marcada >= (SELECT CURRENT_TIMESTAMP)
-AND id_Aluno = 1;
-
-delete from Usuario where id_User = 3;

@@ -11,7 +11,15 @@ public class AulaMarcada extends UserProfessor {
     private int id_Professor;
     private int id_Aluno;
     private Date data_Aula;
-    private String status, hora_Aula;
+    private String status, hora_Aula, data;
+
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
+    }
 
     public int getId_Aula_Marcada() {
         return id_Aula_Marcada;

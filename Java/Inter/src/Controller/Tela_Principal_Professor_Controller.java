@@ -434,7 +434,7 @@ public class Tela_Principal_Professor_Controller implements Initializable {
 
     public void initTableAulasPendentes() {
         ColNomeAluno.setCellValueFactory(new PropertyValueFactory("nome"));
-        ColDataAulaPendente.setCellValueFactory(new PropertyValueFactory("data_Aula"));
+        ColDataAulaPendente.setCellValueFactory(new PropertyValueFactory("data"));
         ColHora.setCellValueFactory(new PropertyValueFactory("hora_Aula"));
         ColEnderecoAluno.setCellValueFactory(new PropertyValueFactory("contato"));
         tvAulasPendentes.setItems(AulasPendentes());
@@ -447,7 +447,7 @@ public class Tela_Principal_Professor_Controller implements Initializable {
 
     public void initTableAulasMarcadas() {
         ColNomeAlunoC.setCellValueFactory(new PropertyValueFactory("nome"));
-        ColData.setCellValueFactory(new PropertyValueFactory("data_Aula"));
+        ColData.setCellValueFactory(new PropertyValueFactory("data"));
         ColHoraC.setCellValueFactory(new PropertyValueFactory("hora_Aula"));
         ColMateriaAula.setCellValueFactory(new PropertyValueFactory("materia_Professor"));
         tvAulasMarcadas.setItems(AulasMarcadas());
@@ -460,7 +460,7 @@ public class Tela_Principal_Professor_Controller implements Initializable {
 
     public void initTableAulasMarcadasPesquisa(String pesquisa) {
         ColNomeAlunoC.setCellValueFactory(new PropertyValueFactory("nome"));
-        ColData.setCellValueFactory(new PropertyValueFactory("data_Aula"));
+        ColData.setCellValueFactory(new PropertyValueFactory("data"));
         ColHoraC.setCellValueFactory(new PropertyValueFactory("hora_Aula"));
         ColMateriaAula.setCellValueFactory(new PropertyValueFactory("materia_Professor"));
         tvAulasMarcadas.setItems(AulasMarcadas(pesquisa));

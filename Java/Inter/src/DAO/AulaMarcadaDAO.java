@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class AulaMarcadaDAO extends SQL {
@@ -29,7 +30,7 @@ public class AulaMarcadaDAO extends SQL {
                 aula.setId_Aula_Marcada(rset.getInt(3));
                 aula.setNome(rset.getString(4));
                 aula.setMateria_Professor(rset.getString(5));
-                aula.setData_Aula(rset.getDate(6));
+                aula.setData(rset.getString(6));
                 aula.setHora_Aula(rset.getString(7));
                 listaAulas.add(aula);
             }
@@ -53,7 +54,7 @@ public class AulaMarcadaDAO extends SQL {
                 aula.setId_Aula_Marcada(rset.getInt(3));
                 aula.setNome(rset.getString(4));
                 aula.setMateria_Professor(rset.getString(5));
-                aula.setData_Aula(rset.getDate(6));
+                aula.setData(rset.getString(6));
                 aula.setHora_Aula(rset.getString(7));
                 listaAulas.add(aula);
             }
@@ -77,7 +78,7 @@ public class AulaMarcadaDAO extends SQL {
                 aula.setId_Aula_Marcada(rset.getInt(3));
                 aula.setNome(rset.getString(4));
                 aula.setMateria_Professor(rset.getString(5));
-                aula.setData_Aula(rset.getDate(6));
+                aula.setData(rset.getString(6));
                 aula.setHora_Aula(rset.getString(7));
                 listaAulas.add(aula);
             }
@@ -101,7 +102,7 @@ public class AulaMarcadaDAO extends SQL {
                 aula.setId_Aula_Marcada(rset.getInt(3));
                 aula.setNome(rset.getString(4));
                 aula.setMateria_Professor(rset.getString(5));
-                aula.setData_Aula(rset.getDate(6));
+                aula.setData(rset.getString(6));
                 aula.setHora_Aula(rset.getString(7));
                 listaAulas.add(aula);
             }
@@ -126,7 +127,7 @@ public class AulaMarcadaDAO extends SQL {
                 aula.setId_Professor(rset.getInt(2));
                 aula.setId_Aula_Marcada(rset.getInt(3));
                 aula.setNome(rset.getString(4));
-                aula.setData_Aula(rset.getDate(5));
+                aula.setData(rset.getString(5));
                 aula.setHora_Aula(rset.getString(6));
                 aula.setContato(rset.getString(8));
                 listaAulas.add(aula);

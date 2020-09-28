@@ -46,7 +46,6 @@ public class Tela_Login_Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         txtUsuario.setMask("NNN.NNN.NNN-NN");
-        //txtUsuario.setMask("***********");
     }
 
     @FXML
