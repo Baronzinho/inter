@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Endereco {
+
     private int id_Endereco;
     private String rua;
     private String bairro;
@@ -68,24 +69,24 @@ public class Endereco {
     public void setCep(String cep) {
         this.cep = cep;
     }
-    
-    public Endereco retornaEnderecoUser(int idEndereco) throws SQLException{
-    Endereco enderecoUser = new Endereco();
-    ResultSet rs;
-    EnderecoDAO enderecoD = new EnderecoDAO();
-    
-    rs = enderecoD.retornaEndereco(idEndereco);
-     
-     if(rs.next()){
-         enderecoUser.setId_Endereco(rs.getInt(1));
-         enderecoUser.setRua(rs.getString(2));
-         enderecoUser.setBairro(rs.getString(3));
-         enderecoUser.setCidade(rs.getString(4));
-         enderecoUser.setNumero(rs.getString(5));
-         enderecoUser.setCep(rs.getString(6));
-         enderecoUser.setComplemento(rs.getString(7));
-     }
-    
+
+    public Endereco retornaEnderecoUser(int idEndereco) throws SQLException {
+        Endereco enderecoUser = new Endereco();
+        ResultSet rs;
+        EnderecoDAO enderecoD = new EnderecoDAO();
+
+        rs = enderecoD.retornaEndereco(idEndereco);
+
+        if (rs.next()) {
+            enderecoUser.setId_Endereco(rs.getInt(1));
+            enderecoUser.setRua(rs.getString(2));
+            enderecoUser.setBairro(rs.getString(3));
+            enderecoUser.setCidade(rs.getString(4));
+            enderecoUser.setNumero(rs.getString(5));
+            enderecoUser.setCep(rs.getString(6));
+            enderecoUser.setComplemento(rs.getString(7));
+        }
+
         return enderecoUser;
     }
 }

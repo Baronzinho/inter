@@ -1,12 +1,12 @@
 package Model;
 
-import java.sql.Blob;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UserProfessor extends Usuario {
-    private int id_Professor,id_User;
-    private String descricao_Professor,preco_aula,materia_Professor;
+
+    private int id_Professor, id_User;
+    private String descricao_Professor, preco_aula, materia_Professor;
 
     public int getId_Professor() {
         return id_Professor;
@@ -47,43 +47,42 @@ public class UserProfessor extends Usuario {
     public void setMateria_Professor(String materia_Professor) {
         this.materia_Professor = materia_Professor;
     }
-        
-    public UserProfessor retornaUser(int idProf) throws SQLException{
-     UserProfessor prof = new UserProfessor();
-     DAO.ProfessorDAO profD = new DAO.ProfessorDAO();
-     ResultSet rs;
-     rs = profD.DadosProfessor(idProf);
-      
-     if(rs.next()){
-         prof.setId_Professor(rs.getInt(1));
-         prof.setImgUser(rs.getString(3));
-         prof.setNome(rs.getString(4));
-         prof.setId_endereco(rs.getInt(5));
-         prof.setContato(rs.getString(6));
-         prof.setDescricao_Professor(rs.getString(7));
-         prof.setPreco_aula(rs.getString(8));
-         prof.setMateria_Professor(rs.getString(9));
-     }else{
-         prof.setId_User(0);
-     }
-    return prof;
+
+    public UserProfessor retornaUser(int idProf) throws SQLException {
+        UserProfessor prof = new UserProfessor();
+        DAO.ProfessorDAO profD = new DAO.ProfessorDAO();
+        ResultSet rs;
+        rs = profD.DadosProfessor(idProf);
+
+        if (rs.next()) {
+            prof.setId_Professor(rs.getInt(1));
+            prof.setImgUser(rs.getString(3));
+            prof.setNome(rs.getString(4));
+            prof.setId_endereco(rs.getInt(5));
+            prof.setContato(rs.getString(6));
+            prof.setDescricao_Professor(rs.getString(7));
+            prof.setPreco_aula(rs.getString(8));
+            prof.setMateria_Professor(rs.getString(9));
+        } else {
+            prof.setId_User(0);
+        }
+        return prof;
     }
-    
-    
-    public UserProfessor retornaProfPeloIdUser(int idUser) throws SQLException{
-     UserProfessor prof = new UserProfessor();
-     DAO.ProfessorDAO profD = new DAO.ProfessorDAO();
-     ResultSet rs;
-     rs = profD.DadosProfessorPeloIdUser(idUser);
-      
-     if(rs.next()){
-         prof.setId_Professor(rs.getInt(1));
-         prof.setDescricao_Professor(rs.getString(7));
-         prof.setPreco_aula(rs.getString(8));
-         prof.setMateria_Professor(rs.getString(9));
-     }else{
-         prof.setId_User(0);
-     }     
-    return prof;
+
+    public UserProfessor retornaProfPeloIdUser(int idUser) throws SQLException {
+        UserProfessor prof = new UserProfessor();
+        DAO.ProfessorDAO profD = new DAO.ProfessorDAO();
+        ResultSet rs;
+        rs = profD.DadosProfessorPeloIdUser(idUser);
+
+        if (rs.next()) {
+            prof.setId_Professor(rs.getInt(1));
+            prof.setDescricao_Professor(rs.getString(7));
+            prof.setPreco_aula(rs.getString(8));
+            prof.setMateria_Professor(rs.getString(9));
+        } else {
+            prof.setId_User(0);
+        }
+        return prof;
     }
 }

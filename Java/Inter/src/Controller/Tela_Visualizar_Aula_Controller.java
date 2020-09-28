@@ -1,4 +1,3 @@
-
 package Controller;
 
 import Model.Endereco;
@@ -32,19 +31,19 @@ public class Tela_Visualizar_Aula_Controller implements Initializable {
     private Label lblHoraMarcada;
     @FXML
     private TextArea txtDescricaoProfessor;
-    
+
     @FXML
-    public void VoltarClicked(){
+    public void VoltarClicked() {
         Stage stageAtual = (Stage) btnVoltar.getScene().getWindow();
         stageAtual.close();
     }
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         txtDescricaoProfessor.setEditable(false);
-    }    
-    
-    public void setDadosAula(UserProfessor user) throws SQLException{
+    }
+
+    public void setDadosAula(UserProfessor user) throws SQLException {
         AulaMarcada aula = new AulaMarcada();
         Endereco endereco = new Endereco();
         endereco = endereco.retornaEnderecoUser(user.getId_endereco());
@@ -54,7 +53,7 @@ public class Tela_Visualizar_Aula_Controller implements Initializable {
         lblNomeProfessor.setText(user.getNome());
         lblMateriaProfessor.setText(user.getMateria_Professor());
         lblPrecoAula.setText(user.getPreco_aula());
-        lblEnderecoProfessor.setText(endereco.getBairro() + ", " + endereco.getRua()+" - " + endereco.getNumero());
+        lblEnderecoProfessor.setText(endereco.getBairro() + ", " + endereco.getRua() + " - " + endereco.getNumero());
         txtDescricaoProfessor.setText(user.getDescricao_Professor());
     }
 }

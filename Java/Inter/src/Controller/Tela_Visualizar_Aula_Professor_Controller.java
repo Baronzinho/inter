@@ -1,4 +1,3 @@
-
 package Controller;
 
 import Model.AulaMarcada;
@@ -13,7 +12,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 public class Tela_Visualizar_Aula_Professor_Controller implements Initializable {
-    
+
     @FXML
     private Button btnVoltar;
     @FXML
@@ -30,26 +29,26 @@ public class Tela_Visualizar_Aula_Professor_Controller implements Initializable 
     private Label lblHorarioAula;
     @FXML
     private ImageView imgAluno;
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+
     }
-    
-     public void setDadosAula(AulaMarcada aula){
-         lblNomeAluno.setText(aula.getNome());
-         lblEnderecoAluno.setText(aula.getCargo());
-         lblTelefoneAluno.setText(aula.getContato());
-         lblMateriaProfessor.setText(aula.getMateria_Professor());
-         lblDataAula.setText(aula.getData_Aula().toString());
-         lblHorarioAula.setText(aula.getHora_Aula());
-         Image imgUser =  new Image(aula.getImgUser());
-         imgAluno.setImage(imgUser);
-     }
+
+    public void setDadosAula(AulaMarcada aula) {
+        lblNomeAluno.setText(aula.getNome());
+        lblEnderecoAluno.setText(aula.getCargo());
+        lblTelefoneAluno.setText(aula.getContato());
+        lblMateriaProfessor.setText(aula.getMateria_Professor());
+        lblDataAula.setText(aula.getData_Aula().toString());
+        lblHorarioAula.setText(aula.getHora_Aula());
+        Image imgUser = new Image(aula.getImgUser());
+        imgAluno.setImage(imgUser);
+    }
 
     @FXML
-    public void VoltarClicked(){
+    public void VoltarClicked() {
         Stage stageAtual = (Stage) btnVoltar.getScene().getWindow();
         stageAtual.close();
-    }    
+    }
 }

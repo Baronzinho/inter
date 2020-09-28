@@ -1,4 +1,3 @@
-
 package Controller;
 
 import DAO.AulaMarcadaDAO;
@@ -37,22 +36,22 @@ public class Tela_Marcar_Aula_Controller implements Initializable {
     private Label lblEnderecoProfessor;
     @FXML
     private DatePicker dtDataAula;
-    
-    int idAluno,idProf;
+
+    int idAluno, idProf;
     Mensagens msg = new Mensagens();
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-    }   
-    
+
+    }
+
     @FXML
-    public void VoltarClicked(){
+    public void VoltarClicked() {
         Stage stageAtual = (Stage) btnVoltar.getScene().getWindow();
         stageAtual.close();
     }
-    
-    public void setDadosParaMarcarAula(UserProfessor user,int idAluno) throws SQLException{
+
+    public void setDadosParaMarcarAula(UserProfessor user, int idAluno) throws SQLException {
         this.idAluno = idAluno;
         this.idProf = user.getId_Professor();
         Endereco endereco = new Endereco();
@@ -60,18 +59,20 @@ public class Tela_Marcar_Aula_Controller implements Initializable {
         lblNomeProfessor.setText(user.getNome());
         lblMateriaProfessor.setText(user.getMateria_Professor());
         lblPrecoAula.setText(user.getPreco_aula());
-        lblEnderecoProfessor.setText(endereco.getBairro() + ", " + endereco.getRua()+" - " + endereco.getNumero());
+        lblEnderecoProfessor.setText(endereco.getBairro() + ", " + endereco.getRua() + " - " + endereco.getNumero());
     }
-    
+
     @FXML
-    public void MarcaAula() throws ParseException, SQLException{
+    public void MarcaAula() throws ParseException, SQLException {
         AulaMarcadaDAO aulaMarcadaD = new AulaMarcadaDAO();
         String hora = txtHorarioAula.getText();
-        if(txtHorarioAula.getText().isEmpty() ){
+        if (txtHorarioAula.getText().isEmpty()) {
             msg.mensagemAviso("Preencha os campos para marcar a aula");
-        }else{
+        } else {
             aulaMarcadaD.marcaAula(idProf, idAluno, dtDataAula.getValue(), hora);
             msg.mensagemInfo("Aula Marcada com Sucesso! Aguarde a confirmaçao do Professor");
+            Stage stageAtual = (Stage) btnVoltar.getScene().getWindow();
+            stageAtual.close();
         }
     }
 }

@@ -13,6 +13,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+<?import Model.Mascara?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="460.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Tela_Principal_Aluno_Controller">
    <children>
@@ -49,7 +50,7 @@
                </font>
             </Button>
             <FontAwesomeIcon fill="WHITE" glyphName="PLUG" layoutX="44.0" layoutY="349.0" size="20" />
-            <Label fx:id="lblUsername" contentDisplay="CENTER" layoutX="65.0" layoutY="139.0" prefHeight="20.0" prefWidth="90.0" text="Gabriel" textAlignment="CENTER" textFill="WHITE">
+            <Label fx:id="lblUsername" contentDisplay="CENTER" layoutX="23.0" layoutY="139.0" prefHeight="20.0" prefWidth="177.0" text="Gabriel" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -81,7 +82,7 @@
                         </AnchorPane>
                         <AnchorPane layoutX="26.0" layoutY="73.0" prefHeight="30.0" prefWidth="250.0" style="-fx-background-color: #0598ff;">
                            <children>
-                              <Text fill="WHITE" layoutX="53.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Valor das Aulas">
+                              <Text fill="WHITE" layoutX="27.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Valor Total das Aulas">
                                  <font>
                                     <Font name="System Bold" size="20.0" />
                                  </font>
@@ -157,12 +158,12 @@
                         <Line endX="430.0" layoutX="115.0" layoutY="64.0" startX="-100.0" stroke="#0598ff" />
                         <TextField fx:id="txtNomeUser" layoutX="15.0" layoutY="80.0" onKeyPressed="#NomePressed" prefHeight="27.0" prefWidth="270.0" promptText="Nome" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
                         <TextField fx:id="txtIdadeUser" layoutX="295.0" layoutY="80.0" onKeyPressed="#IdadePressed" prefHeight="27.0" prefWidth="120.0" promptText="Idade" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
-                        <TextField fx:id="txtTelefoneUser" layoutX="425.0" layoutY="80.0" onKeyPressed="#TelefonePressed" prefHeight="25.0" prefWidth="120.0" promptText="Telefone" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
+                        <Mascara fx:id="txtTelefoneUser" layoutX="425.0" layoutY="80.0" onKeyPressed="#TelefonePressed" prefHeight="25.0" prefWidth="120.0" promptText="Telefone" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
                         <TextField fx:id="txtNumeroEndereco" layoutX="14.0" layoutY="207.0" onKeyPressed="#NumeroPressed" prefHeight="27.0" prefWidth="60.0" promptText="Número" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
                         <TextField fx:id="txtRuaEndereco" layoutX="84.0" layoutY="207.0" onKeyPressed="#RuaPressed" prefHeight="27.0" prefWidth="240.0" promptText="Logradouro" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
                         <TextField fx:id="txtBairroEndereco" layoutX="336.0" layoutY="207.0" onKeyPressed="#BairroPressed" prefHeight="27.0" prefWidth="210.0" promptText="Bairro" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
                         <TextField fx:id="txtCidadeEndereco" layoutX="15.0" layoutY="248.0" onKeyPressed="#CidadePressed" prefHeight="27.0" prefWidth="160.0" promptText="Cidade" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
-                        <TextField fx:id="txtCepEndereco" layoutX="184.0" layoutY="248.0" onKeyPressed="#CepPressed" prefHeight="27.0" prefWidth="140.0" promptText="CEP" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
+                        <Mascara fx:id="txtCepEndereco" layoutX="184.0" layoutY="248.0" onKeyPressed="#CepPressed" prefHeight="27.0" prefWidth="140.0" promptText="CEP" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
                         <TextField fx:id="txtComplementoEndereco" layoutX="336.0" layoutY="249.0" onKeyPressed="#ComplementoPressed" prefHeight="27.0" prefWidth="210.0" promptText="Complemento" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
                         <Line endX="430.0" layoutX="116.0" layoutY="188.0" startX="-100.0" stroke="#0598ff" />
                         <Line endX="430.0" layoutX="115.0" layoutY="315.0" startX="-100.0" stroke="#0598ff" />
